@@ -433,9 +433,9 @@ The file (*.xmlR*) with results can be found [here](https://github.com/XuuRee/io
 </OpenModelResult>
 ```
 
-[structure]: https://github.com/XuuRee/iom-example/blob/master/IOMExample/IOMExample/Images/structure.PNG "Structure"
-[nodes]: https://github.com/XuuRee/iom-example/blob/master/IOMExample/IOMExample/Images/nodes.PNG "Nodes"
-[first_member]: https://github.com/XuuRee/iom-example/blob/master/IOMExample/IOMExample/Images/first_member.PNG "Member"
-[second_member]: https://github.com/XuuRee/iom-example/blob/master/IOMExample/IOMExample/Images/second_member.PNG "Continuous member"
-[connection_point]: https://github.com/XuuRee/iom-example/blob/master/IOMExample/IOMExample/Images/connection_point.PNG "Connection point"
-[unbalanced_forces]: https://github.com/XuuRee/iom-example/blob/master/IOMExample/IOMExample/Images/unbalanced_forces.PNG "Unbalanced forces"
+[structure]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/structure.PNG "Structure"
+[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/nodes.PNG "Nodes"
+[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/first_member.PNG "Member"
+[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/second_member.PNG "Continuous member"
+[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/connection_point.PNG "Connection point"
+[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/unbalanced_forces.PNG "Unbalanced forces"
