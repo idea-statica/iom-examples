@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOMExample", "IOMExample\IOMExample.csproj", "{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {210F9AE4-00EC-41E6-BBAB-4776BDB6EA97}
+	EndGlobalSection
+EndGlobal
