@@ -227,6 +227,8 @@ model.AddObject(M2);
 
 The image and code below describes how to change local coordinate system in line segment.
 
+![alt text][coordinates]
+
 ```csharp
 // add local coordinate system to the LineSegment3D
 CoordSystemByPoint coord = new CoordSystemByPoint();
@@ -236,8 +238,6 @@ coord.InPlane = Plane.ZX;
 
 LineSegment3D segment3D = new LineSegment3D();
 segment3D.LocalCoordinateSystem = coord;
-
-// and so on... 
 ```
 
 ### Connection point
@@ -439,3 +439,4 @@ The file (*.xmlR*) with results can be found [here](https://github.com/idea-stat
 [second_member]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/second_member.PNG "Continuous member"
 [connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/connection_point.PNG "Connection point"
 [unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/unbalanced_forces.PNG "Unbalanced forces"
+[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/coordinates.PNG "Coordinates"
