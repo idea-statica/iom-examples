@@ -27,9 +27,10 @@ You can set some default IOM parameters like project name, description etc.
 
 ```csharp
 // create new instance of the open model
-OpenModel model = new OpenModel();
+model.OriginSettings = new OriginSettings();
 
-model.OriginSettings = new OriginSettings() { CrossSectionConversionTable = CrossSectionConversionTable.SCIA };
+model.OriginSettings.CrossSectionConversionTable = CrossSectionConversionTable.SCIA;
+model.OriginSettings.CountryCode = CountryCode.ECEN;
 model.OriginSettings.ProjectName = "Project";
 model.OriginSettings.Author = "IDEA StatiCa s.r.o.";
 model.OriginSettings.ProjectDescription = "Training example";

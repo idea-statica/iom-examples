@@ -49,7 +49,10 @@ namespace IOMExample
 		/// <param name="model">Open model</param>
 		private static void AddSettingsToIOM(OpenModel model)
 		{
-			model.OriginSettings = new OriginSettings() { CrossSectionConversionTable = CrossSectionConversionTable.SCIA };
+			model.OriginSettings = new OriginSettings();
+
+			model.OriginSettings.CrossSectionConversionTable = CrossSectionConversionTable.SCIA;
+			model.OriginSettings.CountryCode = CountryCode.ECEN;
 			model.OriginSettings.ProjectName = "Project";
 			model.OriginSettings.Author = "IDEA StatiCa s.r.o.";
 			model.OriginSettings.ProjectDescription = "Training example";
