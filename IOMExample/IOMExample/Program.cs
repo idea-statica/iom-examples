@@ -18,6 +18,7 @@ namespace IOMExample
 			result.SaveToXmlFile("example.xmlR");
 			example.SaveToXmlFile("example.xml");
 			
+			// end console application
 			Console.WriteLine("Done. Press any key to exit.");
 			Console.ReadKey();
 		}
