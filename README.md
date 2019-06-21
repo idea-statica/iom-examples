@@ -439,4 +439,4 @@ The file (*.xmlR*) with results can be found [here](https://github.com/idea-stat
 [second_member]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/second_member.PNG "Continuous member"
 [connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/connection_point.PNG "Connection point"
 [unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/unbalanced_forces.PNG "Unbalanced forces"
-[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/coordinates.PNG "Coordinates"
+[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/coordinates.png "Coordinates"
