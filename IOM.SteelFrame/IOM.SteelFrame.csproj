@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>IOMExample</RootNamespace>
-    <AssemblyName>IOMExample</AssemblyName>
+    <RootNamespace>IOM.SteelFrame</RootNamespace>
+    <AssemblyName>IOM.SteelFrame</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -54,9 +54,6 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Results\results.xmlR" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Generator\GenerateCSSFile.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />

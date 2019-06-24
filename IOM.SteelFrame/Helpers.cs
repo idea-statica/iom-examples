@@ -9,7 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Xml.Serialization;
 
-namespace IOMExample
+namespace IOM.SteelFrame
 {
 	/// <summary>
 	/// This class contains helper methods for creating objects. 

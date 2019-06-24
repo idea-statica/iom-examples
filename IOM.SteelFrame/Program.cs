@@ -2,7 +2,7 @@ using System;
 using IdeaRS.OpenModel;
 using IdeaRS.OpenModel.Result;
 
-namespace IOMExample
+namespace IOM.SteelFrame
 {
 	public class Program
 	{
