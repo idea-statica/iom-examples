@@ -445,9 +445,9 @@ If everything is set correctly loads are in equilibrium.
 
 ![alt text][unbalanced_forces]
 
-You can download [idea project file](https://idea-statica.github.io/iom/coord-system.html) of our steel frame which can be open in IDEA StatiCa Designer.
+You can download [idea project file](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/SampleFiles/SteelFrame.idea) of our steel frame which can be open in IDEA StatiCa Designer.
 
-You can also download [idea connection file](https://idea-statica.github.io/iom/coord-system.html) of the created connection which can be open in IDEA StatiCa Connection.
+You can also download [idea connection file](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/SampleFiles/con-n2.ideaCon) of the created connection which can be open in IDEA StatiCa Connection.
 
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
