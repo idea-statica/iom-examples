@@ -427,10 +427,13 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 ```
 
 ![alt text][n]
+Load combination #1 - Axial forces N
 
 ![alt text][vz]
+Load combination #1 - Shear forces Vz
 
 ![alt text][my]
+Load combination #1 - Bending moments Vy
 
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
