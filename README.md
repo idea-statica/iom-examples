@@ -441,7 +441,7 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 
 If everything is set correctly loads are in equilibrium.
 
-![alt text][connection_loading.png]
+![alt text][connection_loading]
 
 ![alt text][unbalanced_forces]
 
@@ -461,3 +461,4 @@ You can also download [idea connection file](https://idea-statica.github.io/iom/
 [my]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-My.PNG "Bending moments My"
 [members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/members-lcs.PNG "Members - local coordinate systems"
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
+[connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection_loading.png "Loads on connected memebers"
