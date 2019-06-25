@@ -426,7 +426,11 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 </OpenModelResult>
 ```
 
+![alt text][n]
 
+![alt text][vz]
+
+![alt text][my]
 
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
