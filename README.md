@@ -1,29 +1,25 @@
-# IOM Example
+# IOM Example - SteelFrame
 
-This example describes how to create the IOM.
+This example describes how to define a steel frame in IOM (IDEA StatiCa Open Model).
 
-To start, we need create a standard console application. Launch Visual Studio. Select __File__ > __New__ > __Project__ from the menu bar. In the dialog, select the __Visual C#__ node followed by the __Get Started__ node. Then select the __Console App__ project template.
+Let's create a standard console application in MS Visual Studio. Select __File__ > __New__ > __Project__ from the menu bar. In the dialog, select the __Visual C#__ node followed by the __Get Started__ node. Then select the __Console App__ project template.
 
 ## Add the IdeaRS.OpenModel NuGet package
 
-OpenModel is published as [the nuget package](https://www.nuget.org/packages/IdeaStatiCa.OpenModel/). To install the package, you can use either the Package Manager UI or the Package Manager Console.
+OpenModel is published as [the nuget package](https://www.nuget.org/packages/IdeaStatiCa.OpenModel/). To install this package, you can use either the Package Manager UI or the Package Manager Console.
 
-For more information, see [Install and use a package in Visual Studio](https://docs.microsoft.com/cs-cz/nuget/quickstart/install-and-use-a-package-in-visual-studio)
+For more information, see [Install and use a package in Visual Studio](https://docs.microsoft.com/en-us/nuget/quickstart/install-and-use-a-package-in-visual-studio)
 
-There is also the documentation of [IdeaRS.OpenModel](https://idea-statica.github.io/iom/iom-api/html/ef39c768-a155-5401-182f-d445fe9723b5.htm).
+There is also documentation related to [IdeaRS.OpenModel](https://idea-statica.github.io/iom/iom-api/index.html) on Github.
 
-## Example
-Our main task will be to create the structure you can see in the picture below. The model consists of several columns, beams and some load cases.
+## The geometry of the steel frame
+The geometrical model of the steel structure which you can see in the picture below will be created in this step. The model consists of several columns, beams.
 
 ![alt text][structure]
 
-Let's create our IOM!
+### The project settings
 
-### Settings
-
-Reference to the settings in open model is [here](https://github.com/idea-statica/iom/blob/master/IdeaRS.OpenModel/OriginSettings.cs).
-
-You can set some default IOM parameters like project name, description etc.
+A basic information about our project - such as a project name, a description etc.
 
 ```csharp
 // create new instance of the open model
@@ -36,7 +32,68 @@ model.OriginSettings.Author = "IDEA StatiCa s.r.o.";
 model.OriginSettings.ProjectDescription = "Training example";
 ```
 
-### Nodes
+More datails can be found [here](https://github.com/idea-statica/iom/blob/master/IdeaRS.OpenModel/OriginSettings.cs).
+
+
+### Definition of materials in our model
+*The type of materials corresponds to the selected design code for our project ! We can't mixed 
+*Reference to the materials in open model is [here](https://github.com/idea-statica/iom/tree/master/IdeaRS.OpenModel/Libraries/Material).*
+
+```csharp
+MatSteelEc2 material = new MatSteelEc2();
+
+// set properties
+material.Id = 1;
+material.Name = "S355";
+material.E = 210000000000;
+material.G = material.E / (2 * (1 + 0.3));
+material.Poisson = 0.3;
+material.UnitMass = 7850;
+material.SpecificHeat = 0.6;
+material.ThermalExpansion = 0.000012;
+material.ThermalConductivity = 45;
+material.IsDefaultMaterial = false;
+material.OrderInCode = 0;
+material.StateOfThermalExpansion = ThermalExpansionState.Code;
+material.StateOfThermalConductivity = ThermalConductivityState.Code;
+material.StateOfThermalSpecificHeat = ThermalSpecificHeatState.Code;
+material.StateOfThermalStressStrain = ThermalStressStrainState.Code;
+material.StateOfThermalStrain = ThermalStrainState.Code;
+material.fy = 355000000;
+material.fu = 510000000;
+material.fy40 = 335000000;
+material.fu40 = 470000000;
+material.DiagramType = SteelDiagramType.Bilinear;
+
+// add material to the model
+model.AddObject(material);
+```
+
+### Definition of cross sections in our model
+
+*Reference to the cross sections in open model is [here](https://github.com/idea-statica/iom/tree/master/IdeaRS.OpenModel/Libraries/CrossSection).*
+
+Model has two types of cross sections: HE200B and HE240B. To create a single cross-section you need to know the material from previous section.
+
+```csharp
+// only one material is in the model
+MatSteel material = model.MatSteel.FirstOrDefault();
+
+CrossSectionParameter css = new CrossSectionParameter();
+
+css.Id = 1;
+css.Name = "HE200B";
+css.CrossSectionRotation = 0;
+css.CrossSectionType = CrossSectionType.RolledI;
+
+css.Parameters.Add(new ParameterString() { Name = "UniqueName", Value = "HE200B" });
+css.Material = new ReferenceElement(material);
+
+// add cross sections to the model
+model.AddObject(css);
+```
+
+### Nodes in the geometrical model
 
 Individual nodes are placed in the structure as follows:
 
@@ -74,84 +131,26 @@ model.AddObject(N2);
 // and so on...
 ```
 
-### Materials
+### 1D members in our model
 
-*Reference to the materials in open model is [here](https://github.com/idea-statica/iom/tree/master/IdeaRS.OpenModel/Libraries/Material).*
+Each instace of Member1D has one ore more instances Element1D.
 
-```csharp
-MatSteelEc2 material = new MatSteelEc2();
-
-// set properties
-material.Id = 1;
-material.Name = "S355";
-material.E = 210000000000;
-material.G = material.E / (2 * (1 + 0.3));
-material.Poisson = 0.3;
-material.UnitMass = 7850;
-material.SpecificHeat = 0.6;
-material.ThermalExpansion = 0.000012;
-material.ThermalConductivity = 45;
-material.IsDefaultMaterial = false;
-material.OrderInCode = 0;
-material.StateOfThermalExpansion = ThermalExpansionState.Code;
-material.StateOfThermalConductivity = ThermalConductivityState.Code;
-material.StateOfThermalSpecificHeat = ThermalSpecificHeatState.Code;
-material.StateOfThermalStressStrain = ThermalStressStrainState.Code;
-material.StateOfThermalStrain = ThermalStrainState.Code;
-material.fy = 355000000;
-material.fu = 510000000;
-material.fy40 = 335000000;
-material.fu40 = 470000000;
-material.DiagramType = SteelDiagramType.Bilinear;
-
-// add material to the model
-model.AddObject(material);
-```
-
-### Cross sections
-
-*Reference to the cross sections in open model is [here](https://github.com/idea-statica/iom/tree/master/IdeaRS.OpenModel/Libraries/CrossSection).*
-
-Model has two types of cross sections: HE200B and HE240B. To create a single cross-section you need to know the material from previous section.
-
-```csharp
-// only one material is in the model
-MatSteel material = model.MatSteel.FirstOrDefault();
-
-CrossSectionParameter css = new CrossSectionParameter();
-
-css.Id = 1;
-css.Name = "HE200B";
-css.CrossSectionRotation = 0;
-css.CrossSectionType = CrossSectionType.RolledI;
-
-css.Parameters.Add(new ParameterString() { Name = "UniqueName", Value = "HE200B" });
-css.Material = new ReferenceElement(material);
-
-// add cross sections to the model
-model.AddObject(css);
-```
-
-### Members
-
-There are two ways how members can be defined in the model:
-
-__1. Member is composed of start node and end node.__
+__1. The example of an instance of Member1D which has only one Element1D and it is connected as an ended member into a connection.__
 
 ![alt text][first_member]
 
-The code below describes the creation of first member (__M1__) that is composed of start node (__N2__) and end node (__N4__).
+The code below describes how to create a member which has only one Element1D
 
-*Please notice, for better readability there are also helper functions like __CreateLineSegment3D__, __CreateElement1D__ and __CreateMember1D__ that you can find [here](https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Helpers.cs).*
+*Please notice, for better readability there are also helper functions like __CreateLineSegment3D__, __CreateElement1D__ and __CreateMember1D__ that you can find [here](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Helpers.cs).*
 
 ```csharp
-// find appropriate cross sections
+// set the appropriate cross section
 var css_he_200b = model.CrossSection.FirstOrDefault(item => item.Name == "HE200B");
 
-// create line segments
+// define the geometry of the member - the line segment connecting nodes N2 and N4
 LineSegment3D segment = CreateLineSegment3D(model, "N2", "N4");
 
-// create polylines
+// create the polyline (polylines can consist of one ore more segments)
 PolyLine3D polyline = new PolyLine3D();
 polyline.Id = model.GetMaxId(polyline) + 1;
 polyline.Segments.Add(new ReferenceElement(segment));
@@ -160,15 +159,19 @@ polyline.Segments.Add(new ReferenceElement(segment));
 model.AddObject(polyline);
 model.AddObject(segment);
 
-// create 1D elements
+// create one 1D element
 Element1D element = CreateElement1D(model, css, segment);
 model.AddObject(element);
 
-// create 1D members
+// create one 1D member which has one element1D
 Member1D member = CreateMember1D(model, 1, Member1DType.Beam, element);
 model.Member1D.Add(member);
 
-// create and return connected member
+//TODO - each member requires the correct setting of its coordinate system. It affects behaviour of internal forces 
+
+
+// create the instance of a ConnectedMember - it defines the geometrical bahaviour of our Member1D in a connection. It can be ended or continouous.
+// Member1D can be part of more connections
 ConnectedMember M1 = new ConnectedMember();
 
 M1.Id = 1;
@@ -177,16 +180,17 @@ M1.MemberId = new ReferenceElement(member);
 model.AddObject(M1);
 ```
 
-__2. Continuous member is composed of start node, middle node and end node.__ 
+__2. The example of an instance of Member1D which has two Element1Ds - it can be connected as an continuous member into a connection (by its middle node).__ 
 
 ![alt text][second_member]
 
-The code below describes the creation of second member (__M2__) that is composed of start node (__N1__), middle node (__N2__) and end node (__N7__).
+The code below describes the creation of second member - which connects 3 nodes the begin node (__N1__), the middle node (__N2__) and the end node (__N7__).
 
 ```csharp
-// find appropriate cross sections
+// set its cross sections
 var css_he_240b = model.CrossSection.FirstOrDefault(item => item.Name == "HE240B");
 
+// define geometry 
 // create line segment from N1 to N2
 LineSegment3D segment1 = CreateLineSegment3D(model, "N1", "N2");
 model.AddObject(segment1);
@@ -195,7 +199,7 @@ model.AddObject(segment1);
 LineSegment3D segment2 = CreateLineSegment3D(model, "N2", "N7");
 model.AddObject(segment2);
 
-// create polylines
+// create the polyline
 PolyLine3D polyline = new PolyLine3D();
 polyline.Id = model.GetMaxId(polyline) + 1;
 polyline.Segments.Add(new ReferenceElement(segment1));
@@ -213,6 +217,8 @@ model.AddObject(element2);
 Member1D member = CreateMember1D(model, 2, Member1DType.Column, element1, element2);
 model.Member1D.Add(member);
 
+//TODO - each member requires the correct setting of its coordinate system. It affects behaviour of internal forces 
+
 // create and return connected member
 ConnectedMember M2 = new ConnectedMember();
 
@@ -222,54 +228,13 @@ M2.MemberId = new ReferenceElement(member);
 model.AddObject(M2);
 ```
 
-### Coordinate system
-
-*Reference to the coordinate system is [here](https://idea-statica.github.io/iom/coord-system.html).*
-
-The image and code below describes how to change local coordinate system in line segment.
-
-![alt text][coordinates]
-
-```csharp
-// add local coordinate system to the LineSegment3D
-CoordSystemByPoint coord = new CoordSystemByPoint();
-
-coord.Point = new Point3D() { X = 100000, Y = 0, Z = 0 };
-coord.InPlane = Plane.ZX;
-
-LineSegment3D segment3D = new LineSegment3D();
-segment3D.LocalCoordinateSystem = coord;
-```
-
-### Connection point
-
-To make connection point you need instance of specific node and required members. 
-
-![alt text][connection_point]
-
-![alt text][unbalanced_forces]
-
-```csharp
-// create first connection point
-ConnectionPoint CP1 = new ConnectionPoint();
-
-CP1.Node = new ReferenceElement(model.Point3D.FirstOrDefault(n => n.Name == "N2"));
-CP1.Id = model.GetMaxId(CP1) + 1;
-CP1.Name = "CON " + CP1.Id.ToString();
-
-// members from previous section
-CP1.ConnectedMembers.Add(M1);
-CP1.ConnectedMembers.Add(M3);
-
-model.AddObject(CP1);
-```
+## The loading of the steel frame
 
 ### Load cases
 
 ```csharp
-// create first load group
+// create the load group for pernament loadcases
 LoadGroupEC LG1 = new LoadGroupEC(); ;
-
 LG1.Id = 1;
 LG1.Name = "PERM1";
 LG1.Relation = Relation.Standard;
@@ -280,29 +245,8 @@ LG1.GammaGInf = 1;
 LG1.GammaGSup = 1.35;
 model.AddObject(LG1);
 
-// create first load case
-LoadCase LC1 = new LoadCase();
-
-LC1.Id = 1;
-LC1.Name = "SelfWeight";
-LC1.LoadType = LoadCaseType.Permanent;
-LC1.Type = LoadCaseSubType.PermanentStandard;
-LC1.Variable = VariableType.Standard;
-LC1.LoadGroup = new ReferenceElement(LG1);
-
-// create second load case
-LoadCase LC2 = new LoadCase();
-
-LC2.Id = 2;
-LC2.Name = "PernamentLoading";
-LC2.LoadType = LoadCaseType.Permanent;
-LC2.Type = LoadCaseSubType.PermanentStandard;
-LC2.Variable = VariableType.Standard;
-LC2.LoadGroup = new ReferenceElement(LG1);
-
-// create second load group
+// create the second load group for variable loadcases
 LoadGroupEC LG2 = new LoadGroupEC(); ;
-
 LG2.Id = 2;
 LG2.Name = "VAR1";
 LG2.Relation = Relation.Exclusive;
@@ -316,7 +260,28 @@ LG2.Psi1 = 0.5;
 LG2.Psi2 = 0.3;
 model.AddObject(LG2);
 
-// create third load case
+
+// create the first load case representing SelfWeight
+LoadCase LC1 = new LoadCase();
+
+LC1.Id = 1;
+LC1.Name = "SelfWeight";
+LC1.LoadType = LoadCaseType.Permanent;
+LC1.Type = LoadCaseSubType.PermanentStandard;
+LC1.Variable = VariableType.Standard;
+LC1.LoadGroup = new ReferenceElement(LG1);
+
+// create the second load case representing PernamentLoading
+LoadCase LC2 = new LoadCase();
+
+LC2.Id = 2;
+LC2.Name = "PernamentLoading";
+LC2.LoadType = LoadCaseType.Permanent;
+LC2.Type = LoadCaseSubType.PermanentStandard;
+LC2.Variable = VariableType.Standard;
+LC2.LoadGroup = new ReferenceElement(LG1);
+
+// create the third load case representing LiveLoad
 LoadCase LC3 = new LoadCase();
 
 LC3.Id = 3;
@@ -332,7 +297,7 @@ model.AddObject(LC2);
 model.AddObject(LC3);
 ```
 
-### Combinations
+### Define Load Combinations
 
 ```csharp
 // create first combination input
@@ -367,11 +332,38 @@ model.AddObject(CI1);
 // and so on...     
 ```
 
-### Results
+### Connections
 
-Results which were generated by a FEA application (internal forces) can be optionally saved as in the format of [OpenModelResult](https://idea-statica.github.io/iom/iom-api/html/a3529228-0caa-4961-7b11-96c215d94bcf.htm). It contains internal forces on the Member1Ds. The relationships between the IOM and the IOM Results are defined by ID of objects.
+A connection is defined by its reference node and connected members. A member can be ended or continuous. From the design point of view the balance of loading in the node is required.
 
-The file (*.xmlR*) with results can be found [here](https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Results/results.xmlR). Format is as follows:
+![alt text][connection_point]
+
+![alt text][unbalanced_forces]
+
+```csharp
+// create first connection point
+ConnectionPoint CP1 = new ConnectionPoint();
+
+CP1.Node = new ReferenceElement(model.Point3D.FirstOrDefault(n => n.Name == "N2"));
+CP1.Id = model.GetMaxId(CP1) + 1;
+CP1.Name = "CON " + CP1.Id.ToString();
+
+// members from previous section
+CP1.ConnectedMembers.Add(M1);
+CP1.ConnectedMembers.Add(M3);
+
+model.AddObject(CP1);
+```
+
+## Loading impulses acting on mebers in a connection model
+Loading impuses for our connection are determined  from results of FE analysis. IDEA OpenModel allowes to pass internal forces on members by OpenResuls class. 
+
+
+### Internal forces on members 
+
+Results of internal forces which were generated by a FEA application can be optionally saved as in the format of [OpenModelResult](https://idea-statica.github.io/iom/iom-api/index.html). It contains internal forces on the Member1Ds. The relationships between the IOM and the IOM Results are defined by ID of objects.
+
+The file (*.xmlR*) with results can be found [here]( https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Results/results.xmlR). Format is as follows:
 
 ```xml
 <?xml version="1.0" encoding="utf-16"?>
@@ -434,10 +426,10 @@ The file (*.xmlR*) with results can be found [here](https://github.com/idea-stat
 </OpenModelResult>
 ```
 
-[structure]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/structure.PNG "Structure"
-[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/nodes.PNG "Nodes"
-[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/first_member.PNG "Member"
-[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/second_member.PNG "Continuous member"
-[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/connection_point.PNG "Connection point"
-[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/unbalanced_forces.PNG "Unbalanced forces"
-[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOMExample/IOMExample/Images/coordinates.png "Coordinates"
+[structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
+[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
+[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/first_member.PNG "Member"
+[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/second_member.PNG "Continuous member"
+[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection_point.PNG "Connection point"
+[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/unbalanced_forces.PNG "Unbalanced forces"
+[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/coordinates.png "Coordinates"
