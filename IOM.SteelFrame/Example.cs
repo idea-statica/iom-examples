@@ -7,7 +7,7 @@ using IdeaRS.OpenModel.Loading;
 using IdeaRS.OpenModel.Material;
 using IdeaRS.OpenModel.Model;
 
-namespace IOMExample
+namespace IOM.SteelFrame
 {
 	public static class Example
 	{
