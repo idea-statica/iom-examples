@@ -439,11 +439,15 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 
 ### Validation of the exported connection
 
-If everything is set correctly there will be balance of internal forces in connections.
+If everything is set correctly loads are in equilibrium.
 
 ![alt text][connection_loading.png]
 
 ![alt text][unbalanced_forces]
+
+You can download [idea project file](https://idea-statica.github.io/iom/coord-system.html) of our steel frame which can be open in IDEA StatiCa Designer.
+
+You can also download [idea connection file](https://idea-statica.github.io/iom/coord-system.html) of the created connection which can be open in IDEA StatiCa Connection.
 
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"

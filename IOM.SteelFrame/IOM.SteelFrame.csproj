@@ -54,6 +54,8 @@
     <None Include="App.config" />
     <None Include="packages.config" />
     <None Include="Results\results.xmlR" />
+    <None Include="SampleFiles\con-n2.ideaCon" />
+    <None Include="SampleFiles\SteelFrame.idea" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
