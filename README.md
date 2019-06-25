@@ -228,6 +228,12 @@ M2.MemberId = new ReferenceElement(member);
 model.AddObject(M2);
 ```
 
+### Local coordinate system on members
+
+It its important to pay attantion to correct setting of [coordinate systems](https://idea-statica.github.io/iom/coord-system.html) on members. It must correspond to coordinate systems which are used in your FEA model otherwise it can caused unbalanced internal forces in exported connections.
+
+![alt text][members-lcs]
+
 ## The loading of the steel frame
 
 ### Load cases
@@ -334,11 +340,10 @@ model.AddObject(CI1);
 
 ### Connections
 
-A connection is defined by its reference node and connected members. A member can be ended or continuous. From the design point of view the balance of loading in the node is required.
+A connection is defined by its reference node and connected members. A member can be ended or continuous. From the design point of view the balance of loading in the node is required. Axis X of the local coordinate system of an ended member points out of a connection.
 
-![alt text][connection_point]
+![alt text][con-n2-mem-lcs]
 
-![alt text][unbalanced_forces]
 
 ```csharp
 // create first connection point
@@ -432,6 +437,14 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 
 ![alt text][my]
 
+### Validation of the exported connection
+
+If everything is set correctly there will be balance of internal forces in connections.
+
+![alt text][connection_loading.png]
+
+![alt text][unbalanced_forces]
+
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
 [first_member]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/first_member.PNG "Member"
@@ -442,3 +455,5 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 [n]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-N.PNG "Axial forces N"
 [vz]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-Vz.PNG "Shear forces Vz"
 [my]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-My.PNG "Bending moments My"
+[members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/members-lcs.PNG "Members - local coordinate systems"
+[con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
