@@ -13,7 +13,7 @@ For more information, see [Install and use a package in Visual Studio](https://d
 There is also documentation related to [IdeaRS.OpenModel](https://idea-statica.github.io/iom/iom-api/index.html) on Github.
 
 ## The geometry of the steel frame
-The geometrical model of the steel structure which you can see in the picture below will be created in this step. The model consists of several columns, beams.
+The geometrical model of the steel structure which you can see in the picture below will be created in this step. The model consists of several columns and beams.
 
 ![alt text][structure]
 
@@ -228,9 +228,9 @@ M2.MemberId = new ReferenceElement(member);
 model.AddObject(M2);
 ```
 
-### Local coordinate system on members
+### The local coordinate system of members
 
-It its important to pay attantion to correct setting of [coordinate systems](https://idea-statica.github.io/iom/coord-system.html) on members. It must correspond to coordinate systems which are used in your FEA model otherwise it can caused unbalanced internal forces in exported connections.
+It its important to pay attantion to the correct setting of [coordinate systems](https://idea-statica.github.io/iom/coord-system.html) of members. It must correspond to coordinate systems which are used in your FEA model otherwise it can caused unbalanced internal forces in exported connections.
 
 ![alt text][members-lcs]
 
@@ -441,13 +441,13 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 
 If everything is set correctly loads are in equilibrium.
 
-![alt text][connection_loading.png]
+![alt text][connection_loading]
 
 ![alt text][unbalanced_forces]
 
-You can download [idea project file](https://idea-statica.github.io/iom/coord-system.html) of our steel frame which can be open in IDEA StatiCa Designer.
+You can download [idea project file](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/SampleFiles/SteelFrame.idea) of our steel frame which can be open in IDEA StatiCa Designer.
 
-You can also download [idea connection file](https://idea-statica.github.io/iom/coord-system.html) of the created connection which can be open in IDEA StatiCa Connection.
+You can also download [idea connection file](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/SampleFiles/con-n2.ideaCon) of the created connection which can be open in IDEA StatiCa Connection.
 
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
@@ -461,3 +461,4 @@ You can also download [idea connection file](https://idea-statica.github.io/iom/
 [my]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-My.PNG "Bending moments My"
 [members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/members-lcs.PNG "Members - local coordinate systems"
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
+[connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection_loading.png "Loads on connected memebers"
