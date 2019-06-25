@@ -167,9 +167,6 @@ model.AddObject(element);
 Member1D member = CreateMember1D(model, 1, Member1DType.Beam, element);
 model.Member1D.Add(member);
 
-//TODO - each member requires the correct setting of its coordinate system. It affects behaviour of internal forces 
-
-
 // create the instance of a ConnectedMember - it defines the geometrical bahaviour of our Member1D in a connection. It can be ended or continouous.
 // Member1D can be part of more connections
 ConnectedMember M1 = new ConnectedMember();
@@ -217,8 +214,6 @@ model.AddObject(element2);
 Member1D member = CreateMember1D(model, 2, Member1DType.Column, element1, element2);
 model.Member1D.Add(member);
 
-//TODO - each member requires the correct setting of its coordinate system. It affects behaviour of internal forces 
-
 // create and return connected member
 ConnectedMember M2 = new ConnectedMember();
 
@@ -233,6 +228,27 @@ model.AddObject(M2);
 It its important to pay attantion to the correct setting of [coordinate systems](https://idea-statica.github.io/iom/coord-system.html) of members. It must correspond to coordinate systems which are used in your FEA model otherwise it can caused unbalanced internal forces in exported connections.
 
 ![alt text][members-lcs]
+
+There are 3 options how to define the coordinate system for member 1d :
+
+[CoordSystemByPoint](https://github.com/idea-statica/iom/blob/master/IdeaRS.OpenModel/Geometry/Geometry3D/CoordSystemByPoint.cs)
+
+[CoordSystemByVector](https://github.com/idea-statica/iom/blob/master/IdeaRS.OpenModel/Geometry/Geometry3D/CoordSystemByVector.cs)
+
+[CoordSystemByZup](https://github.com/idea-statica/iom/blob/master/IdeaRS.OpenModel/Geometry/Geometry3D/CoordSystemByZup.cs)
+
+The coordinate system is a property of [Segment3D](https://github.com/idea-statica/iom/blob/master/IdeaRS.OpenModel/Geometry/Geometry3D/Segment3D.cs)
+
+```csharp
+	LineSegment3D segment3D = new LineSegment3D();
+
+	segment3D.StartPoint = new ReferenceElement(model.Point3D.FirstOrDefault(item => item.Name == startNode));
+
+	CoordSystemByPoint system = new CoordSystemByPoint();
+	system.Point = new Point3D() { X = 100000, Y = 0, Z = 0 };
+	system.InPlane = Plane.ZX;
+	segment3D.LocalCoordinateSystem = system;
+```
 
 ## The loading of the steel frame
 
