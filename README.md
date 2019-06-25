@@ -426,6 +426,8 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 </OpenModelResult>
 ```
 
+
+
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
 [first_member]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/first_member.PNG "Member"
@@ -433,3 +435,6 @@ The file (*.xmlR*) with results can be found [here]( https://github.com/idea-sta
 [connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection_point.PNG "Connection point"
 [unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/unbalanced_forces.PNG "Unbalanced forces"
 [coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/coordinates.png "Coordinates"
+[n]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-N.PNG "Axial forces N"
+[vz]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-Vz.PNG "Shear forces Vz"
+[my]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-My.PNG "Bending moments My"
