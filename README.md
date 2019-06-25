@@ -13,7 +13,7 @@ For more information, see [Install and use a package in Visual Studio](https://d
 There is also documentation related to [IdeaRS.OpenModel](https://idea-statica.github.io/iom/iom-api/index.html) on Github.
 
 ## The geometry of the steel frame
-The geometrical model of the steel structure which you can see in the picture below will be created in this step. The model consists of several columns, beams.
+The geometrical model of the steel structure which you can see in the picture below will be created in this step. The model consists of several columns and beams.
 
 ![alt text][structure]
 
