@@ -1146,7 +1146,7 @@ openModel.Connections[0].Welds.Add(weldData12);
 ![Stiffeners With Welds](IOM.SteelFrame/Images/stiffenersWithWelds.PNG?raw=true "Stiffeners With Welds")
 
 ## Import IOM To IDEA Connection
-The package Idea StatiCa constrains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
+The package Idea StatiCa contains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
 
 #### The example of importing IOM To IDEA Connection:
 ```C#
