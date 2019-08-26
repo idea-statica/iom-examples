@@ -466,7 +466,7 @@ You can download [idea project file](https://github.com/idea-statica/iom-example
 You can also download [idea connection file](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/SampleFiles/con-n2.ideaCon) of the created connection which can be open in IDEA StatiCa Connection.
 
 ## Definition of a geometry of a connection 
-The geometry of a connection can be defined for each connection point on the in IOM. It be able to construct the connection data about connected members, their cutting (shortening) and components of the connection (plates, welds, bolts) are required.
+The geometry of a connection can be defined for each connection point in IOM. Following data about connected members, their cutting (shortening) and components of the connection (plates, welds, bolts) are required for creating a connection.
 
 #### Additional connection data in the connection point:
 ```C#
