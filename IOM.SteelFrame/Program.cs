@@ -17,7 +17,12 @@ namespace IOM.SteelFrame
 			// save to the files
 			result.SaveToXmlFile("example.xmlR");
 			example.SaveToXmlFile("example.xml");
-			
+
+			//add reference on  IdeaStatiCa.IOMToConnection.dll and uncomment
+			/*IdeaStatiCa.IOMToConnection.IOMToConnection iOMToConnection = new IdeaStatiCa.IOMToConnection.IOMToConnection();
+			IdeaStatiCa.IOMToConnection.IOMToConnection.Init();
+			iOMToConnection.Import(example, result, @"C:\temp\example.ideaCon");*/
+
 			// end console application
 			Console.WriteLine("Done. Press any key to exit.");
 			Console.ReadKey();
