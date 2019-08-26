@@ -465,10 +465,10 @@ You can download [idea project file](https://github.com/idea-statica/iom-example
 
 You can also download [idea connection file](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/SampleFiles/con-n2.ideaCon) of the created connection which can be open in IDEA StatiCa Connection.
 
-## How to create connection ?
-To create a connection you need first define a connection point
+## Definition of a geometry of a connection 
+The geometry of a connection can be defined for each connection point on the in IOM. It be able to construct the connection data about connected members, their cutting (shortening) and components of the connection (plates, welds, bolts) are required.
 
-#### Example of create connection:
+#### Additional connection data in the connection point:
 ```C#
 IdeaRS.OpenModel.Connection.ConnectionPoint connection = new IdeaRS.OpenModel.Connection.ConnectionPoint();
 IdeaRS.OpenModel.Geometry3D.Point3D point = new IdeaRS.OpenModel.Geometry3D.Point3D() {
@@ -488,29 +488,26 @@ connection.Id = openModel.GetMaxId(connection) + 1;
 openModel.Connections.Add(new IdeaRS.OpenModel.Connection.ConnectionData());
 openModel.AddObject(connection);
 ```
-## Beams
-Inicialize Beam data
-```C#
-openModel.Connections[0].Beams = new List<IdeaRS.OpenModel.Connection.BeamData>();
-```
-### Beam
-By [```IdeaRS.OpenModel.Connection.BeamData```](https://idea-statica.github.io/iom/iom-api/html/9361a78c-621f-87b4-c32c-4432d673d3fe.htm) you can define aditional infomation about beam. 
-This object requires this values:
+## Connected members
+There can be one or more connected mebers in a connection. The information about behaviour and properties of a connected member are passed by the instances of the class  [```IdeaRS.OpenModel.Connection.BeamData```](https://idea-statica.github.io/iom/iom-api/html/9361a78c-621f-87b4-c32c-4432d673d3fe.htm). 
+
 * `Id` - unique identificator [int]
 * `OriginalModelId` - unique identificator from original model [string]
 * `IsAdded` - beam is as stiffening member [bool]
 * `MirrorY` - mirror the cross-section acccording to its XY plane [bool]
-* `RefLineInCenterOfGravity` - reference line of cross-section is in center of gravity [bool]
+* `RefLineInCenterOfGravity` - the reference line of a cross-section is in center of gravity [bool]
 
-By [```IdeaRS.OpenModel.Connection.ConnectedMember```](https://idea-statica.github.io/iom/iom-api/html/b41a9e1a-77eb-b644-c90c-101d95a25cdc.htm) you can define aditional infomation about beam. 
-This object requires this values:
+The instance of  [```IdeaRS.OpenModel.Connection.ConnectedMember```](https://idea-statica.github.io/iom/iom-api/html/b41a9e1a-77eb-b644-c90c-101d95a25cdc.htm) has the reference of its 1D model and defines how the member is connected. 
 * `Id` - unique identificator [int]
 * `MemberId` - reference to member1D represented beam [[ReferenceElement](https://idea-statica.github.io/iom/iom-api/html/9e905b1a-a8a6-ae75-4c62-221258514c0b.htm)]
-* `IsContinuous` - beam is continuous [bool]
+* `IsContinuous` - a beam can be ended or continuous in a connection[bool]
 
 
 #### Example of create beam:
 ```C#
+// 
+openModel.Connections[0].Beams = new List<IdeaRS.OpenModel.Connection.BeamData>();
+
 //Add member1D 1
 IdeaRS.OpenModel.Connection.BeamData beam1Data = new IdeaRS.OpenModel.Connection.BeamData
 {
@@ -554,10 +551,10 @@ openModel.Connections[0].Beams.Add(beam2Data);
 ```
 ![Beams](IOM.SteelFrame/Images/beams.PNG?raw=true "Beam")
 
-## Plates
+## PlateData
 
-By [```IdeaRS.OpenModel.Connection.PlateData```](https://idea-statica.github.io/iom/iom-api/html/fa62da56-78d0-ae76-ec1a-543e2b77497f.htm) you can define plate. 
-This object requires this values:
+[```IdeaRS.OpenModel.Connection.PlateData```](https://idea-statica.github.io/iom/iom-api/html/fa62da56-78d0-ae76-ec1a-543e2b77497f.htm) includes data about geometry and material of the plate. 
+
 * `Name`- name of plate [string]
 * `Id` - unique identificator [int]
 * `OriginalModelId` - unique identificator from original model [string]
@@ -567,7 +564,7 @@ This object requires this values:
 * `AxisX` `AxisY` `AxisZ` - axixs of local coordinate system [Vector3D](https://idea-statica.github.io/iom/iom-api/html/5789c2c7-c7a4-30f0-f1d0-cb971aeb37bc.htm)
 * `Region` - geometry of plate descript by [SVG path](https://www.w3.org/TR/SVG/paths.html) [string]
 
-#### Example of create plate:
+#### The example of creating a plate:
 ```C#
 //add plate
 IdeaRS.OpenModel.Connection.PlateData plateData = new IdeaRS.OpenModel.Connection.PlateData
@@ -609,15 +606,17 @@ IdeaRS.OpenModel.Connection.PlateData plateData = new IdeaRS.OpenModel.Connectio
 ```
 ![Plate](IOM.SteelFrame/Images/plate.PNG?raw=true "Plate")
 
-## Cuts
-### Cut beam by beam or plate 
-By ```IdeaRS.OpenModel.Connection.CutBeamByBeamData``` you can define cuting beam by beam or plate. 
+## Cutting of connected members
+Connected mebers can be cut by a plate, other member or a work plane
+
+### Cut member by other member or plate 
+By ```IdeaRS.OpenModel.Connection.CutBeamByBeamData``` you can define cutting beam by other beam or plate. 
 This object requires this values:
-* `CuttingObject`- reference to beam or plate whitch is use for cutting [[ReferenceElement](https://idea-statica.github.io/iom/iom-api/html/9e905b1a-a8a6-ae75-4c62-221258514c0b.htm)]
-* `ModifiedObject`- reference to beam whitch is modified by cutting [[ReferenceElement](https://idea-statica.github.io/iom/iom-api/html/9e905b1a-a8a6-ae75-4c62-221258514c0b.htm)]
+* `CuttingObject`- reference of a member or plate which is cutting [[ReferenceElement](https://idea-statica.github.io/iom/iom-api/html/9e905b1a-a8a6-ae75-4c62-221258514c0b.htm)]
+* `ModifiedObject`- reference of the modified member [[ReferenceElement](https://idea-statica.github.io/iom/iom-api/html/9e905b1a-a8a6-ae75-4c62-221258514c0b.htm)]
 * `IsWeld`- flags for welding cut [bool]
 
-#### Example of create cut beam by plate:
+#### Example of creating cut beam by plate:
 ```#C
 // add cut
 openModel.Connections[0].CutBeamByBeams = new List<IdeaRS.OpenModel.Connection.CutBeamByBeamData>
@@ -632,13 +631,14 @@ openModel.Connections[0].CutBeamByBeams = new List<IdeaRS.OpenModel.Connection.C
 ```
 ![Cut Beam By Beam](IOM.SteelFrame/Images/cutBeamByPlate.PNG?raw=true "Cut Beam By Beam")
 
-### Cut beam by workplane
-By [```IdeaRS.OpenModel.Connection.CutData```](https://idea-statica.github.io/iom/iom-api/html/ccc12bf8-7d60-c423-f975-b6cc90cf2b3c.htm) you can define cuting beam by workplane.
+### Cutting a member by a workplane
+Members can be also cut by a workplane. This cut is defined by properties of an instance of the class
+By [```IdeaRS.OpenModel.Connection.CutData```](https://idea-statica.github.io/iom/iom-api/html/ccc12bf8-7d60-c423-f975-b6cc90cf2b3c.htm).
 This object requires this values:
-* `PlanePoint`- point defines in global coordinate system place where is workplane  [Point3D](https://idea-statica.github.io/iom/iom-api/html/20f596b7-3cd7-56ba-be81-c712cfd9f094.htm)
+* `PlanePoint`- point on workplane in global coordinate system [Point3D](https://idea-statica.github.io/iom/iom-api/html/20f596b7-3cd7-56ba-be81-c712cfd9f094.htm)
 * `NormalVector`- normal vector of workplane [Vector3D](https://idea-statica.github.io/iom/iom-api/html/5789c2c7-c7a4-30f0-f1d0-cb971aeb37bc.htm)
 
-#### Example of create cut beam by worplane:
+#### Example of cutting of a member by a workplane:
 
 ```#C
 CutData cutData = new CutData(){
@@ -648,9 +648,9 @@ CutData cutData = new CutData(){
 (beam1Data.Cuts ?? (beam1Data.Cuts = new List<CutData>())).Add(cutData);
 ```
 
-## Bolts
-By [```IdeaRS.OpenModel.Connection.BoltGrid```](https://idea-statica.github.io/iom/iom-api/html/b9b49fac-1350-22fd-8ed4-9938ce6345d1.htm) you can define bolts and connect objects. 
-This object requires this values:
+## Bolt grids
+[```IdeaRS.OpenModel.Connection.BoltGrid```](https://idea-statica.github.io/iom/iom-api/html/b9b49fac-1350-22fd-8ed4-9938ce6345d1.htm) includes properties of the bolt grid. 
+
 * `Id` - unique identificator [int]
 * `Diameter` - diameter of bolt(m) [double]
 * `DiagonalHeadDiameter` - head diameter of bolt(m) [double]
@@ -667,7 +667,7 @@ This object requires this values:
 * `ConnectedPartIds` - list of identificators object which want to connect together [string]
 
 
-#### Example of create boltgrid:
+#### Example of creating boltgrid:
 ```C#
 IdeaRS.OpenModel.Connection.BoltGrid boltGrid = new IdeaRS.OpenModel.Connection.BoltGrid()
 {
@@ -726,7 +726,7 @@ boltGrid.ConnectedPartIds = new List<string>() { beam2Data.OriginalModelId, plat
 ## Welds
 ### Weld 
 By [```IdeaRS.OpenModel.Connection.WeldData```](https://idea-statica.github.io/iom/iom-api/html/c8c8c54b-d021-d04f-85a3-8e410e7a0170.htm) you can define weld. 
-This object requires this values:
+
 * `Id` - unique identificator [int]
 * `ConnectedPartIds` - list of identificators object which want to welded together [string]
 * `Start` - point of start weld defined in global coordinate system [[Point3D](https://idea-statica.github.io/iom/iom-api/html/20f596b7-3cd7-56ba-be81-c712cfd9f094.htm)]
@@ -734,7 +734,7 @@ This object requires this values:
 * `Thickness` - thickness of weld defined in metric system(m) [double]
 * `WeldType` - type of weld [[WeldType](https://idea-statica.github.io/iom/iom-api/html/722ccc5e-a301-19b2-2da0-00969bf409b3.htm)]
 
-#### Example of create stiffeners with welds:
+#### Example of creating stiffeners with welds:
 ```#C
 IdeaRS.OpenModel.Connection.PlateData plateData2 = new IdeaRS.OpenModel.Connection.PlateData
 {
@@ -1145,10 +1145,10 @@ openModel.Connections[0].Welds.Add(weldData12);
 ```
 ![Stiffeners With Welds](IOM.SteelFrame/Images/stiffenersWithWelds.PNG?raw=true "Stiffeners With Welds")
 
-## Import Open model To IDEA Connection
-Installation of Idea StatiCa constrain C# library IdeaStatiCa.IOMToConnection.dll. This library offers transformation of open model to the idea file.
+## Import IOM To IDEA Connection
+The package Idea StatiCa constrains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
 
-#### Example of import Open model To IDEA Connection:
+#### The example of importing IOM To IDEA Connection:
 ```C#
 IdeaStatiCa.IOMToConnection.IOMToConnection iOMToConnection = new IdeaStatiCa.IOMToConnection.IOMToConnection();
 IdeaStatiCa.IOMToConnection.IOMToConnection.Init();
