@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 using IdeaRS.OpenModel;
 using IdeaRS.OpenModel.Connection;
 using IdeaRS.OpenModel.CrossSection;
@@ -7,6 +10,8 @@ using IdeaRS.OpenModel.Geometry3D;
 using IdeaRS.OpenModel.Loading;
 using IdeaRS.OpenModel.Material;
 using IdeaRS.OpenModel.Model;
+using IdeaRS.OpenModel.Result;
+using Newtonsoft.Json;
 
 namespace IOM.SteelFrame
 {
@@ -736,7 +741,7 @@ namespace IOM.SteelFrame
 
 			// create second cross section
 			CrossSectionParameter css2 = Helpers.CreateCSSParameter(2, "HE240B", material);
-			
+
 			// add cross sections to the model
 			model.AddObject(css1);
 			model.AddObject(css2);
@@ -927,5 +932,41 @@ namespace IOM.SteelFrame
 
 			model.AddObject(CI2);
 		}
+
+
+		public static void CreateOnServer(OpenModel model, OpenModelResult openModelResult, string path)
+		{
+			IdeaRS.OpenModel.OpenModelContainer openModelContainer = new OpenModelContainer()
+			{
+				OpenModel = model,
+				OpenModelResult = openModelResult,
+			};
+
+			var stringwriter = new System.IO.StringWriter();
+			var serializer = new XmlSerializer(typeof(OpenModelContainer));
+			serializer.Serialize(stringwriter, openModelContainer);
+			var resultMessage = Helpers.PostXMLData("https://viewer.ideastatica.com/ConnectionViewer", stringwriter.ToString());
+
+			ResponseMessage responseMessage = JsonConvert.DeserializeObject<ResponseMessage>(resultMessage);
+			if (responseMessage.status == "OK")
+			{
+				byte[] dataBuffer = Convert.FromBase64String(responseMessage.fileContent);
+				using (FileStream fileStream = new FileStream(path
+				, FileMode.Create
+				, FileAccess.Write))
+				{
+					if (dataBuffer.Length > 0)
+					{
+						fileStream.Write(dataBuffer, 0, dataBuffer.Length);
+					}
+				}
+			}
+		}
+	}
+
+	class ResponseMessage
+	{
+		public string status { get; set; }
+		public string fileContent { get; set; }
 	}
 }

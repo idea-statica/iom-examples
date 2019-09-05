@@ -23,6 +23,9 @@ namespace IOM.SteelFrame
 			IdeaStatiCa.IOMToConnection.IOMToConnection.Init();
 			iOMToConnection.Import(example, result, @"C:\temp\example.ideaCon");*/
 
+			//create project file on server and store local
+			//Example.CreateOnServer(example, result, @"C:\temp\example.ideaCon");
+
 			// end console application
 			Console.WriteLine("Done. Press any key to exit.");
 			Console.ReadKey();
