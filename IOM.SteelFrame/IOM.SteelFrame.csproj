@@ -8,9 +8,10 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>IOM.SteelFrame</RootNamespace>
     <AssemblyName>IOM.SteelFrame</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,8 +33,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IdeaRS.OpenModel, Version=10.0.21.0, Culture=neutral, PublicKeyToken=b195254c3273d5c1, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdeaStatica.OpenModel.10.0.21\lib\net40\IdeaRS.OpenModel.dll</HintPath>
+    <Reference Include="IdeaRS.OpenModel, Version=10.1.0.2, Culture=neutral, PublicKeyToken=b195254c3273d5c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdeaStatiCa.OpenModel.10.1.0.2\lib\net40\IdeaRS.OpenModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -57,7 +61,16 @@
     <None Include="SampleFiles\con-n2.ideaCon" />
     <None Include="SampleFiles\SteelFrame.idea" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Images\beams.PNG" />
+    <Content Include="Images\bolts.PNG" />
+    <Content Include="Images\connection-n2.PNG" />
+    <Content Include="Images\connection_loading.png" />
+    <Content Include="Images\cutBeamByPlate.PNG" />
+    <Content Include="Images\members-lcs.PNG" />
+    <Content Include="Images\plate.PNG" />
+    <Content Include="Images\stiffenersWithWelds.PNG" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="Images\connection_point.PNG" />
     <None Include="Images\coordinates.png" />
