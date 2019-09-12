@@ -933,6 +933,7 @@ namespace IOM.SteelFrame
 			model.AddObject(CI2);
 		}
 
+		public static readonly string viewerURL = "https://viewer.ideastatica.com";
 
 		public static void CreateOnServer(OpenModel model, OpenModelResult openModelResult, string path)
 		{
@@ -942,23 +943,34 @@ namespace IOM.SteelFrame
 				OpenModelResult = openModelResult,
 			};
 
+			// serialize IOM to XML
 			var stringwriter = new System.IO.StringWriter();
 			var serializer = new XmlSerializer(typeof(OpenModelContainer));
 			serializer.Serialize(stringwriter, openModelContainer);
-			var resultMessage = Helpers.PostXMLData("https://viewer.ideastatica.com/ConnectionViewer", stringwriter.ToString());
+
+			var serviceUrl = viewerURL + "/ConnectionViewer/CreateFromIOM";
+
+			Console.WriteLine("Posting iom in xml to the service {0}", serviceUrl);
+			var resultMessage = Helpers.PostXMLData(serviceUrl, stringwriter.ToString());
 
 			ResponseMessage responseMessage = JsonConvert.DeserializeObject<ResponseMessage>(resultMessage);
+			Console.WriteLine("Service response is : '{0}'", responseMessage.status);
 			if (responseMessage.status == "OK")
 			{
 				byte[] dataBuffer = Convert.FromBase64String(responseMessage.fileContent);
-				using (FileStream fileStream = new FileStream(path
+				Console.WriteLine("Writing {0} bytes to file '{1}'", dataBuffer.Length, path);
+				if (dataBuffer.Length > 0)
+				{
+					using (FileStream fileStream = new FileStream(path
 				, FileMode.Create
 				, FileAccess.Write))
-				{
-					if (dataBuffer.Length > 0)
 					{
 						fileStream.Write(dataBuffer, 0, dataBuffer.Length);
 					}
+				}
+				else
+				{
+					Console.WriteLine("The service returned no data");
 				}
 			}
 		}

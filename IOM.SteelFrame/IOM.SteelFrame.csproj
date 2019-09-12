@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="IdeaRS.OpenModel, Version=10.1.0.1, Culture=neutral, PublicKeyToken=b195254c3273d5c1, processorArchitecture=MSIL">
-      <HintPath>..\packages\IdeaStatiCa.OpenModel.10.1.0.1\lib\net40\IdeaRS.OpenModel.dll</HintPath>
+    <Reference Include="IdeaRS.OpenModel, Version=10.1.0.2, Culture=neutral, PublicKeyToken=b195254c3273d5c1, processorArchitecture=MSIL">
+      <HintPath>..\packages\IdeaStatiCa.OpenModel.10.1.0.2\lib\net40\IdeaRS.OpenModel.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>

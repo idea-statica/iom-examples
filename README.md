@@ -1148,7 +1148,7 @@ openModel.Connections[0].Welds.Add(weldData12);
 ## Import IOM To IDEA Connection
 The package Idea StatiCa contains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
 
-#### The example of importing IOM To IDEA Connection:
+#### The example of creating IDEA Connection project from IOM locally
 ```C#
 IdeaStatiCa.IOMToConnection.IOMToConnection iOMToConnection = new IdeaStatiCa.IOMToConnection.IOMToConnection();
 IdeaStatiCa.IOMToConnection.IOMToConnection.Init();
@@ -1161,6 +1161,52 @@ iOMToConnection.Import(openModel, openModelResult, @"C:\temp\TESTIDEA.ideaCon");
 * `openModelResult` - instance of [[IdeaRS.OpenModel.Result](https://idea-statica.github.io/iom/iom-api/latest/html/b44662a7-e978-507c-a4be-de29ab06894f.htm)]
 * `filePath` - path where shoud create new ideaCon file [string]
 
+#### The example of creating IDEA Connection project by webservice
+```C#
+		public static readonly string viewerURL = "https://viewer.ideastatica.com";
+
+		public static void CreateOnServer(OpenModel model, OpenModelResult openModelResult, string path)
+		{
+			IdeaRS.OpenModel.OpenModelContainer openModelContainer = new OpenModelContainer()
+			{
+				OpenModel = model,
+				OpenModelResult = openModelResult,
+			};
+
+			// serialize IOM to XML
+			var stringwriter = new System.IO.StringWriter();
+			var serializer = new XmlSerializer(typeof(OpenModelContainer));
+			serializer.Serialize(stringwriter, openModelContainer);
+
+			var serviceUrl = viewerURL + "/ConnectionViewer/CreateFromIOM";
+
+			Console.WriteLine("Posting iom in xml to the service {0}", serviceUrl);
+			var resultMessage = Helpers.PostXMLData(serviceUrl, stringwriter.ToString());
+
+			ResponseMessage responseMessage = JsonConvert.DeserializeObject<ResponseMessage>(resultMessage);
+			Console.WriteLine("Service response is : '{0}'", responseMessage.status);
+			if (responseMessage.status == "OK")
+			{
+				byte[] dataBuffer = Convert.FromBase64String(responseMessage.fileContent);
+				Console.WriteLine("Writing {0} bytes to file '{1}'", dataBuffer.Length, path);
+				if (dataBuffer.Length > 0)
+				{
+					using (FileStream fileStream = new FileStream(path
+				, FileMode.Create
+				, FileAccess.Write))
+					{
+						fileStream.Write(dataBuffer, 0, dataBuffer.Length);
+					}
+				}
+				else
+				{
+					Console.WriteLine("The service returned no data");
+				}
+			}
+		}
+	}
+
+```
 
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
