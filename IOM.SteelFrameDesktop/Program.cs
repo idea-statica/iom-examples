@@ -37,17 +37,19 @@ namespace IOM.SteelFrameDesktop
 			object obj = conLinkAssembly.CreateInstance("IdeaStatiCa.IOMToConnection.IOMToConnection");
 			dynamic d = obj;
 
+			// Initializtion
 			var initMethod = (obj).GetType().GetMethod("Init");
 			initMethod.Invoke(obj, null);
 
 			Console.WriteLine("Generating IDEA Connection project locally");
 
-			var method = (obj).GetType().GetMethod("Import");
+			// Invoking method Import by reflection
+			var methodImport = (obj).GetType().GetMethod("Import");
 			object[] array = new object[3];
 			array[0] = example;
 			array[1] = result;
 			array[2] = fileConnFileNameFromLocal;
-			method.Invoke(obj, array);
+			methodImport.Invoke(obj, array);
 
 			Console.WriteLine("Writing Idea connection project to file '{0}'", fileConnFileNameFromLocal);
 
