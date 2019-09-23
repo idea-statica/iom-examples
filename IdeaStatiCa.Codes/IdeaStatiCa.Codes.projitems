@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>be6e8e88-01df-489f-baa8-e61ca9e7c731</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>IdeaStatiCa.Codes</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Images\beams.PNG" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\bolts.PNG" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\connection-n2.PNG" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\connection_loading.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\cutBeamByPlate.PNG" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\members-lcs.PNG" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\plate.PNG" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\stiffenersWithWelds.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Images\connection_point.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\coordinates.png" />
+    <None Include="$(MSBuildThisFileDirectory)Images\first_member.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\LC1-My.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\LC1-N.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\LC1-Vz.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\nodes.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\second_member.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\structure.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Images\unbalanced_forces.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)Results\results.xmlR" />
+    <None Include="$(MSBuildThisFileDirectory)SampleFiles\con-n2.ideaCon" />
+    <None Include="$(MSBuildThisFileDirectory)SampleFiles\SteelFrame.idea" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Example.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helpers.cs" />
+  </ItemGroup>
+</Project>

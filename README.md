@@ -1148,12 +1148,30 @@ openModel.Connections[0].Welds.Add(weldData12);
 ## Import IOM To IDEA Connection
 The package Idea StatiCa contains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
 
-#### The example of creating IDEA Connection project from IOM locally
-```C#
-IdeaStatiCa.IOMToConnection.IOMToConnection iOMToConnection = new IdeaStatiCa.IOMToConnection.IOMToConnection();
-IdeaStatiCa.IOMToConnection.IOMToConnection.Init();
+#### The example of creating IDEA Connection project from IOM locally - see project IOM.SteelFrameDesktop.csproj
+The path to installation directory of Idea StatiCa must by set correcty set in the projectr setting.
 
-iOMToConnection.Import(openModel, openModelResult, @"C:\temp\TESTIDEA.ideaCon");
+```C#
+			IdeaInstallDir = IOM.SteelFrameDesktop.Properties.Settings.Default.IdeaInstallDir;
+			Console.WriteLine("IDEA StatiCa installation directory is '{0}'", IdeaInstallDir);
+```
+
+it dynamically loads the assembly IdeaStatiCa.IOMToConnection.dll and all its references from this location. Methods should be invoked by reflection
+
+```C#
+			// Initializtion
+			var initMethod = (obj).GetType().GetMethod("Init");
+			initMethod.Invoke(obj, null);
+
+			Console.WriteLine("Generating IDEA Connection project locally");
+
+			// Invoking method Import by reflection
+			var methodImport = (obj).GetType().GetMethod("Import");
+			object[] array = new object[3];
+			array[0] = example;
+			array[1] = result;
+			array[2] = fileConnFileNameFromLocal;
+			methodImport.Invoke(obj, array);
 ```
 
 [```IdeaStatiCa.IOMToConnection.IOMToConnection.Import```]() requires this parameter:
@@ -1161,7 +1179,7 @@ iOMToConnection.Import(openModel, openModelResult, @"C:\temp\TESTIDEA.ideaCon");
 * `openModelResult` - instance of [[IdeaRS.OpenModel.Result](https://idea-statica.github.io/iom/iom-api/latest/html/b44662a7-e978-507c-a4be-de29ab06894f.htm)]
 * `filePath` - path where shoud create new ideaCon file [string]
 
-#### The example of creating IDEA Connection project by webservice
+#### The example of creating IDEA Connection project by webservice - see project IOM.SteelFrame.csproj
 ```C#
 		public static readonly string viewerURL = "https://viewer.ideastatica.com";
 
