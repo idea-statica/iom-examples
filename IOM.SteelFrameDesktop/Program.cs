@@ -14,6 +14,8 @@ namespace IOM.SteelFrameDesktop
 		{
 			IdeaInstallDir = IOM.SteelFrameDesktop.Properties.Settings.Default.IdeaInstallDir;
 
+			Console.WriteLine("IDEA StatiCa installation directory is '{0}'", IdeaInstallDir);
+
 			AppDomain currentDomain = AppDomain.CurrentDomain;
 			currentDomain.AssemblyResolve += new ResolveEventHandler(IdeaResolveEventHandler);
 
@@ -35,12 +37,10 @@ namespace IOM.SteelFrameDesktop
 			object obj = conLinkAssembly.CreateInstance("IdeaStatiCa.IOMToConnection.IOMToConnection");
 			dynamic d = obj;
 
-
 			var initMethod = (obj).GetType().GetMethod("Init");
 			initMethod.Invoke(obj, null);
 
-
-			Console.WriteLine("Generating IDEA Connection project loacally");
+			Console.WriteLine("Generating IDEA Connection project locally");
 
 			var method = (obj).GetType().GetMethod("Import");
 			object[] array = new object[3];
@@ -49,12 +49,7 @@ namespace IOM.SteelFrameDesktop
 			array[2] = fileConnFileNameFromLocal;
 			method.Invoke(obj, array);
 
-
-			/*#region Generatig IDEA Connection loacally
-			IdeaStatiCa.IOMToConnection.IOMToConnection iOMToConnection = new IdeaStatiCa.IOMToConnection.IOMToConnection();
-			IdeaStatiCa.IOMToConnection.IOMToConnection.Init();
-			iOMToConnection.Import(example, result, fileConnFileNameFromLocal);
-			#endregion*/
+			Console.WriteLine("Writing Idea connection project to file '{0}'", fileConnFileNameFromLocal);
 
 			// end console application
 			Console.WriteLine("Done. Press any key to exit.");
