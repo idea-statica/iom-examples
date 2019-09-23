@@ -1,6 +1,8 @@
 # IOM Example - SteelFrame
 
 This example describes how to define a steel frame in IOM (IDEA StatiCa Open Model).
+In the project __IOM.SteelFrame.csproj__ there is the source code of example which shows how to generate idea connection project by a webservice.
+In the project __IOM.SteelFrameDesktop.csproj__ there is the source code of example which shows how to generate idea connection project by sing local installation of Idea StatiCa.
 
 Let's create a standard console application in MS Visual Studio. Select __File__ > __New__ > __Project__ from the menu bar. In the dialog, select the __Visual C#__ node followed by the __Get Started__ node. Then select the __Console App__ project template.
 
@@ -1226,16 +1228,16 @@ it dynamically loads the assembly IdeaStatiCa.IOMToConnection.dll and all its re
 
 ```
 
-[structure]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/structure.PNG "Structure"
-[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/nodes.PNG "Nodes"
-[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/first_member.PNG "Member"
-[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/second_member.PNG "Continuous member"
-[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection_point.PNG "Connection point"
-[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/unbalanced_forces.PNG "Unbalanced forces"
-[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/coordinates.png "Coordinates"
-[n]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-N.PNG "Axial forces N"
-[vz]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-Vz.PNG "Shear forces Vz"
-[my]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/LC1-My.PNG "Bending moments My"
-[members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/members-lcs.PNG "Members - local coordinate systems"
-[con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
-[connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrame/Images/connection_loading.png "Loads on connected memebers"
+[structure]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/structure.PNG "Structure"
+[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/nodes.PNG "Nodes"
+[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/first_member.PNG "Member"
+[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/second_member.PNG "Continuous member"
+[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_point.PNG "Connection point"
+[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/unbalanced_forces.PNG "Unbalanced forces"
+[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/coordinates.png "Coordinates"
+[n]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-N.PNG "Axial forces N"
+[vz]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-Vz.PNG "Shear forces Vz"
+[my]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-My.PNG "Bending moments My"
+[members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
+[con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
+[connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
