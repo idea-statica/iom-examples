@@ -20,7 +20,7 @@ IOM data has to contain basic information of a new project, such as a project na
 
 
 ## Materials
-To create new project, these types of materials have to be created:
+To create new project, these types of materials have to be defined:
 -	new concrete material
 ```csharp
 //Concrete material
@@ -58,10 +58,10 @@ Setting of exposure classes, humidity and other important factors for the calcul
 
 ![alt text][member data]
 
-### Imperfections
-For calculation of second order effects, effective length of column and other parameters have to be set.
+### Flectural slendeness
+In this dialog, it is required to set clear distance between faces of the supports and support conditions to check deflection of the beam.
 
-![alt text][imperfections]
+![alt text][slenderness]
 
 
 ## Internal forces
@@ -70,19 +70,13 @@ For assessment of limit states, actual internal forces into the analyzed cross-s
 ![alt text][forces]
 
 
-## Second order effect
-To calculate second order effects is necessary to insert the correct values of bending moment on the top and bottom of the column.
-
-![alt text][secondorder]
-
-
 ## Reinforcement
 Reinforcement is defined as stirrups and longitudinal bars.
 
 ![alt text][reinforcement]
 
 ### Stirrups
-Setting shape, diameter and material of stirrup.
+Setting shape and material of stirrup.
 
 ![alt text][stirrups]
 
@@ -123,19 +117,18 @@ A list of all reinforced cross-sections in project.
 
 
 
-[projdata]: Images/Column/1.PNG "Project data"
-[concreteprop]: Images/Column/15.PNG "Concrete"
-[reinforcementprop]: Images/Column/16.PNG "Reinforcement"
-[cross-section]: Images/Column/2.PNG "Cross-section"
-[member data]: Images/Column/3.PNG "Member data"
-[imperfections]: Images/Column/4.PNG "Imperfections"
-[forces]: Images/Column/5.PNG "Internal forces"
-[secondorder]: Images/Column/6.PNG "Second order effect"
-[reinforcement]: Images/Column/7.PNG "Reinforcement"
-[stirrups]: Images/Column/8.PNG "Stirrups"
-[longreinforcement]: Images/Column/9.PNG "Longitudinal reinforcement"
-[calccontrol]: Images/Column/10.PNG "Calulation control"
-[results]: Images/Column/11.PNG "Results"
-[sections]: Images/Column/12.PNG "Sections"
-[members]: Images/Column/13.PNG "Members"
-[rcs]: Images/Column/14.PNG "Reinforced cross-sections"
+[projdata]: Images/ReinforcedBeam/1.PNG "Project data"
+[concreteprop]: Images/ReinforcedBeam/14.PNG "Concrete"
+[reinforcementprop]: Images/ReinforcedBeam/15.PNG "Reinforcement"
+[cross-section]: Images/ReinforcedBeam/2.PNG "Cross-section"
+[member data]: Images/ReinforcedBeam/3.PNG "Member data"
+[slenderness]: Images/ReinforcedBeam/4.PNG "Slenderness"
+[forces]: Images/ReinforcedBeam/5.PNG "Internal forces"
+[reinforcement]: Images/ReinforcedBeam/6.PNG "Reinforcement"
+[stirrups]: Images/ReinforcedBeam/7.PNG "Stirrups"
+[longreinforcement]: Images/ReinforcedBeam/8.PNG "Longitudinal reinforcement"
+[calccontrol]: Images/ReinforcedBeam/9.PNG "Calulation control"
+[results]: Images/ReinforcedBeam/10.PNG "Results"
+[sections]: Images/ReinforcedBeam/11.PNG "Sections"
+[members]: Images/ReinforcedBeam/12.PNG "Members"
+[rcs]: Images/ReinforcedBeam/13.PNG "Reinforced cross-sections"

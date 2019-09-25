@@ -89,7 +89,7 @@ Effect of prestressing is calculated automatically.
 
 
 ## Reinforcement
-Reinforcement is define as stirrups and longitudinal bars.
+Reinforcement is defined as stirrups and longitudinal bars.
 
 ![alt text][reinforcement]
 
