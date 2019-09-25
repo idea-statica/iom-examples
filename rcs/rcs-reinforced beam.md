@@ -46,22 +46,10 @@ openModel.AddObject(mat);
 ![alt text][reinforcementprop]
 
 
--   new material of prestressing reinforcement
-
-![alt text][prestressingreinforcementprop]
-
-
 ## Cross-section
 The next step is to define the shape and dimension of cross-section and type of material.
 
 ![alt text][cross-section]
-
-
-## Prestressing
-For prestressed member, is necessary to set position and type of tendons.
-Material and quantity of strands in tendon, material and diameter of ducts is need to be set.
-
-![alt text][prestressing]
 
 
 ## Design member
@@ -70,20 +58,14 @@ Setting of exposure classes, humidity and other important factors for the calcul
 
 ![alt text][member data]
 
-### Construction stages
-In this tab it is necessary to set each times of construction stages to calculate creep, loses in tendons etc. It is very important to set time of prestressing for prestressed members.
+### Flectural slendeness
+In this dialog, it is required to set clear distance between faces of the supports and support conditions to check deflection of the beam.
 
-![alt text][constructionstages]
+![alt text][slenderness]
 
-
-## Action stages
-In the next step it is required to insert increments of characteristic internal forces used for calculation of prestressing loses etc. In case of statically indeterminate structure is necessary to insert secondary effects of prestressing.
-
-![alt text][actionstages]
 
 ## Internal forces
 For assessment of limit states, actual internal forces into the analyzed cross-section need to be insert.
-Effect of prestressing is calculated automatically.
 
 ![alt text][forces]
 
@@ -135,21 +117,18 @@ A list of all reinforced cross-sections in project.
 
 
 
-[projdata]: Images/StagedBeam/1.PNG "Project data"
-[concreteprop]: Images/StagedBeam/16.PNG "Concrete"
-[reinforcementprop]: Images/StagedBeam/17.PNG "Reinforcement"
-[prestressingreinforcementprop]: Images/StagedBeam/18.PNG "Prestressing reinforcement"
-[cross-section]: Images/StagedBeam/2.PNG "Cross-section"
-[prestressing]: Images/StagedBeam/3.PNG "Prestressing"
-[member data]: Images/StagedBeam/4.PNG "Member data"
-[constructionstages]: Images/StagedBeam/5.PNG "Consruction stages"
-[actionstages]: Images/StagedBeam/6.PNG "Action stages"
-[forces]: Images/StagedBeam/7.PNG "Internal forces"
-[reinforcement]: Images/StagedBeam/8.PNG "Reinforcement"
-[stirrups]: Images/StagedBeam/9.PNG "Stirrups"
-[longreinforcement]: Images/StagedBeam/10.PNG "Longitudinal reinforcement"
-[calccontrol]: Images/StagedBeam/11.PNG "Calulation control"
-[results]: Images/StagedBeam/12.PNG "Results"
-[sections]: Images/StagedBeam/13.PNG "Sections"
-[members]: Images/StagedBeam/14.PNG "Members"
-[rcs]: Images/StagedBeam/15.PNG "Reinforced cross-sections"
+[projdata]: Images/ReinforcedBeam/1.PNG "Project data"
+[concreteprop]: Images/ReinforcedBeam/14.PNG "Concrete"
+[reinforcementprop]: Images/ReinforcedBeam/15.PNG "Reinforcement"
+[cross-section]: Images/ReinforcedBeam/2.PNG "Cross-section"
+[member data]: Images/ReinforcedBeam/3.PNG "Member data"
+[slenderness]: Images/ReinforcedBeam/4.PNG "Slenderness"
+[forces]: Images/ReinforcedBeam/5.PNG "Internal forces"
+[reinforcement]: Images/ReinforcedBeam/6.PNG "Reinforcement"
+[stirrups]: Images/ReinforcedBeam/7.PNG "Stirrups"
+[longreinforcement]: Images/ReinforcedBeam/8.PNG "Longitudinal reinforcement"
+[calccontrol]: Images/ReinforcedBeam/9.PNG "Calulation control"
+[results]: Images/ReinforcedBeam/10.PNG "Results"
+[sections]: Images/ReinforcedBeam/11.PNG "Sections"
+[members]: Images/ReinforcedBeam/12.PNG "Members"
+[rcs]: Images/ReinforcedBeam/13.PNG "Reinforced cross-sections"
