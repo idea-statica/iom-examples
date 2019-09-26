@@ -89,7 +89,7 @@ openModel.AddObject(matR);
 
 
 ## Cross-section
-The next step is to define the shape and dimension of cross-section and type of material.
+The next step is to define the shape and dimensions of cross-section and type of material.
 
 ```csharp
 CrossSectionParameter css = new CrossSectionParameter(); //creating instance of cross-section defined by parameters
@@ -106,7 +106,7 @@ openModel.AddObject(css);
 
 ## Reinforced cross-sections
 
-After defining the concrete cross section the reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete-cross-section.
+After defining the concrete cross-section the reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
 
 ```csharp
 A list of all reinforced cross-sections in project.
@@ -273,7 +273,7 @@ rcs.Stirrups.Add(stirrup);
 
 ## Design member
 
-Design member contains information about whole checked member. The first must be defined design member and then the member data are set into this design member.
+Design member contains information about whole checked member. In the first step, it is required to define design member and then the member data are set into the design member.
 
 ```csharp
 var checkMember = new CheckMember1D(); //Design member data object
@@ -341,8 +341,8 @@ memberData.ColumnData.UserValuecZ = 9.8696;
 
 
 ## Sections, Extremes, Internal forces, Second order effect
-For the check section data the reinforcement cross-section and the check member is defined.
-In the check section data there are defined extremes of internal forces for ULS and SLS calculation.
+The reinforced cross-section and the check member are defined for the checked section. 
+Extremes of internal forces (for ULS and SLS calculation) are set in the checked section data there.
 
 For assessment of limit states, actual internal forces into the analyzed cross-section need to be insert.
 To calculate second order effects is necessary to insert the correct values of bending moment on the top and bottom of the column.
@@ -366,6 +366,7 @@ openModel.AddObject(singleCheckSection);
 ```
 
 ![alt text][forces]
+
 ![alt text][secondorder]
 
 
@@ -390,7 +391,7 @@ memberData.CalculationSetup.MNKappaDiagram = false;
 
 
 ## Concrete setup
-Creating the norm code setup for the check of concrete including settings of the annex.
+Creating the code setup used for assessment of cross-section including national annex settings.
 
 ```csharp
 //Concrete setup
@@ -429,4 +430,4 @@ Results are displayed in tables with considered values for each assessment and s
 [sections]: Images/Column/12.PNG "Sections"
 [members]: Images/Column/13.PNG "Members"
 [rcs]: Images/Column/14.PNG "Reinforced cross-sections"
-[concretesetup]: Images/Column/x.PNG "Concrete setup"
+[concretesetup]: Images/Column/17.PNG "Concrete setup"
