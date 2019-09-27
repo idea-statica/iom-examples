@@ -1,4 +1,4 @@
-# IOM Example - ConcreteColumn
+# IOM Example - Concrete Column
 
 This example describes how to define a concrete column in IOM (IDEA StatiCa Open Model).
 
@@ -106,7 +106,7 @@ openModel.AddObject(css);
 
 ## Reinforced cross-sections
 
-After defining the concrete cross-section the reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
+After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
 
 ```csharp
 A list of all reinforced cross-sections in project.
@@ -272,7 +272,6 @@ rcs.Stirrups.Add(stirrup);
 
 
 ## Design member
-
 Design member contains information about whole checked member. In the first step, it is required to define design member and then the member data are set into the design member.
 
 ```csharp

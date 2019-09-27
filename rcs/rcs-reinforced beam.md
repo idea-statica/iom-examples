@@ -1,4 +1,4 @@
-# IOM Example - ConcreteColumn
+# IOM Example - Reinforced Beam
 
 This example describes how to define a concrete column in IOM (IDEA StatiCa Open Model).
 
@@ -47,12 +47,37 @@ openModel.AddObject(mat);
 
 
 ## Cross-section
-The next step is to define the shape and dimension of cross-section and type of material.
+The next step is to define the shape and dimensions of cross-section and type of material.
 
 ![alt text][cross-section]
 
 
+## Reinforced cross-sections
+After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
+
+![alt text][rcs]
+
+
+## Reinforcement
+Reinforcement is defined as stirrups and longitudinal bars.
+
+![alt text][reinforcement]
+
+
+### Longitudinal reinforcement
+Define position, material, diameter and quantity of longitudinal reinforcement.
+
+![alt text][longreinforcement]
+
+### Stirrups
+Setting shape and material of stirrup.
+
+![alt text][stirrups]
+
+
 ## Design member
+Design member contains information about whole checked member. In the first step, it is required to define design member and then the member data are set into the design member.
+
 ### Member data
 Setting of exposure classes, humidity and other important factors for the calculations (for example creep).
 
@@ -64,26 +89,14 @@ In this dialog, it is required to set clear distance between faces of the suppor
 ![alt text][slenderness]
 
 
-## Internal forces
+## Sections, Extremes, Internal forces
+The reinforced cross-section and the check member are defined for the checked section. 
+Extremes of internal forces (for ULS and SLS calculation) are set in the checked section data there.
+
 For assessment of limit states, actual internal forces into the analyzed cross-section need to be insert.
 
+![alt text][sections]
 ![alt text][forces]
-
-
-## Reinforcement
-Reinforcement is defined as stirrups and longitudinal bars.
-
-![alt text][reinforcement]
-
-### Stirrups
-Setting shape and material of stirrup.
-
-![alt text][stirrups]
-
-### Longitudinal reinforcement
-Define position, material, diameter and quantity of longitudinal reinforcement.
-
-![alt text][longreinforcement]
 
 
 ## Calculation control
@@ -92,28 +105,17 @@ This setting define, which type of assessment will be used and corresponding res
 ![alt text][calccontrol]
 
 
+## Concrete setup
+Creating the code setup used for assessment of cross-section including national annex settings.
+
+![alt text][concretesetup]
+
+
 ## Results
 Results are displayed in tables with considered values for each assessment and some values are shown in figures.
 
 ![alt text][results]
 
-
-## Sections
-It is possible to have many types of design members and reinforced cross-sections in one project. In the “Sections” a cross-section can be assigned to the selected design member. Name of the section can be change, too.
-
-![alt text][sections]
-
-
-## Design members
-There is a summary of all Design members in a project, where is possible to change name of member and some Member data.
-
-![alt text][members]
-
-
-## Reinforced cross-sections
-A list of all reinforced cross-sections in project.
-
-![alt text][rcs]
 
 
 
@@ -132,3 +134,4 @@ A list of all reinforced cross-sections in project.
 [sections]: Images/ReinforcedBeam/11.PNG "Sections"
 [members]: Images/ReinforcedBeam/12.PNG "Members"
 [rcs]: Images/ReinforcedBeam/13.PNG "Reinforced cross-sections"
+[concretesetup]: Images/ReinforcedBeam/16.PNG "Concrete setup"
