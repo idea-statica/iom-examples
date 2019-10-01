@@ -1,6 +1,6 @@
 # IOM Example - Prestressed Beam
 
-This example describes how to define a concrete column in IOM (IDEA StatiCa Open Model).
+This example describes how to define a prestressed beam in IOM (IDEA StatiCa Open Model).
 
 
 Let's create a standard console application in MS Visual Studio. Select __File__ > __New__ > __Project__ from the menu bar. In the dialog, select the __Visual C#__ node followed by the __Get Started__ node. Then select the __Console App__ project template.
@@ -41,8 +41,8 @@ openModel.ProjectDataConcrete = projectDataConcrete;
 
 
 ## Materials
-To create new project, these types of materials have to be defined:
--	new concrete material
+To create a new project, these types of materials have to be defined:
+-	a new concrete material
 ```csharp
 //Concrete material
 MatConcreteEc2 mat = new MatConcreteEc2();
@@ -62,7 +62,7 @@ openModel.AddObject(mat);
 ![alt text][concreteprop]
 
 
--   new material of reinforcement
+-   a new material of reinforcement
 ```csharp
 //Reinforcement material
 MatReinforcementEc2 matR = new MatReinforcementEc2();
@@ -88,7 +88,7 @@ openModel.AddObject(matR);
 ![alt text][reinforcementprop]
 
 
--   new material of prestressing reinforcement
+-   a new material of prestressing reinforcement
 ```csharp
 //Prestressing material
 MatPrestressSteelEc2 matP = new MatPrestressSteelEc2();
@@ -141,7 +141,7 @@ openModel.AddObject(css);
 
 
 ## Reinforced cross-sections
-After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
+After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and it is referenced to the concrete cross-section.
 ```csharp
 //Reinforced section - concrete with reinforcement
 ReinforcedCrossSection rcs = new ReinforcedCrossSection();
@@ -518,7 +518,7 @@ openModel.AddObject(rcs);
 
 
 ## Prestressing
-For prestressed member, is necessary to set position and type of tendons.
+For prestressed member, it is necessary to set position and type of tendons.
 Material and quantity of strands in tendon, material and diameter of ducts is need to be set.
 ```csharp
 //Tendon
@@ -600,7 +600,7 @@ memberData.BeamData.WidthOfSupportRight = 0.4;
 ![alt text][member data]
 
 ### Construction stages
-In this tab it is necessary to set each times of construction stages to calculate creep, loses in tendons etc. It is very important to set time of prestressing for prestressed members.
+In this tab, it is necessary to set each time of construction stages to calculate creep, loses in tendons etc. It is very important to set time of prestressing for prestressed members.
 ```csharp
 memberData.TimeAxis = new TimeAxis();
 
@@ -642,7 +642,7 @@ memberData.TimeAxis.Times.Add(tp);
 
 ## Sections, Extremes, Internal forces
 The reinforced cross-section and the check member are defined for the checked section. 
-Extremes of internal forces (for ULS and SLS calculation) are set in the checked section data there.
+Extremes of internal forces (for ULS and SLS calculation) are set in to the checked section data there.
 
 For assessment of limit states, actual internal forces into the analyzed cross-section need to be insert.
 Effect of prestressing is calculated automatically.
@@ -658,7 +658,7 @@ openModel.AddObject(stagedCheckSection);
 
 
 ## Action stages
-In the next step it is required to insert increments of characteristic internal forces used for calculation of prestressing loses etc. In case of statically indeterminate structure is necessary to insert secondary effects of prestressing.
+In the next step, it is required to insert increments of characteristic internal forces used for calculation of prestressing loses ect. In case of statically indeterminate structure, it is necessary to insert secondary effects of prestressing.
 ```csharp
 //Stages
 var stagesLoading = new StagesLoading();
@@ -819,7 +819,7 @@ memberData.CalculationSetup.MNKappaDiagram = false;
 
 
 ## Concrete setup
-Creating the code setup used for assessment of cross-section including national annex settings.
+Creating the code setup used for assessment of the cross-section including national annex settings.
 ```csharp
 //Concrete setup
 var setup = new ConcreteSetupEc2();

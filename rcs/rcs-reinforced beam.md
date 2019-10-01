@@ -1,6 +1,6 @@
 # IOM Example - Reinforced Beam
 
-This example describes how to define a concrete column in IOM (IDEA StatiCa Open Model).
+This example describes how to define a reinforced beam in IOM (IDEA StatiCa Open Model).
 
 
 Let's create a standard console application in MS Visual Studio. Select __File__ > __New__ > __Project__ from the menu bar. In the dialog, select the __Visual C#__ node followed by the __Get Started__ node. Then select the __Console App__ project template.
@@ -20,8 +20,8 @@ IOM data has to contain basic information of a new project, such as a project na
 
 
 ## Materials
-To create new project, these types of materials have to be defined:
--	new concrete material
+To create a new project, these types of materials have to be defined:
+-	a new concrete material
 ```csharp
 //Concrete material
 MatConcreteEc2 mat = new MatConcreteEc2();
@@ -41,7 +41,7 @@ openModel.AddObject(mat);
 ![alt text][concreteprop]
 
 
--   new material of reinforcement
+-   a new material of reinforcement
 
 ![alt text][reinforcementprop]
 
@@ -53,7 +53,7 @@ The next step is to define the shape and dimensions of cross-section and type of
 
 
 ## Reinforced cross-sections
-After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
+After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and it is referenced to the concrete cross-section.
 
 ![alt text][rcs]
 

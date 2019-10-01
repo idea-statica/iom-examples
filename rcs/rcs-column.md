@@ -41,9 +41,9 @@ openModel.ProjectDataConcrete = projectDataConcrete;
 
 
 ## Materials
-To create new project, these types of materials have to be created:
+To create a new project, these types of materials have to be created:
 
--	new concrete material
+-	a new concrete material
 ```csharp
 //Concrete material
 MatConcreteEc2 mat = new MatConcreteEc2();
@@ -62,7 +62,7 @@ openModel.AddObject(mat);
 
 ![alt text][concreteprop]
 
--   new material of reinforcement
+-   a new material of reinforcement
 ```csharp
 //Reinforcement material
 MatReinforcementEc2 matR = new MatReinforcementEc2();
@@ -106,7 +106,7 @@ openModel.AddObject(css);
 
 ## Reinforced cross-sections
 
-After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and referenced the concrete cross-section.
+After defining the concrete cross-section, reinforcement is set into this one. The reinforced section is defined in this way and it is referenced to the concrete cross-section.
 
 ```csharp
 A list of all reinforced cross-sections in project.
