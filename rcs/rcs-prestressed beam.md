@@ -830,7 +830,7 @@ openModel.ConcreteSetup = setup;
 ![alt text][concretesetup]
 
 ## Results
-Results are displayed in tables with considered values for each assessment and some values are shown in figures.
+In the followed example there is way how to run the check and the get results. Results are stored in the object with considered values for each assessment.
 ```csharp
 //Creating instance of Rcs controller
 var rcsController = new IdeaStatiCa.RcsController.IdeaRcsController();
