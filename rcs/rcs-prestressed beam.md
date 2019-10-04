@@ -658,7 +658,7 @@ openModel.AddObject(stagedCheckSection);
 
 
 ## Action stages
-In the next step, it is required to insert increments of characteristic internal forces used for calculation of prestressing loses ect. In case of statically indeterminate structure, it is necessary to insert secondary effects of prestressing.
+In the next step it is required to insert initial state of cross-section. It is defined as total effects of characteristic permanent load, prestressing, and creep and shrinkage of concrete related to origin of coordinate systém. In case of statically indeterminate structure is necessary to insert secondary effects of prestressing.
 ```csharp
 //Stages
 var stagesLoading = new StagesLoading();
@@ -672,17 +672,17 @@ var cssComponentLoading = new CssComponentLoading();
 cssComponentLoading.Id = 1;
 var cssComponentTimeLoading = new CssComponentTimeLoading();
 cssComponentTimeLoading.Time = Conversions.DaysToSystem(28.0);
-cssComponentTimeLoading.Loading = new IdeaRS.OpenModel.Result.ResultOfInternalForces() { My = 332.8e3 };
+cssComponentTimeLoading.Loading = new IdeaRS.OpenModel.Result.ResultOfInternalForces() { N = -996.4e3, My = -317.7e3 };
 cssComponentLoading.Loading.Add(cssComponentTimeLoading);
 
 cssComponentTimeLoading = new CssComponentTimeLoading();
 cssComponentTimeLoading.Time = Conversions.DaysToSystem(60.0);
-cssComponentTimeLoading.Loading = new IdeaRS.OpenModel.Result.ResultOfInternalForces() { My = 281.3e3 };
+cssComponentTimeLoading.Loading = new IdeaRS.OpenModel.Result.ResultOfInternalForces() { N = -996.1e3, My = -32.7e3 };
 cssComponentLoading.Loading.Add(cssComponentTimeLoading);
 
 cssComponentTimeLoading = new CssComponentTimeLoading();
 cssComponentTimeLoading.Time = Conversions.DaysToSystem(18250.0);
-cssComponentTimeLoading.Loading = new IdeaRS.OpenModel.Result.ResultOfInternalForces() { My = 0.0 };
+cssComponentTimeLoading.Loading = new IdeaRS.OpenModel.Result.ResultOfInternalForces() { N = -846.8e3, My = 64.3e3 };
 cssComponentLoading.Loading.Add(cssComponentTimeLoading);
 stagesLoading.CssComponentLoad.Add(cssComponentLoading);
 
