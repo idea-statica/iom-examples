@@ -1176,6 +1176,19 @@ it dynamically loads the assembly IdeaStatiCa.IOMToConnection.dll and all its re
 			methodImport.Invoke(obj, array);
 ```
 
+You should modify your application's config file to avoid the conflict of the version of the assembly _IdeaRS.OpenModel.dll_ which can be different in the nuget package and in your current installation of Idea StatiCa. See section _assemblyBinding_ in the file :
+
+[App.config](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrameDesktop/App.config) of this example.
+
+```xml
+<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+  <dependentAssembly>_
+    <assemblyIdentity name="IdeaRS.OpenModel" publicKeyToken="b195254c3273d5c1" culture="neutral" />
+    <bindingRedirect oldVersion="0.0.0.0-10.2.0.0" newVersion="10.1.0.2" />
+  </dependentAssembly>
+</assemblyBinding>
+```
+
 [```IdeaStatiCa.IOMToConnection.IOMToConnection.Import```]() requires this parameter:
 * `openModel` - instance of [[IdeaRS.OpenModel](https://idea-statica.github.io/iom/iom-api/latest/html/ef39c768-a155-5401-182f-d445fe9723b5.htm)]
 * `openModelResult` - instance of [[IdeaRS.OpenModel.Result](https://idea-statica.github.io/iom/iom-api/latest/html/b44662a7-e978-507c-a4be-de29ab06894f.htm)]
