@@ -1254,3 +1254,10 @@ You should modify your application's config file to avoid the conflict of the ve
 [members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
 [connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
+
+## Running CBFEM from e 3rd party application
+This example shows how to calculate a connection from any application. The only required input is the correct IOM. See the eample ConnectionHiddenCalculation.
+To be able to tun example correctly, check the setting of the path to the idea folder in the setting of the project.
+
+
+
