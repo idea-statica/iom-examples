@@ -551,7 +551,8 @@ IdeaRS.OpenModel.Connection.BeamData beam2Data = new IdeaRS.OpenModel.Connection
 };
 openModel.Connections[0].Beams.Add(beam2Data);
 ```
-![Beams](IOM.SteelFrame/Images/beams.PNG?raw=true "Beam")
+
+![alt text][Beam]
 
 ## PlateData
 
@@ -606,7 +607,8 @@ IdeaRS.OpenModel.Connection.PlateData plateData = new IdeaRS.OpenModel.Connectio
 (openModel.Connections[0].Plates ?? 
   (openModel.Connections[0].Plates = new List<IdeaRS.OpenModel.Connection.PlateData>())).Add(plateData);
 ```
-![Plate](IOM.SteelFrame/Images/plate.PNG?raw=true "Plate")
+
+![alt text][Plate]
 
 ## Cutting of connected members
 Connected mebers can be cut by a plate, other member or a work plane
@@ -631,7 +633,8 @@ openModel.Connections[0].CutBeamByBeams = new List<IdeaRS.OpenModel.Connection.C
   }
 };
 ```
-![Cut Beam By Beam](IOM.SteelFrame/Images/cutBeamByPlate.PNG?raw=true "Cut Beam By Beam")
+
+![alt text][Cut Beam By Beam]
 
 ### Cutting a member by a workplane
 Members can be also cut by a workplane. This cut is defined by properties of an instance of the class
@@ -723,7 +726,8 @@ boltGrid.ConnectedPartIds = new List<string>() { beam2Data.OriginalModelId, plat
 
 (openModel.Connections[0].BoltGrids ?? (openModel.Connections[0].BoltGrids = new List<IdeaRS.OpenModel.Connection.BoltGrid>())).Add(boltGrid);
 ```
-![Bolts](IOM.SteelFrame/Images/bolts.PNG?raw=true "Bolts")
+
+![alt text][Bolts]
 
 ## Welds
 ### Weld 
@@ -1145,7 +1149,8 @@ WeldType = IdeaRS.OpenModel.Connection.WeldType.DoubleFillet,
 };
 openModel.Connections[0].Welds.Add(weldData12);
 ```
-![Stiffeners With Welds](IOM.SteelFrame/Images/stiffenersWithWelds.PNG?raw=true "Stiffeners With Welds")
+
+![alt text][Stiffeners With Welds]
 
 ## Import IOM To IDEA Connection
 The package Idea StatiCa contains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
@@ -1254,3 +1259,9 @@ You should modify your application's config file to avoid the conflict of the ve
 [members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
 [connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
+[Beams]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/beams.PNG?raw=true "Beam"
+[Plate]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/plate.PNG?raw=true "Plate"
+[Cut Beam By Beam]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/cutBeamByPlate.PNG?raw=true "Cut Beam By Beam"
+[Bolts]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/bolts.PNG?raw=true "Bolts"
+[Stiffeners With Welds]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/stiffenersWithWelds.PNG?raw=true "Stiffeners With Welds"
+
