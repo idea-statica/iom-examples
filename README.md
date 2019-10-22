@@ -1255,9 +1255,59 @@ You should modify your application's config file to avoid the conflict of the ve
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
 [connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
 
-## Running CBFEM from e 3rd party application
-This example shows how to calculate a connection from any application. The only required input is the correct IOM. See the eample ConnectionHiddenCalculation.
-To be able to tun example correctly, check the setting of the path to the idea folder in the setting of the project.
+## Example ConnectionHiddenCalculation - running CBFEM from a 3rd party application
+This example shows how to calculate a connection from any application. The only required input is the correct IOM. See the example ConnectionHiddenCalculation.
+To be able to run example correctly, check the setting of the path to the idea installation folder in the configuration of the project.
+
+IdeaStatica needs to be initialized before running CBFEM - tr is done by creating the instance of _IdeaRS.ConnectionLink.ConnectionLink_ it can be only once when an application starts. 
+
+```C#
+			connections = new ObservableCollection<ConnectionVM>();
+			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
+			if (Directory.Exists(ideaStatiCaDir))
+			{
+				string ideaConnectionFileName = Path.Combine(ideaStatiCaDir, "IdeaConnection.exe");
+				if (File.Exists(ideaConnectionFileName))
+				{
+					IsIdea = true;
+					StatusMessage = string.Format("IdeaStatiCa installation was found in '{0}'", ideaStatiCaDir);
+
+					string ideaConLinkFullPath = System.IO.Path.Combine(ideaStatiCaDir, "IdeaRS.ConnectionLink.dll");
+					conLinkAssembly = Assembly.LoadFrom(ideaConLinkFullPath);
+					object obj = conLinkAssembly.CreateInstance("IdeaRS.ConnectionLink.ConnectionLink");
+					dynamic d = obj;
+				}
+			}
+```
+After initialization it is possible to open the idea connection project (ideacon file)
+
+```C#
+			// create the instance of the ConnectionSrv
+			var Service = conLinkAssembly.CreateInstance("IdeaRS.ConnectionService.Service.ConnectionSrv");
+			dynamic serviceDynamic = Service;
+
+			// open idea connection project file
+			serviceDynamic.OpenIdeaConProjectFile(openFileDialog.FileName, 0);
+
+			// getting the list of all connections in the project
+			var projectData = serviceDynamic.ConDataContract;
+			foreach (var con in projectData.Connections.Values)
+			{
+				// the name of the connection
+				string connectionName = (string)(dynamicItem.Header.Name);
+						
+				// id of the connection
+				string connectionId = (Guid)(dynamicItem.Header.ConnectionID);
+			}
+```
+
+Running CBFEM and getting results
+
+```C#
+				object resData = serviceDynamic.CalculateProject(conVM.ConnectionId);
+				ConnectionResultsData cbfemResults = (ConnectionResultsData)resData;
+```
+
 
 
 
