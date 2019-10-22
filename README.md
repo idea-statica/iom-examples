@@ -1304,10 +1304,22 @@ After initialization it is possible to open the idea connection project (ideacon
 Running CBFEM and getting results
 
 ```C#
-				object resData = serviceDynamic.CalculateProject(conVM.ConnectionId);
-				ConnectionResultsData cbfemResults = (ConnectionResultsData)resData;
+			object resData = serviceDynamic.CalculateProject(conVM.ConnectionId);
+			ConnectionResultsData cbfemResults = (ConnectionResultsData)resData;
 ```
 
+The example of getting the geometry of the connection an its serialization it into JSON
 
+```C#
+			// get connection data in IOM format
+			IdeaRS.OpenModel.Connection.ConnectionData conData = serviceDynamic.GetConnectionModel(conVM.ConnectionId);
+			if (conData != null)
+			{
+				var jsonSetting = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() };
+				var jsonFormating = Formatting.Indented;
+				// write it into JSON
+				string connectionInJson = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
+			}
+```
 
 
