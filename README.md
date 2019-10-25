@@ -1241,20 +1241,6 @@ You should modify your application's config file to avoid the conflict of the ve
 
 ```
 
-[structure]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/structure.PNG "Structure"
-[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/nodes.PNG "Nodes"
-[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/first_member.PNG "Member"
-[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/second_member.PNG "Continuous member"
-[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_point.PNG "Connection point"
-[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/unbalanced_forces.PNG "Unbalanced forces"
-[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/coordinates.png "Coordinates"
-[n]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-N.PNG "Axial forces N"
-[vz]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-Vz.PNG "Shear forces Vz"
-[my]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-My.PNG "Bending moments My"
-[members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
-[con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
-[connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
-
 ## Example ConnectionHiddenCalculation - running CBFEM from a 3rd party application
 This example shows how to calculate a connection from any application. The only required input is the correct IOM. See the example ConnectionHiddenCalculation.
 To be able to run example correctly, check the setting of the path to the idea installation folder in the configuration of the project.
@@ -1321,5 +1307,25 @@ The example of getting the geometry of the connection an its serialization it in
 				string connectionInJson = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
 			}
 ```
+
+|CBFEM Results|Connection geometry|
+|----|----|
+|![alt text][check_results]|![alt text][connection_geometry]|
+
+[structure]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/structure.PNG "Structure"
+[nodes]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/nodes.PNG "Nodes"
+[first_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/first_member.PNG "Member"
+[second_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/second_member.PNG "Continuous member"
+[connection_point]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_point.PNG "Connection point"
+[unbalanced_forces]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/unbalanced_forces.PNG "Unbalanced forces"
+[coordinates]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/coordinates.png "Coordinates"
+[n]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-N.PNG "Axial forces N"
+[vz]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-Vz.PNG "Shear forces Vz"
+[my]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/LC1-My.PNG "Bending moments My"
+[members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
+[con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
+[connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
+[check_results]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/CheckResults.PNG "Brief results of the CBFEM analysis"
+[connection_geometry]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/ConnectionGeometry.PNG "Information about the geometry of the connection in IOM format"
 
 
