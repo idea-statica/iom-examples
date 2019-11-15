@@ -226,7 +226,7 @@ namespace IOM.SteelFrame
 		public static OpenModelResult GetResults()
 		{
 			string rootDir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-			FileStream resultFile = new FileStream(rootDir + "\\..\\IdeaStatiCa.Codes\\Results\\results.xmlR", FileMode.Open);
+			FileStream resultFile = new FileStream(rootDir + "\\..\\IdeaStatiCa.Codes\\SampleFiles\\IOM-SteelFrame.xmlR", FileMode.Open);
 
 			XmlSerializer serializer = new XmlSerializer(typeof(OpenModelResult));
 			OpenModelResult result = serializer.Deserialize(resultFile) as OpenModelResult;

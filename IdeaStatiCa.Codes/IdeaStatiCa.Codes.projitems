@@ -17,6 +17,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\members-lcs.PNG" />
     <Content Include="$(MSBuildThisFileDirectory)Images\plate.PNG" />
     <Content Include="$(MSBuildThisFileDirectory)Images\stiffenersWithWelds.PNG" />
+    <None Include="$(MSBuildThisFileDirectory)SampleFiles\IOM-SteelFrame.xml" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Images\connection_point.PNG" />
@@ -29,9 +30,9 @@
     <None Include="$(MSBuildThisFileDirectory)Images\second_member.PNG" />
     <None Include="$(MSBuildThisFileDirectory)Images\structure.PNG" />
     <None Include="$(MSBuildThisFileDirectory)Images\unbalanced_forces.PNG" />
-    <None Include="$(MSBuildThisFileDirectory)Results\results.xmlR" />
     <None Include="$(MSBuildThisFileDirectory)SampleFiles\con-n2.ideaCon" />
-    <None Include="$(MSBuildThisFileDirectory)SampleFiles\SteelFrame.idea" />
+    <None Include="$(MSBuildThisFileDirectory)SampleFiles\connectionFromIOM-web.ideaCon" />
+    <None Include="$(MSBuildThisFileDirectory)SampleFiles\IOM-SteelFrame.xmlR" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Example.cs" />
