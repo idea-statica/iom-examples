@@ -1246,6 +1246,77 @@ You should modify your application's config file to avoid the conflict of the ve
 
 ```
 
+## Example ConnectionHiddenCalculation - running CBFEM from a 3rd party application
+This example shows how to calculate a connection from any application. The only required input is the correct IOM. See the example ConnectionHiddenCalculation.
+To be able to run example correctly, check the setting of the path to the idea installation folder in the configuration of the project.
+
+IdeaStatica needs to be initialized before running CBFEM - tr is done by creating the instance of _IdeaRS.ConnectionLink.ConnectionLink_ it can be only once when an application starts. 
+
+```C#
+			connections = new ObservableCollection<ConnectionVM>();
+			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
+			if (Directory.Exists(ideaStatiCaDir))
+			{
+				string ideaConnectionFileName = Path.Combine(ideaStatiCaDir, "IdeaConnection.exe");
+				if (File.Exists(ideaConnectionFileName))
+				{
+					IsIdea = true;
+					StatusMessage = string.Format("IdeaStatiCa installation was found in '{0}'", ideaStatiCaDir);
+
+					string ideaConLinkFullPath = System.IO.Path.Combine(ideaStatiCaDir, "IdeaRS.ConnectionLink.dll");
+					conLinkAssembly = Assembly.LoadFrom(ideaConLinkFullPath);
+					object obj = conLinkAssembly.CreateInstance("IdeaRS.ConnectionLink.ConnectionLink");
+					dynamic d = obj;
+				}
+			}
+```
+After initialization it is possible to open the idea connection project (ideacon file)
+
+```C#
+			// create the instance of the ConnectionSrv
+			var Service = conLinkAssembly.CreateInstance("IdeaRS.ConnectionService.Service.ConnectionSrv");
+			dynamic serviceDynamic = Service;
+
+			// open idea connection project file
+			serviceDynamic.OpenIdeaConProjectFile(openFileDialog.FileName, 0);
+
+			// getting the list of all connections in the project
+			var projectData = serviceDynamic.ConDataContract;
+			foreach (var con in projectData.Connections.Values)
+			{
+				// the name of the connection
+				string connectionName = (string)(dynamicItem.Header.Name);
+						
+				// id of the connection
+				string connectionId = (Guid)(dynamicItem.Header.ConnectionID);
+			}
+```
+
+Running CBFEM and getting results
+
+```C#
+			object resData = serviceDynamic.CalculateProject(conVM.ConnectionId);
+			ConnectionResultsData cbfemResults = (ConnectionResultsData)resData;
+```
+
+The example of getting the geometry of the connection an its serialization it into JSON
+
+```C#
+			// get connection data in IOM format
+			IdeaRS.OpenModel.Connection.ConnectionData conData = serviceDynamic.GetConnectionModel(conVM.ConnectionId);
+			if (conData != null)
+			{
+				var jsonSetting = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() };
+				var jsonFormating = Formatting.Indented;
+				// write it into JSON
+				string connectionInJson = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
+			}
+```
+
+|CBFEM Results|Connection geometry|
+|----|----|
+|![alt text][check_results]|![alt text][connection_geometry]|
+
 [structure]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/structure.PNG "Structure"
 [nodes]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/nodes.PNG "Nodes"
 [first_member]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/first_member.PNG "Member"
@@ -1259,9 +1330,15 @@ You should modify your application's config file to avoid the conflict of the ve
 [members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
 [connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
+<<<<<<< HEAD
 [Beams]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/beams.PNG?raw=true "Beam"
 [Plate]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/plate.PNG?raw=true "Plate"
 [Cut Beam By Beam]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/cutBeamByPlate.PNG?raw=true "Cut Beam By Beam"
 [Bolts]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/bolts.PNG?raw=true "Bolts"
 [Stiffeners With Welds]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/stiffenersWithWelds.PNG?raw=true "Stiffeners With Welds"
+=======
+[check_results]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/CheckResults.PNG "Brief results of the CBFEM analysis"
+[connection_geometry]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/ConnectionGeometry.PNG "Information about the geometry of the connection in IOM format"
+
+>>>>>>> conn-hidden-calc
 
