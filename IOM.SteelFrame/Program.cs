@@ -15,11 +15,11 @@ namespace IOM.SteelFrame
 			OpenModel example = Example.CreateIOM();
 			OpenModelResult result = Helpers.GetResults();
 
-			// save to the files
-			result.SaveToXmlFile("example.xmlR");
-			example.SaveToXmlFile("example.xml");
-
 			var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
+
+			// save to the files
+			example.SaveToXmlFile(Path.Combine(desktopDir, "IOM-SteelFrame.xml"));
+			result.SaveToXmlFile(Path.Combine(desktopDir, "IOM-SteelFrame.xmlR"));
 
 			#region Generatig IDEA Connection by web service
 			Console.WriteLine("Generating IDEA Connection project by web service");
