@@ -505,7 +505,7 @@ The instance of  [```IdeaRS.OpenModel.Connection.ConnectedMember```](https://ide
 * `IsContinuous` - a beam can be ended or continuous in a connection[bool]
 
 
-#### Example of create beam:
+#### The Example how to create a beam:
 ```C#
 // 
 openModel.Connections[0].Beams = new List<IdeaRS.OpenModel.Connection.BeamData>();
@@ -567,7 +567,7 @@ openModel.Connections[0].Beams.Add(beam2Data);
 * `AxisX` `AxisY` `AxisZ` - axixs of local coordinate system [Vector3D](https://idea-statica.github.io/iom/iom-api/latest/html/5789c2c7-c7a4-30f0-f1d0-cb971aeb37bc.htm)
 * `Region` - geometry of plate descript by [SVG path](https://www.w3.org/TR/SVG/paths.html) [string]
 
-#### The example of creating a plate:
+#### The example how to create a plate:
 ```C#
 //add plate
 IdeaRS.OpenModel.Connection.PlateData plateData = new IdeaRS.OpenModel.Connection.PlateData
@@ -620,7 +620,7 @@ This object requires this values:
 * `ModifiedObject`- reference of the modified member [[ReferenceElement](https://idea-statica.github.io/iom/iom-api/latest/html/9e905b1a-a8a6-ae75-4c62-221258514c0b.htm)]
 * `IsWeld`- flags for welding cut [bool]
 
-#### Example of creating cut beam by plate:
+#### The example of cutting a beam by a plate:
 ```#C
 // add cut
 openModel.Connections[0].CutBeamByBeams = new List<IdeaRS.OpenModel.Connection.CutBeamByBeamData>
@@ -643,7 +643,7 @@ This object requires this values:
 * `PlanePoint`- point on workplane in global coordinate system [Point3D](https://idea-statica.github.io/iom/iom-api/latest/html/20f596b7-3cd7-56ba-be81-c712cfd9f094.htm)
 * `NormalVector`- normal vector of workplane [Vector3D](https://idea-statica.github.io/iom/iom-api/latest/html/5789c2c7-c7a4-30f0-f1d0-cb971aeb37bc.htm)
 
-#### Example of cutting of a member by a workplane:
+#### The example of cutting of a member by a workplane:
 
 ```#C
 CutData cutData = new CutData(){
@@ -672,7 +672,7 @@ CutData cutData = new CutData(){
 * `ConnectedPartIds` - list of identificators object which want to connect together [string]
 
 
-#### Example of creating boltgrid:
+#### The example of creating of a boltgrid:
 ```C#
 IdeaRS.OpenModel.Connection.BoltGrid boltGrid = new IdeaRS.OpenModel.Connection.BoltGrid()
 {
@@ -740,7 +740,7 @@ By [```IdeaRS.OpenModel.Connection.WeldData```](https://idea-statica.github.io/i
 * `Thickness` - thickness of weld defined in metric system(m) [double]
 * `WeldType` - type of weld [[WeldType](https://idea-statica.github.io/iom/iom-api/latest/html/722ccc5e-a301-19b2-2da0-00969bf409b3.htm)]
 
-#### Example of creating stiffeners with welds:
+#### The axample of creating stiffeners with welds:
 ```#C
 IdeaRS.OpenModel.Connection.PlateData plateData2 = new IdeaRS.OpenModel.Connection.PlateData
 {
