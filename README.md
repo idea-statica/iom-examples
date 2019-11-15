@@ -1330,15 +1330,11 @@ The example of getting the geometry of the connection an its serialization it in
 [members-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/members-lcs.PNG "Members - local coordinate systems"
 [con-n2-mem-lcs]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection-n2.PNG "Connection N2 - coordinate systems on imported members"
 [connection_loading]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/connection_loading.png "Loads on connected memebers"
-<<<<<<< HEAD
 [Beams]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/beams.PNG?raw=true "Beam"
 [Plate]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/plate.PNG?raw=true "Plate"
 [Cut Beam By Beam]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/cutBeamByPlate.PNG?raw=true "Cut Beam By Beam"
 [Bolts]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/bolts.PNG?raw=true "Bolts"
 [Stiffeners With Welds]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/stiffenersWithWelds.PNG?raw=true "Stiffeners With Welds"
-=======
 [check_results]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/CheckResults.PNG "Brief results of the CBFEM analysis"
 [connection_geometry]: https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/Images/ConnectionGeometry.PNG "Information about the geometry of the connection in IOM format"
-
->>>>>>> conn-hidden-calc
 
