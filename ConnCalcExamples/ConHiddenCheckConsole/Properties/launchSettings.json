@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "ConHiddenCheckConsole": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\idea_deve\\deve_06\\_Sources\\\\bin\\Debug"
+    }
+  }
+}
