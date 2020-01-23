@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IdeaRS.OpenModel.Connection;
+using System;
 using System.ComponentModel;
 
 namespace ConnectionHiddenCalculation
@@ -6,22 +7,21 @@ namespace ConnectionHiddenCalculation
 	public class ConnectionVM : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
+		ConnectionInfo connectionInfo;
 
-		dynamic dynamicItem;
-
-		public ConnectionVM(object item)
+		public ConnectionVM(ConnectionInfo item)
 		{
-			this.dynamicItem = item;
+			this.connectionInfo = item;
 		}
 
 		public string Name
 		{
-			get => (string)(dynamicItem.Header.Name);
+			get => connectionInfo.Name;
 		}
 
-		public Guid ConnectionId
+		public string ConnectionId
 		{
-			get => (Guid)(dynamicItem.Header.ConnectionID);
+			get => connectionInfo.Identifier;
 		}
 
 		private void NotifyPropertyChanged(string propertyName = "")

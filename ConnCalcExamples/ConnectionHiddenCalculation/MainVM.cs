@@ -1,4 +1,5 @@
 ﻿using IdeaRS.OpenModel.Connection;
+using IdeaStatiCa.Plugin;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using System;
@@ -19,13 +20,14 @@ namespace ConnectionHiddenCalculation
 		#region private fields
 		public event PropertyChangedEventHandler PropertyChanged;
 		bool isIdea;
-		object service;
 		string statusMessage;
 		string ideaStatiCaDir;
-		Assembly conLinkAssembly;
-		dynamic serviceDynamic;
 		ObservableCollection<ConnectionVM> connections;
 		string results;
+		ConnHiddenClientFactory CalcFactory { get; set; }
+		ConnectionHiddenCheckClient IdeaConnectionClient { get; set; }
+		IConnHiddenCheck service;
+
 		#endregion
 
 		#region Constructor
@@ -43,11 +45,7 @@ namespace ConnectionHiddenCalculation
 				{
 					IsIdea = true;
 					StatusMessage = string.Format("IdeaStatiCa installation was found in '{0}'", ideaStatiCaDir);
-
-					string ideaConLinkFullPath = System.IO.Path.Combine(ideaStatiCaDir, "IdeaRS.ConnectionLink.dll");
-					conLinkAssembly = Assembly.LoadFrom(ideaConLinkFullPath);
-					object obj = conLinkAssembly.CreateInstance("IdeaRS.ConnectionLink.ConnectionLink");
-					dynamic d = obj;
+					CalcFactory = new ConnHiddenClientFactory(ideaStatiCaDir);
 				}
 			}
 
@@ -71,7 +69,7 @@ namespace ConnectionHiddenCalculation
 		#endregion
 
 		#region Properties
-		public object Service
+		public IConnHiddenCheck Service
 		{
 			get => service;
 			set
@@ -157,10 +155,12 @@ namespace ConnectionHiddenCalculation
 				try
 				{
 					Debug.WriteLine("Creating the instance of IdeaRS.ConnectionService.Service.ConnectionSrv");
-					Service = conLinkAssembly.CreateInstance("IdeaRS.ConnectionService.Service.ConnectionSrv");
-					serviceDynamic = Service;
+
+					IdeaConnectionClient = CalcFactory.Create();
+					Service = IdeaConnectionClient;
+
 					Debug.WriteLine("Opening the project file '{0}'", openFileDialog.FileName);
-					serviceDynamic.OpenIdeaConProjectFile(openFileDialog.FileName, 0);
+					Service.OpenProject(openFileDialog.FileName);
 
 					List<ConnectionVM> connectionsVm = GetConnectionViewModels();
 
@@ -195,14 +195,15 @@ namespace ConnectionHiddenCalculation
 		/// <param name="param"></param>
 		public void Close(object param)
 		{
-			if (serviceDynamic == null)
+			if (Service == null)
 			{
 				return;
 			}
 
-			serviceDynamic.CloseServices();
 
-			serviceDynamic = null;
+			IdeaConnectionClient.CloseProject();
+			IdeaConnectionClient.Close();
+			IdeaConnectionClient = null;
 			Service = null;
 
 			Results = string.Empty;
@@ -225,7 +226,7 @@ namespace ConnectionHiddenCalculation
 			try
 			{
 				var conVM = (ConnectionVM)param;
-				object resData = serviceDynamic.CalculateProject(conVM.ConnectionId);
+				object resData = Service.Calculate(conVM.ConnectionId);
 				ConnectionResultsData cbfemResults = (ConnectionResultsData)resData;
 				if (cbfemResults != null)
 				{
@@ -254,7 +255,7 @@ namespace ConnectionHiddenCalculation
 			try
 			{
 				var conVM = (ConnectionVM)param;
-				IdeaRS.OpenModel.Connection.ConnectionData conData = serviceDynamic.GetConnectionModel(conVM.ConnectionId);
+				IdeaRS.OpenModel.Connection.ConnectionData conData = Service.GetConnectionModel(conVM.ConnectionId);
 				if (conData != null)
 				{
 					var jsonSetting = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() };
@@ -273,8 +274,8 @@ namespace ConnectionHiddenCalculation
 		{
 			List<ConnectionVM> connectionsVm = new List<ConnectionVM>();
 			// get information obaout all aconections in the project
-			var projectData = serviceDynamic.ConDataContract;
-			foreach (var con in projectData.Connections.Values)
+			var projectData = Service.GetProjectInfo();
+			foreach (var con in projectData.Connections)
 			{
 				connectionsVm.Add(new ConnectionVM(con));
 			}
