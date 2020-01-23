@@ -30,6 +30,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.0.1" />
+    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.0.2" />
   </ItemGroup>
 </Project>
