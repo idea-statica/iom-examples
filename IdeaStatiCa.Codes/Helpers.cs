@@ -5,6 +5,7 @@ using IdeaRS.OpenModel.Geometry3D;
 using IdeaRS.OpenModel.Material;
 using IdeaRS.OpenModel.Model;
 using IdeaRS.OpenModel.Result;
+using System;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -225,8 +226,8 @@ namespace IOM.SteelFrame
 		/// <returns>Instance of open model result</returns>
 		public static OpenModelResult GetResults()
 		{
-			string rootDir = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName;
-			FileStream resultFile = new FileStream(rootDir + "\\..\\IdeaStatiCa.Codes\\SampleFiles\\IOM-SteelFrame.xmlR", FileMode.Open);
+			string rootDir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)))));
+			FileStream resultFile = new FileStream(rootDir + "\\IdeaStatiCa.Codes\\SampleFiles\\IOM-SteelFrame.xmlR", FileMode.Open);
 
 			XmlSerializer serializer = new XmlSerializer(typeof(OpenModelResult));
 			OpenModelResult result = serializer.Deserialize(resultFile) as OpenModelResult;
