@@ -27,31 +27,44 @@ namespace ConnCalculatorConsole
 			var calcFactory = new ConnHiddenClientFactory(args[0]);
 
 			var client = calcFactory.Create();
-
-			client.OpenProject("testProj.ideaCon");
-
-			// get detail about idea connection project
-			var projInfo = client.GetProjectInfo();
-
-			if (projInfo != null && projInfo.Connections != null)
+			try
 			{
-				// iterate all connections in the project
-				foreach (var con in projInfo.Connections)
+				client.OpenProject("testProj.ideaCon");
+
+				try
 				{
-					Console.WriteLine(string.Format("Starting calculation of connection {0}", con.Identifier));
+					// get detail about idea connection project
+					var projInfo = client.GetProjectInfo();
 
-					// calculate a get results for each connection in the project
-					var conRes = client.Calculate(con.Identifier);
-					Console.WriteLine("Calculation is done");
+					if (projInfo != null && projInfo.Connections != null)
+					{
+						// iterate all connections in the project
+						foreach (var con in projInfo.Connections)
+						{
+							Console.WriteLine(string.Format("Starting calculation of connection {0}", con.Identifier));
 
-					// get the geometry of the connection
-					var connectionModel = client.GetConnectionModel(con.Identifier);
+							// calculate a get results for each connection in the project
+							var conRes = client.Calculate(con.Identifier);
+							Console.WriteLine("Calculation is done");
+
+							// get the geometry of the connection
+							var connectionModel = client.GetConnectionModel(con.Identifier);
+						}
+					}
+				}
+				finally
+				{
+					// Delete temps in case of a crash
+					client.CloseProject();
 				}
 			}
-
-			client.CloseProject();
-
-			client.Close();
+			finally
+			{
+				if (client != null)
+				{
+					client.Close();
+				}
+			}
 
 			Console.WriteLine("End");
 			var x = Console.ReadLine();

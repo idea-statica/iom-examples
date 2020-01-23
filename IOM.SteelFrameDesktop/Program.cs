@@ -1,9 +1,9 @@
-﻿using IOM.SteelFrame;
+﻿using IdeaRS.OpenModel;
+using IdeaRS.OpenModel.Result;
+using IdeaStatiCa.Plugin;
+using IOM.SteelFrame;
 using System;
 using System.IO;
-using System.Reflection;
-using IdeaRS.OpenModel;
-using IdeaRS.OpenModel.Result;
 
 namespace IOM.SteelFrameDesktop
 {
@@ -29,26 +29,23 @@ namespace IOM.SteelFrameDesktop
 			var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 			var fileConnFileNameFromLocal = Path.Combine(desktopDir, "connectionFromIOM-local.ideaCon");
 
-			//string ideaConLinkFullPath = System.IO.Path.Combine(IdeaInstallDir, "IdeaStatiCa.IOMToConnection.dll");
-			//var conLinkAssembly = Assembly.LoadFrom(ideaConLinkFullPath);
-			//object obj = conLinkAssembly.CreateInstance("IdeaStatiCa.IOMToConnection.IOMToConnection");
-			//dynamic d = obj;
+			var calcFactory = new ConnHiddenClientFactory(IdeaInstallDir);
 
-			//// Initializtion
-			//var initMethod = (obj).GetType().GetMethod("Init");
-			//initMethod.Invoke(obj, null);
+			var client = calcFactory.Create();
+			try
+			{
+				// it creates connection project from IOM 
 
-			//Console.WriteLine("Generating IDEA Connection project locally");
-
-			//// Invoking method Import by reflection
-			//var methodImport = (obj).GetType().GetMethod("Import");
-			//object[] array = new object[3];
-			//array[0] = example;
-			//array[1] = result;
-			//array[2] = fileConnFileNameFromLocal;
-			//methodImport.Invoke(obj, array);
-
-			Console.WriteLine("Writing Idea connection project to file '{0}'", fileConnFileNameFromLocal);
+				Console.WriteLine("Creating Idea connection project which will be saved to the file '{0}'", fileConnFileNameFromLocal);
+				client.CreateConProjFromIOM(example, result, fileConnFileNameFromLocal);
+			}
+			finally
+			{
+				if (client != null)
+				{
+					client.Close();
+				}
+			}
 
 			// end console application
 			Console.WriteLine("Done. Press any key to exit.");
