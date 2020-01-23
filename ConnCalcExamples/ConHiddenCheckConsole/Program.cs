@@ -22,6 +22,8 @@ namespace ConnCalculatorConsole
 				return;
 			}
 
+			Console.WriteLine(string.Format("Using Idea StatiCa from '{0}'", args[0]));
+
 			using (var calcFactory = new ConnHiddenClientFactory(args[0]))
 			{
 				var client = calcFactory.Create();
