@@ -13,6 +13,11 @@ namespace IOM.SteelFrameDesktop
 		public static void Main(string[] args)
 		{
 			IdeaInstallDir = IOM.SteelFrameDesktop.Properties.Settings.Default.IdeaInstallDir;
+			if(!Directory.Exists(IdeaInstallDir))
+			{
+				Console.WriteLine("IDEA StatiCa installation was not found in '{0}'", IdeaInstallDir);
+				return;
+			}
 
 			Console.WriteLine("IDEA StatiCa installation directory is '{0}'", IdeaInstallDir);
 
