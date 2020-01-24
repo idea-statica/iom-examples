@@ -18,7 +18,7 @@
   </PropertyGroup>
   <Import Project="..\IdeaStatiCa.Codes\IdeaStatiCa.Codes.projitems" Label="Shared" />
   <ItemGroup>
-    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.0.3" />
+    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.0.4" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
   </ItemGroup>
   <ItemGroup>

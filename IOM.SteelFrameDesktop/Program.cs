@@ -22,9 +22,13 @@ namespace IOM.SteelFrameDesktop
 			OpenModel example = Example.CreateIOM();
 			OpenModelResult result = Helpers.GetResults();
 
+			string iomFileName = "example.xml";
+			string iomResFileName = "example.xmlR";
+
 			// save to the files
-			result.SaveToXmlFile("example.xmlR");
-			example.SaveToXmlFile("example.xml");
+			example.SaveToXmlFile(iomFileName);
+			result.SaveToXmlFile(iomResFileName);
+
 
 			var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 			var fileConnFileNameFromLocal = Path.Combine(desktopDir, "connectionFromIOM-local.ideaCon");
@@ -35,9 +39,13 @@ namespace IOM.SteelFrameDesktop
 			try
 			{
 				// it creates connection project from IOM 
-
-				Console.WriteLine("Creating Idea connection project which will be saved to the file '{0}'", fileConnFileNameFromLocal);
-				client.CreateConProjFromIOM(example, result, fileConnFileNameFromLocal);
+				Console.WriteLine("Creating Idea connection project ");
+				client.CreateConProjFromIOM(iomFileName, iomResFileName, fileConnFileNameFromLocal);
+				Console.WriteLine("Generated project was saved to the file '{0}'", fileConnFileNameFromLocal);
+			}
+			catch(Exception e)
+			{
+				Console.WriteLine("Error '{0}'", e.Message);
 			}
 			finally
 			{
