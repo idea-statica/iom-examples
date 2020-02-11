@@ -10,6 +10,7 @@
         <ToolBar DockPanel.Dock="Top">
             <Button Command="{Binding OpenProjectCmd, Mode=TwoWay}">Open Project</Button>
             <Button Command="{Binding CloseProjectCmd, Mode=TwoWay}">Close Project</Button>
+            <Button Command="{Binding SaveAsProjectCmd, Mode=TwoWay}">Save Project As...</Button>
         </ToolBar>
         <StackPanel DockPanel.Dock="Bottom">
             <TextBlock Text="{Binding StatusMessage}"></TextBlock>

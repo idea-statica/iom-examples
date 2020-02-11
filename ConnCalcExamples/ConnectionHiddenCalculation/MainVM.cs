@@ -58,7 +58,9 @@ namespace ConnectionHiddenCalculation
 			CloseProjectCmd = new CustomCommand(this.CanClose, this.Close);
 			CalculateConnectionCmd = new CustomCommand(this.CanCalculate, this.Calculate);
 			ConnectionGeometryCmd = new CustomCommand(this.CanGetGeometry, this.GetGeometry);
+			SaveAsProjectCmd = new CustomCommand(this.CanSaveAsProject, this.SaveAsProject);
 		}
+
 		#endregion
 
 		#region Commands
@@ -66,6 +68,7 @@ namespace ConnectionHiddenCalculation
 		public CustomCommand CloseProjectCmd { get; set; }
 		public CustomCommand CalculateConnectionCmd { get; set; }
 		public CustomCommand ConnectionGeometryCmd { get; set; }
+		public CustomCommand SaveAsProjectCmd { get; set; }
 		#endregion
 
 		#region Properties
@@ -177,6 +180,21 @@ namespace ConnectionHiddenCalculation
 					}
 				}
 			}
+		}
+
+		private void SaveAsProject(object obj)
+		{
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.Filter = "IdeaConnection | *.ideacon";
+			if (saveFileDialog.ShowDialog() == true)
+			{
+				Service.SaveAsProject(saveFileDialog.FileName);
+			}
+		}
+
+		private bool CanSaveAsProject(object arg)
+		{
+			return Service != null;
 		}
 
 		/// <summary>
