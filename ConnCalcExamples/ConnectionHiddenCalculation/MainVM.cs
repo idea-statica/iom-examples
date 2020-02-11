@@ -55,16 +55,17 @@ namespace ConnectionHiddenCalculation
 			}
 
 			OpenProjectCmd = new CustomCommand(this.CanOpen, this.Open);
+			ImportIOMCmd = new CustomCommand(this.CanImportIOM, this.ImportIOM);
 			CloseProjectCmd = new CustomCommand(this.CanClose, this.Close);
 			CalculateConnectionCmd = new CustomCommand(this.CanCalculate, this.Calculate);
 			ConnectionGeometryCmd = new CustomCommand(this.CanGetGeometry, this.GetGeometry);
 			SaveAsProjectCmd = new CustomCommand(this.CanSaveAsProject, this.SaveAsProject);
 		}
-
 		#endregion
 
 		#region Commands
 		public CustomCommand OpenProjectCmd { get; set; }
+		public CustomCommand ImportIOMCmd { get; set; }
 		public CustomCommand CloseProjectCmd { get; set; }
 		public CustomCommand CalculateConnectionCmd { get; set; }
 		public CustomCommand ConnectionGeometryCmd { get; set; }
@@ -180,6 +181,50 @@ namespace ConnectionHiddenCalculation
 					}
 				}
 			}
+		}
+
+		private void ImportIOM(object obj)
+		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "IOM | *.xml";
+			openFileDialog.CheckFileExists = true;
+			if (openFileDialog.ShowDialog() == true)
+			{
+				Debug.WriteLine("Creating the instance of IdeaRS.ConnectionService.Service.ConnectionSrv");
+
+				IdeaConnectionClient = CalcFactory.Create();
+				Service = IdeaConnectionClient;
+
+				string iomFileName = openFileDialog.FileName;
+				string resultsFileName = Path.ChangeExtension(openFileDialog.FileName, ".xmlR");
+
+				string tempProjectFileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), Path.GetRandomFileName());
+				try
+				{
+					// create temporary idea connection project
+					IdeaConnectionClient.CreateConProjFromIOM(iomFileName, resultsFileName, tempProjectFileName);
+
+					// open it
+					Debug.WriteLine("Opening the project file '{0}'", tempProjectFileName);
+					Service.OpenProject(tempProjectFileName);
+
+					List<ConnectionVM> connectionsVm = GetConnectionViewModels();
+					this.Connections = new ObservableCollection<ConnectionVM>(connectionsVm);
+				}
+				finally
+				{
+					// delete temp file
+					if (File.Exists(tempProjectFileName))
+					{
+						File.Delete(tempProjectFileName);
+					}
+				}
+			}
+		}
+
+		private bool CanImportIOM(object arg)
+		{
+			return (IsIdea && Service == null);
 		}
 
 		private void SaveAsProject(object obj)
