@@ -1,4 +1,5 @@
-﻿using IdeaRS.OpenModel.Connection;
+﻿using ConnectionHiddenCalculation.Commands;
+using IdeaRS.OpenModel.Connection;
 using IdeaStatiCa.Plugin;
 using Microsoft.Win32;
 using Newtonsoft.Json;
@@ -9,13 +10,31 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
+using System.Windows.Input;
 
 namespace ConnectionHiddenCalculation
 {
+	public interface IConHiddenCalcModel
+	{
+		bool IsService { get; }
+
+		bool IsIdea { get; }
+
+		IConnHiddenCheck GetConnectionService();
+
+		void CloseConnectionService();
+
+		void SetConProjectData(ConProjectInfo projectData);
+
+		void SetStatusMessage(string msg);
+
+		
+	}
+
 	/// <summary>
 	/// Main view model of the example
 	/// </summary>
-	public class MainVM : INotifyPropertyChanged
+	public class MainVM : INotifyPropertyChanged, IConHiddenCalcModel
 	{
 		#region private fields
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -54,26 +73,30 @@ namespace ConnectionHiddenCalculation
 				StatusMessage = string.Format("ERROR IdeaStatiCa doesn't exist in '{0}'", ideaStatiCaDir);
 			}
 
-			OpenProjectCmd = new CustomCommand(this.CanOpen, this.Open);
+			OpenProjectCmd = new OpenProjectCommand(this);
 			ImportIOMCmd = new CustomCommand(this.CanImportIOM, this.ImportIOM);
-			CloseProjectCmd = new CustomCommand(this.CanClose, this.Close);
+			CloseProjectCmd = new CloseProjectCommand(this);
 			CalculateConnectionCmd = new CustomCommand(this.CanCalculate, this.Calculate);
 			ConnectionGeometryCmd = new CustomCommand(this.CanGetGeometry, this.GetGeometry);
 			SaveAsProjectCmd = new CustomCommand(this.CanSaveAsProject, this.SaveAsProject);
+			ConnectionToTemplateCmd = new CustomCommand(this.CanConnectionToTemplate, this.ConnectionToTemplate);
+			ApplyTemplateCmd = new CustomCommand(this.CanApplyTemplate, this.ApplyTemplate);
 		}
 		#endregion
 
 		#region Commands
-		public CustomCommand OpenProjectCmd { get; set; }
+		public ICommand OpenProjectCmd { get; set; }
 		public CustomCommand ImportIOMCmd { get; set; }
-		public CustomCommand CloseProjectCmd { get; set; }
+		public ICommand CloseProjectCmd { get; set; }
 		public CustomCommand CalculateConnectionCmd { get; set; }
 		public CustomCommand ConnectionGeometryCmd { get; set; }
 		public CustomCommand SaveAsProjectCmd { get; set; }
+		public CustomCommand ConnectionToTemplateCmd { get; set; }
+		public CustomCommand ApplyTemplateCmd { get; set; }
 		#endregion
 
 		#region Properties
-		public IConnHiddenCheck Service
+		private IConnHiddenCheck Service
 		{
 			get => service;
 			set
@@ -123,6 +146,11 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
+		public bool IsService
+		{
+			get => Service != null;
+		}
+
 		public string Results
 		{
 			get => results;
@@ -135,52 +163,37 @@ namespace ConnectionHiddenCalculation
 
 		#endregion
 
-		#region Command handlers
-		/// <summary>
-		/// Is it possible to open a new project
-		/// </summary>
-		/// <param name="param"></param>
-		/// <returns></returns>
-		public bool CanOpen(object param)
+		public IConnHiddenCheck GetConnectionService()
 		{
-			return (IsIdea && Service == null);
+			if (Service != null)
+			{
+				return Service;
+			}
+
+			IdeaConnectionClient = CalcFactory.Create();
+			Service = IdeaConnectionClient;
+			return Service;
 		}
 
-		/// <summary>
-		/// Open idea connection project
-		/// </summary>
-		/// <param name="param"></param>
-		public void Open(object param)
+		public void CloseConnectionService()
 		{
-			OpenFileDialog openFileDialog = new OpenFileDialog();
-			openFileDialog.Filter = "IdeaConnection | *.ideacon";
-			if (openFileDialog.ShowDialog() == true)
+			if (Service == null)
 			{
-				try
-				{
-					Debug.WriteLine("Creating the instance of IdeaRS.ConnectionService.Service.ConnectionSrv");
-
-					IdeaConnectionClient = CalcFactory.Create();
-					Service = IdeaConnectionClient;
-
-					Debug.WriteLine("Opening the project file '{0}'", openFileDialog.FileName);
-					Service.OpenProject(openFileDialog.FileName);
-
-					List<ConnectionVM> connectionsVm = GetConnectionViewModels();
-
-					this.Connections = new ObservableCollection<ConnectionVM>(connectionsVm);
-				}
-				catch (Exception e)
-				{
-					Debug.Assert(false, e.Message);
-					StatusMessage = e.Message;
-					if (Service != null)
-					{
-						((IDisposable)Service)?.Dispose();
-						Service = null;
-					}
-				}
+				return;
 			}
+
+			IdeaConnectionClient.CloseProject();
+			IdeaConnectionClient.Close();
+			IdeaConnectionClient = null;
+			Service = null;
+
+			Results = string.Empty;
+			Connections.Clear();
+		}
+
+		public void SetStatusMessage(string msg)
+		{
+			this.StatusMessage = msg;
 		}
 
 		private void ImportIOM(object obj)
@@ -208,8 +221,8 @@ namespace ConnectionHiddenCalculation
 					Debug.WriteLine("Opening the project file '{0}'", tempProjectFileName);
 					Service.OpenProject(tempProjectFileName);
 
-					List<ConnectionVM> connectionsVm = GetConnectionViewModels();
-					this.Connections = new ObservableCollection<ConnectionVM>(connectionsVm);
+					var projectInfo = Service.GetProjectInfo();
+					SetConProjectData(projectInfo);
 				}
 				finally
 				{
@@ -240,37 +253,6 @@ namespace ConnectionHiddenCalculation
 		private bool CanSaveAsProject(object arg)
 		{
 			return Service != null;
-		}
-
-		/// <summary>
-		/// Is there a project to close ?
-		/// </summary>
-		/// <param name="param"></param>
-		/// <returns></returns>
-		public bool CanClose(object param)
-		{
-			return Service != null;
-		}
-
-		/// <summary>
-		/// Close the current idea connection project
-		/// </summary>
-		/// <param name="param"></param>
-		public void Close(object param)
-		{
-			if (Service == null)
-			{
-				return;
-			}
-
-
-			IdeaConnectionClient.CloseProject();
-			IdeaConnectionClient.Close();
-			IdeaConnectionClient = null;
-			Service = null;
-
-			Results = string.Empty;
-			Connections.Clear();
 		}
 
 		public bool CanCalculate(object param)
@@ -331,19 +313,37 @@ namespace ConnectionHiddenCalculation
 				StatusMessage = e.Message;
 			}
 		}
-		#endregion
 
-		private List<ConnectionVM> GetConnectionViewModels()
+		private void ApplyTemplate(object obj)
+		{
+			
+		}
+
+		private bool CanApplyTemplate(object arg)
+		{
+			return (IsIdea && Service != null);
+		}
+
+		private void ConnectionToTemplate(object obj)
+		{
+			
+		}
+
+		private bool CanConnectionToTemplate(object arg)
+		{
+			return (IsIdea && Service != null);
+		}
+
+		public void SetConProjectData(ConProjectInfo projectData)
 		{
 			List<ConnectionVM> connectionsVm = new List<ConnectionVM>();
 			// get information obaout all aconections in the project
-			var projectData = Service.GetProjectInfo();
 			foreach (var con in projectData.Connections)
 			{
 				connectionsVm.Add(new ConnectionVM(con));
 			}
 
-			return connectionsVm;
+			this.Connections = new ObservableCollection<ConnectionVM>(connectionsVm);
 		}
 
 		private void NotifyPropertyChanged(string propertyName = "")

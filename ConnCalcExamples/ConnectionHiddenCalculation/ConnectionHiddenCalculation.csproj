@@ -65,6 +65,14 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\ApplyTemplateCommand.cs" />
+    <Compile Include="Commands\CloseProjectCommand.cs" />
+    <Compile Include="Commands\ConnHiddenCalcCommandBase.cs" />
+    <Compile Include="Commands\ConnectionGeometryCommand.cs" />
+    <Compile Include="Commands\ConnectionToTemplateCommand.cs" />
+    <Compile Include="Commands\ImportIOMCommand.cs" />
+    <Compile Include="Commands\OpenProjectCommand.cs" />
+    <Compile Include="Commands\SaveAsProjectCommand.cs" />
     <Compile Include="ConnectionVM.cs" />
     <Compile Include="CustomCommand.cs" />
     <Compile Include="MainVM.cs" />

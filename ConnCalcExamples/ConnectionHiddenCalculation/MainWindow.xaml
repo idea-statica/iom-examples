@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConnectionHiddenCalculation"
         mc:Ignorable="d"
-        Title="IdeaConnection - hidden calculation" Height="500" Width="900" Closed="Window_Closed">
+        Title="IdeaConnection - hidden calculation" Height="500" Width="1000" Closed="Window_Closed">
     <DockPanel LastChildFill="True">
         <ToolBar DockPanel.Dock="Top">
             <Button Command="{Binding OpenProjectCmd, Mode=TwoWay}">Open Project</Button>
@@ -18,8 +18,9 @@
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*"></ColumnDefinition>
-                <ColumnDefinition Width="3*"></ColumnDefinition>
+                <ColumnDefinition Width="450"></ColumnDefinition>
+                <ColumnDefinition Width="5" />
+                <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <ListView  ItemsSource="{Binding Connections}" Grid.Column="0">
                 <ListView.ItemContainerStyle>
@@ -38,7 +39,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="" Width="100">
+                        <GridViewColumn Header="" Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -47,7 +48,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="" Width="100">
+                        <GridViewColumn Header="" Width="70">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <StackPanel>
@@ -56,11 +57,29 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-
+                        <GridViewColumn Header="" Width="90">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ConnectionToTemplateCmd}"  CommandParameter="{Binding}" Margin="0">To Template</Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                        <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ApplyTemplateCmd}"  CommandParameter="{Binding}" Margin="0">Apply Template</Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ScrollViewer Grid.Column="1">
+            <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" />
+            <ScrollViewer Grid.Column="2">
                 <TextBox Text="{Binding Results}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"></TextBox>
             </ScrollViewer>
         </Grid>

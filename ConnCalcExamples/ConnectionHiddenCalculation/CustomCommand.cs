@@ -5,7 +5,6 @@ namespace ConnectionHiddenCalculation
 {
 	public class CustomCommand : ICommand
 	{
-		private event EventHandler _internalCanExecuteChanged;
 		private Action<object> ExecuteFunc;
 		private Func<object, bool> CanExecuteFunc;
 
@@ -13,12 +12,10 @@ namespace ConnectionHiddenCalculation
 		{
 			add
 			{
-				_internalCanExecuteChanged += value;
 				CommandManager.RequerySuggested += value;
 			}
 			remove
 			{
-				_internalCanExecuteChanged -= value;
 				CommandManager.RequerySuggested -= value;
 			}
 		}

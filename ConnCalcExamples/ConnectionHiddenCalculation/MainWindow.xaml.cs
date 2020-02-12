@@ -19,7 +19,7 @@ namespace ConnectionHiddenCalculation
 
 		private void Window_Closed(object sender, EventArgs e)
 		{
-			vm.Close(null);
+			vm?.CloseConnectionService();
 		}
 	}
 }
