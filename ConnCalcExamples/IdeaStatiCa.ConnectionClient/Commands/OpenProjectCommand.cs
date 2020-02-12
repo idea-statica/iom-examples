@@ -1,8 +1,9 @@
-﻿using Microsoft.Win32;
+﻿using IdeaStatiCa.ConnectionClient.Model;
+using Microsoft.Win32;
 using System;
 using System.Diagnostics;
 
-namespace ConnectionHiddenCalculation.Commands
+namespace IdeaStatiCa.ConnectionClient.Commands
 {
 	public class OpenProjectCommand : ConnHiddenCalcCommandBase
 	{

@@ -1,7 +1,8 @@
-﻿using System;
+﻿using IdeaStatiCa.ConnectionClient.Model;
+using System;
 using System.Windows.Input;
 
-namespace ConnectionHiddenCalculation.Commands
+namespace IdeaStatiCa.ConnectionClient.Commands
 {
 	public abstract class ConnHiddenCalcCommandBase : ICommand
 	{

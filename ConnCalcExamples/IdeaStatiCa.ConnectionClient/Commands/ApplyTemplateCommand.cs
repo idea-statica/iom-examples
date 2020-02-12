@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using IdeaStatiCa.ConnectionClient.Model;
 
-namespace ConnectionHiddenCalculation.Commands
+namespace IdeaStatiCa.ConnectionClient.Commands
 {
 	public class ApplyTemplateCommand : ConnHiddenCalcCommandBase
 	{

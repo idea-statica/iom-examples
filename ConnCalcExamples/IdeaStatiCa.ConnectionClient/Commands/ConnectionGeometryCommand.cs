@@ -1,7 +1,8 @@
-﻿using System;
+﻿using IdeaStatiCa.ConnectionClient.Model;
+using System;
 using System.Threading.Tasks;
 
-namespace ConnectionHiddenCalculation.Commands
+namespace IdeaStatiCa.ConnectionClient.Commands
 {
 	public class ConnectionGeometryCommand : ConnHiddenCalcCommandBase
 	{

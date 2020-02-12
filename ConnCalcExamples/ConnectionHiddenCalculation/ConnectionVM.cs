@@ -1,4 +1,5 @@
 ﻿using IdeaRS.OpenModel.Connection;
+using IdeaStatiCa.ConnectionClient.Model;
 using System;
 using System.ComponentModel;
 

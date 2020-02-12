@@ -1,6 +1,7 @@
-﻿using Microsoft.Win32;
+﻿using IdeaStatiCa.ConnectionClient.Model;
+using Microsoft.Win32;
 
-namespace ConnectionHiddenCalculation.Commands
+namespace IdeaStatiCa.ConnectionClient.Commands
 {
 	public class SaveAsProjectCommand : ConnHiddenCalcCommandBase
 	{

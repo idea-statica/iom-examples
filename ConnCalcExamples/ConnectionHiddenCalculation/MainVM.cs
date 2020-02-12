@@ -1,5 +1,6 @@
-﻿using ConnectionHiddenCalculation.Commands;
-using IdeaRS.OpenModel.Connection;
+﻿using IdeaRS.OpenModel.Connection;
+using IdeaStatiCa.ConnectionClient.Commands;
+using IdeaStatiCa.ConnectionClient.Model;
 using IdeaStatiCa.Plugin;
 using Newtonsoft.Json;
 using System.Collections.Generic;
@@ -12,36 +13,6 @@ using System.Windows.Input;
 
 namespace ConnectionHiddenCalculation
 {
-	public interface IConHiddenCalcModel
-	{
-		bool IsService { get; }
-
-		bool IsIdea { get; }
-
-		IConnHiddenCheck GetConnectionService();
-
-		void CloseConnectionService();
-
-		void SetConProjectData(ConProjectInfo projectData);
-
-		void SetResults(object res);
-
-		void SetStatusMessage(string msg);
-	}
-
-	public interface IConnectionId
-	{
-		string Name
-		{
-			get;
-		}
-
-		string ConnectionId
-		{
-			get;
-		}
-	}
-
 	/// <summary>
 	/// Main view model of the example
 	/// </summary>
