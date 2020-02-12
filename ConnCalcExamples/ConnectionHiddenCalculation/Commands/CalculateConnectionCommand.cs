@@ -3,9 +3,9 @@ using System.Threading.Tasks;
 
 namespace ConnectionHiddenCalculation.Commands
 {
-	public class ConnectionGeometryCommand : ConnHiddenCalcCommandBase
+	public class CalculateConnectionCommand : ConnHiddenCalcCommandBase
 	{
-		public ConnectionGeometryCommand(IConHiddenCalcModel model) : base(model)
+		public CalculateConnectionCommand(IConHiddenCalcModel model) : base(model)
 		{
 		}
 
@@ -17,25 +17,19 @@ namespace ConnectionHiddenCalculation.Commands
 		public override void Execute(object parameter)
 		{
 			var res = string.Empty;
+			Model.SetResults("Running CBFEM");
 			IsCommandRunning = true;
-			Model.SetResults("Getting geometry of the connection");
+
 			var calculationTask = Task.Run(() =>
 			{
 				try
 				{
-					var conVM = (IConnectionId)parameter;
-					var Service = Model.GetConnectionService();
+					var connection = (IConnectionId)parameter;
+					var service = Model.GetConnectionService();
 
-					IdeaRS.OpenModel.Connection.ConnectionData conData = Service.GetConnectionModel(conVM.ConnectionId);
-
-					if (conData != null)
-					{
-						Model.SetResults(conData);
-					}
-					else
-					{
-						Model.SetResults("No data");
-					}
+					var resData = service.Calculate(connection.ConnectionId);
+					
+					Model.SetResults(resData);
 				}
 				catch (Exception e)
 				{
@@ -46,6 +40,7 @@ namespace ConnectionHiddenCalculation.Commands
 					IsCommandRunning = false;
 				}
 			});
+
 		}
 	}
 }

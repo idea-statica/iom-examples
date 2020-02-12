@@ -6,7 +6,20 @@ using System.Threading.Tasks;
 
 namespace ConnectionHiddenCalculation.Commands
 {
-	public class ConnectionToTemplateCommand
+	public class ConnectionToTemplateCommand : ConnHiddenCalcCommandBase
 	{
+		public ConnectionToTemplateCommand(IConHiddenCalcModel model) : base(model)
+		{
+		}
+
+		public override bool CanExecute(object parameter)
+		{
+			return (Model.IsIdea && Model.IsService && !IsCommandRunning);
+		}
+
+		public override void Execute(object parameter)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

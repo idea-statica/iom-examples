@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace ConnectionHiddenCalculation
 {
-	public class ConnectionVM : INotifyPropertyChanged
+	public class ConnectionVM : INotifyPropertyChanged, IConnectionId
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		ConnectionInfo connectionInfo;

@@ -11,6 +11,8 @@ namespace ConnectionHiddenCalculation.Commands
 			Model = model;
 		}
 
+		public static bool IsCommandRunning { get; set; }
+
 		public IConHiddenCalcModel Model { get; private set; }
 
 		public event EventHandler CanExecuteChanged
