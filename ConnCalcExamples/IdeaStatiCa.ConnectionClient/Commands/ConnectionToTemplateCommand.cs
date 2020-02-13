@@ -1,4 +1,5 @@
 ﻿using IdeaStatiCa.ConnectionClient.Model;
+using Microsoft.Win32;
 using System;
 
 namespace IdeaStatiCa.ConnectionClient.Commands
@@ -16,7 +17,15 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
-			throw new NotImplementedException();
+			SaveFileDialog saveFileDialog = new SaveFileDialog();
+			saveFileDialog.Filter = "Idea Connection Template| *.contemp";
+			if (saveFileDialog.ShowDialog() == true)
+			{
+				var service = Model.GetConnectionService();
+				var connection = (IConnectionId)parameter;
+				string res = service.ExportToTemplate(connection.ConnectionId, saveFileDialog.FileName);
+				Model.SetStatusMessage(res);
+			}
 		}
 	}
 }
