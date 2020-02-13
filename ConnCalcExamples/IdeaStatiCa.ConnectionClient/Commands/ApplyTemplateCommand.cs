@@ -1,4 +1,5 @@
 ﻿using IdeaStatiCa.ConnectionClient.Model;
+using Microsoft.Win32;
 
 namespace IdeaStatiCa.ConnectionClient.Commands
 {
@@ -15,6 +16,18 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "Idea Connection Template| *.contemp";
+			if (openFileDialog.ShowDialog() == true)
+			{
+				var service = Model.GetConnectionService();
+				var connection = (IConnectionId)parameter;
+
+				var res = service.ApplyTemplate(connection.ConnectionId, openFileDialog.FileName, null);
+
+				Model.SetStatusMessage(res);
+			}
+
 		}
 	}
 }
