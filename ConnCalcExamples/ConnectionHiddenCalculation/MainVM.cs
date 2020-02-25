@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows;
@@ -150,15 +151,16 @@ namespace ConnectionHiddenCalculation
 			Application.Current.Dispatcher.BeginInvoke(
 			 (ThreadStart)delegate
 			 {
+				 var jsonSetting = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(), Culture = CultureInfo.InvariantCulture };
+
 				 if (res is ConnectionResultsData cbfemResults)
 				 {
-					 var jsonSetting = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() };
+					 
 					 var jsonFormating = Formatting.Indented;
 					 this.Results = JsonConvert.SerializeObject(cbfemResults, jsonFormating, jsonSetting);
 				 }
 				 else if (res is IdeaRS.OpenModel.Connection.ConnectionData conData)
 				 {
-					 var jsonSetting = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver() };
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
 				 }
