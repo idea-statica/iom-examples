@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConHiddenCheckConsole", "Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IdeaStatiCa.ConnectionClient", "IdeaStatiCa.ConnectionClient\IdeaStatiCa.ConnectionClient.csproj", "{3C0AE938-D5E2-4434-8262-802CABD1AF8B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConnectionAutomationApp", "ConnectionAutomationApp\ConnectionAutomationApp.csproj", "{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,14 @@ Global
 		{3C0AE938-D5E2-4434-8262-802CABD1AF8B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3C0AE938-D5E2-4434-8262-802CABD1AF8B}.Release|x64.ActiveCfg = Release|Any CPU
 		{3C0AE938-D5E2-4434-8262-802CABD1AF8B}.Release|x64.Build.0 = Release|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Debug|x64.Build.0 = Debug|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Release|x64.ActiveCfg = Release|Any CPU
+		{7B0920A1-93D0-4206-A8D7-4303DC0DE66E}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

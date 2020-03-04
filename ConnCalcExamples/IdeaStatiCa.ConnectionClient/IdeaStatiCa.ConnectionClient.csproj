@@ -44,22 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\ApplyTemplateCommand.cs" />
-    <Compile Include="Commands\CalculateConnectionCommand.cs" />
-    <Compile Include="Commands\CloseProjectCommand.cs" />
-    <Compile Include="Commands\ConnectionGeometryCommand.cs" />
-    <Compile Include="Commands\ConnectionToTemplateCommand.cs" />
-    <Compile Include="Commands\ConnHiddenCalcCommandBase.cs" />
-    <Compile Include="Commands\ImportIOMCommand.cs" />
-    <Compile Include="Commands\OpenProjectCommand.cs" />
-    <Compile Include="Commands\SaveAsProjectCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ApplyTemplateCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\CalculateConnectionCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\CloseProjectCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ConnectionGeometryCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ConnectionToTemplateCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ConnHiddenCalcCommandBase.cs" />
+    <Compile Include="Commands\CustomCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ImportIOMCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\OpenProjectCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\SaveAsProjectCommand.cs" />
     <Compile Include="Model\IConHiddenCalcModel.cs" />
     <Compile Include="Model\IConnectionId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IdeaStatiCa.Plugin">
-      <Version>20.0.10</Version>
+      <Version>20.0.11</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
