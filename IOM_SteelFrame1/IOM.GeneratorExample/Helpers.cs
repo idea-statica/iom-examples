@@ -11,7 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Xml.Serialization;
 
-namespace IOM.SteelFrame
+namespace IOM.GeneratorExample
 {
 	/// <summary>
 	/// This class contains helper methods for creating objects. 

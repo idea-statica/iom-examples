@@ -1,7 +1,7 @@
 ﻿using IdeaRS.OpenModel;
 using IdeaRS.OpenModel.Result;
 using IdeaStatiCa.Plugin;
-using IOM.SteelFrame;
+using IOM.GeneratorExample;
 using System;
 using System.IO;
 
@@ -13,7 +13,8 @@ namespace IOM.SteelFrameDesktop
 		public static void Main(string[] args)
 		{
 			IdeaInstallDir = IOM.SteelFrameDesktop.Properties.Settings.Default.IdeaInstallDir;
-			if(!Directory.Exists(IdeaInstallDir))
+
+			if (!Directory.Exists(IdeaInstallDir))
 			{
 				Console.WriteLine("IDEA StatiCa installation was not found in '{0}'", IdeaInstallDir);
 				return;
@@ -24,7 +25,7 @@ namespace IOM.SteelFrameDesktop
 			Console.WriteLine("Start generate example of IOM...");
 
 			// create IOM and results
-			OpenModel example = Example.CreateIOM();
+			OpenModel example = SteelFrameExample.CreateIOM();
 			OpenModelResult result = Helpers.GetResults();
 
 			string iomFileName = "example.xml";

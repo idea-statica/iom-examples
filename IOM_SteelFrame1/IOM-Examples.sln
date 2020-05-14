@@ -1,18 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOM.SteelFrame", "IOM.SteelFrame\IOM.SteelFrame.csproj", "{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOM.SteelFrameDesktop", "IOM.SteelFrameDesktop\IOM.SteelFrameDesktop.csproj", "{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "IdeaStatiCa.Codes", "IdeaStatiCa.Codes\IdeaStatiCa.Codes.shproj", "{BE6E8E88-01DF-489F-BAA8-E61CA9E7C731}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOM.GeneratorExample", "IOM.GeneratorExample\IOM.GeneratorExample.csproj", "{8B5CEAF9-0553-4156-ABFA-B8A27E251514}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IOM.SteelFrameDesktop", "IOM.SteelFrameDesktop\IOM.SteelFrameDesktop.csproj", "{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IOM.SteelFrameWeb", "IOM.SteelFrameWeb\IOM.SteelFrameWeb.csproj", "{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		IdeaStatiCa.Codes\IdeaStatiCa.Codes.projitems*{ab4430e2-eaa3-4de0-92c8-3298bb7a81c3}*SharedItemsImports = 4
-		IdeaStatiCa.Codes\IdeaStatiCa.Codes.projitems*{be6e8e88-01df-489f-baa8-e61ca9e7c731}*SharedItemsImports = 13
 		IdeaStatiCa.Codes\IdeaStatiCa.Codes.projitems*{da9ce85e-7b4d-408b-9116-53a5918cad1a}*SharedItemsImports = 4
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -20,14 +19,18 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B5CEAF9-0553-4156-ABFA-B8A27E251514}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B5CEAF9-0553-4156-ABFA-B8A27E251514}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B5CEAF9-0553-4156-ABFA-B8A27E251514}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B5CEAF9-0553-4156-ABFA-B8A27E251514}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

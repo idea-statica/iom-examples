@@ -1,7 +1,8 @@
-using System;
-using System.IO;
 using IdeaRS.OpenModel;
 using IdeaRS.OpenModel.Result;
+using IOM.GeneratorExample;
+using System;
+using System.IO;
 
 namespace IOM.SteelFrame
 {
@@ -11,8 +12,8 @@ namespace IOM.SteelFrame
 		{
 			Console.WriteLine("Start generate example of IOM...");
 
-			// create IOM and results
-			OpenModel example = Example.CreateIOM();
+			//create IOM and results
+			OpenModel example = SteelFrameExample.CreateIOM();
 			OpenModelResult result = Helpers.GetResults();
 
 			var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
@@ -24,7 +25,7 @@ namespace IOM.SteelFrame
 			#region Generatig IDEA Connection by web service
 			Console.WriteLine("Generating IDEA Connection project by web service");
 			var fileConnFileNameFromWeb = Path.Combine(desktopDir, "connectionFromIOM-web.ideaCon");
-			Example.CreateOnServer(example, result, fileConnFileNameFromWeb);
+			SteelFrameExample.CreateOnServer(example, result, fileConnFileNameFromWeb);
 			#endregion
 
 			// end console application

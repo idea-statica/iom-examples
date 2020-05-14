@@ -13,9 +13,9 @@ using IdeaRS.OpenModel.Model;
 using IdeaRS.OpenModel.Result;
 using Newtonsoft.Json;
 
-namespace IOM.SteelFrame
+namespace IOM.GeneratorExample
 {
-	public static class Example
+	public static class SteelFrameExample
 	{
 		/// <summary>
 		/// Create example of the IOM
