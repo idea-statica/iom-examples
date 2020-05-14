@@ -226,8 +226,8 @@ namespace IOM.GeneratorExample
 		/// <returns>Instance of open model result</returns>
 		public static OpenModelResult GetResults()
 		{
-			string rootDir = Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(Path.GetDirectoryName(AppDomain.CurrentDomain.BaseDirectory)))));
-			FileStream resultFile = new FileStream(rootDir + "\\IdeaStatiCa.Codes\\SampleFiles\\IOM-SteelFrame.xmlR", FileMode.Open);
+			string rootDir = AppDomain.CurrentDomain.BaseDirectory;
+			FileStream resultFile = new FileStream(rootDir + "\\SampleFiles\\IOM-SteelFrame.xmlR", FileMode.Open);
 
 			XmlSerializer serializer = new XmlSerializer(typeof(OpenModelResult));
 			OpenModelResult result = serializer.Deserialize(resultFile) as OpenModelResult;
