@@ -1,0 +1,1 @@
+In the project __IOM.SteelFrameWeb.csproj__ there is the source code of example which shows how to generate idea connection project by the webservice.
