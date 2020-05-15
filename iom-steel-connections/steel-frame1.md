@@ -7,7 +7,7 @@ The generated IOM can be used for creating IDEA StatiCa Connection project (idea
 
 Idea Connection project can be also generated from IOM by the webservice which runs in IDEA Cloud. More details are in the project [IOM.SteelFrameWeb](create-iom-cloud.md)
 
-# Creating IOM for steel frame step by set
+# Creating IOM for steel frame step by step
 
 Let's create a standard console application in MS Visual Studio. Select __File__ > __New__ > __Project__ from the menu bar. In the dialog, select the __Visual C#__ node followed by the __Get Started__ node. Then select the __Console App__ project template.
 
@@ -1159,99 +1159,7 @@ openModel.Connections[0].Welds.Add(weldData12);
 
 The IOM (*.xml*) is [here]( https://github.com/idea-statica/iom-examples/blob/master/IdeaStatiCa.Codes/SampleFiles/IOM-SteelFrame.xml).
 
-## Import IOM To IDEA Connection
-The package Idea StatiCa contains the assembly IdeaStatiCa.IOMToConnection.dll. It allows to generate an idea connection project from data passed in IOM format.
 
-#### The example of creating IDEA Connection project from IOM locally - see project IOM.SteelFrameDesktop.csproj
-The path to installation directory of Idea StatiCa must by set correcty set in the projectr setting.
-
-```C#
-			IdeaInstallDir = IOM.SteelFrameDesktop.Properties.Settings.Default.IdeaInstallDir;
-			Console.WriteLine("IDEA StatiCa installation directory is '{0}'", IdeaInstallDir);
-```
-
-it dynamically loads the assembly IdeaStatiCa.IOMToConnection.dll and all its references from this location. Methods should be invoked by reflection
-
-```C#
-			// Initializtion
-			var initMethod = (obj).GetType().GetMethod("Init");
-			initMethod.Invoke(obj, null);
-
-			Console.WriteLine("Generating IDEA Connection project locally");
-
-			// Invoking method Import by reflection
-			var methodImport = (obj).GetType().GetMethod("Import");
-			object[] array = new object[3];
-			array[0] = example;
-			array[1] = result;
-			array[2] = fileConnFileNameFromLocal;
-			methodImport.Invoke(obj, array);
-```
-
-You should modify your application's config file to avoid the conflict of the version of the assembly _IdeaRS.OpenModel.dll_ which can be different in the nuget package and in your current installation of Idea StatiCa. See section _assemblyBinding_ in the file :
-
-[App.config](https://github.com/idea-statica/iom-examples/blob/master/IOM.SteelFrameDesktop/App.config) of this example.
-
-```xml
-<assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
-  <dependentAssembly>_
-    <assemblyIdentity name="IdeaRS.OpenModel" publicKeyToken="b195254c3273d5c1" culture="neutral" />
-    <bindingRedirect oldVersion="0.0.0.0-10.2.0.0" newVersion="10.1.0.2" />
-  </dependentAssembly>
-</assemblyBinding>
-```
-
-[```IdeaStatiCa.IOMToConnection.IOMToConnection.Import```]() requires this parameter:
-* `openModel` - instance of [[IdeaRS.OpenModel](https://idea-statica.github.io/iom/iom-api/latest/html/ef39c768-a155-5401-182f-d445fe9723b5.htm)]
-* `openModelResult` - instance of [[IdeaRS.OpenModel.Result](https://idea-statica.github.io/iom/iom-api/latest/html/b44662a7-e978-507c-a4be-de29ab06894f.htm)]
-* `filePath` - path where shoud create new ideaCon file [string]
-
-#### The example of creating IDEA Connection project by webservice - see project IOM.SteelFrame.csproj
-```C#
-		public static readonly string viewerURL = "https://viewer.ideastatica.com";
-
-		public static void CreateOnServer(OpenModel model, OpenModelResult openModelResult, string path)
-		{
-			IdeaRS.OpenModel.OpenModelContainer openModelContainer = new OpenModelContainer()
-			{
-				OpenModel = model,
-				OpenModelResult = openModelResult,
-			};
-
-			// serialize IOM to XML
-			var stringwriter = new System.IO.StringWriter();
-			var serializer = new XmlSerializer(typeof(OpenModelContainer));
-			serializer.Serialize(stringwriter, openModelContainer);
-
-			var serviceUrl = viewerURL + "/ConnectionViewer/CreateFromIOM";
-
-			Console.WriteLine("Posting iom in xml to the service {0}", serviceUrl);
-			var resultMessage = Helpers.PostXMLData(serviceUrl, stringwriter.ToString());
-
-			ResponseMessage responseMessage = JsonConvert.DeserializeObject<ResponseMessage>(resultMessage);
-			Console.WriteLine("Service response is : '{0}'", responseMessage.status);
-			if (responseMessage.status == "OK")
-			{
-				byte[] dataBuffer = Convert.FromBase64String(responseMessage.fileContent);
-				Console.WriteLine("Writing {0} bytes to file '{1}'", dataBuffer.Length, path);
-				if (dataBuffer.Length > 0)
-				{
-					using (FileStream fileStream = new FileStream(path
-				, FileMode.Create
-				, FileAccess.Write))
-					{
-						fileStream.Write(dataBuffer, 0, dataBuffer.Length);
-					}
-				}
-				else
-				{
-					Console.WriteLine("The service returned no data");
-				}
-			}
-		}
-	}
-
-```
 
 ## Example ConnectionHiddenCalculation - running CBFEM from a 3rd party application
 This example shows how to calculate a connection from any application. The only required input is the correct IOM. See the example ConnectionHiddenCalculation.
