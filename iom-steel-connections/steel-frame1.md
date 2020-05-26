@@ -3,7 +3,7 @@
 This example describes how to define a steel frame in IOM (IDEA StatiCa Open Model).
 The source code of this example is in the project [IOM.GeneratorExample](https://github.com/idea-statica/iom-examples/tree/master/IOM_SteelFrame1/IOM.GeneratorExample)
 
-The generated IOM can be used for creating IDEA StatiCa Connection project (ideacon). It can be done on a desktop PC where IDEA StatiCa is installed. More details how to do are in the project [IOM.SteelFrameDesktop](create-iom-desktop.md)
+The generated IOM can be used for creating IDEA StatiCa Connection project (ideacon). It can be done on a desktop PC where IDEA StatiCa is installed. More details how to do are in the project [IOM.SteelFrameDesktop](create-iom-desktop.md). It requires the installation of IdeaStatiCa on PC.
 
 Idea Connection project can be also generated from IOM by the webservice which runs in IDEA Cloud. More details are in the project [IOM.SteelFrameWeb](create-iom-cloud.md)
 

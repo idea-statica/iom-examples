@@ -7,6 +7,11 @@ shows how to create IOM for a steel frame and import connections into IDEA Stati
 
 |![Steel Frame](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/structure-thumb.png?raw=true)|![Imported connection](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/stiffenersWithWelds-thumb.png?raw=true)|
 
+### CBFEM for all !!!
+
+New API offers to provide results of CBFEM analysis to any linked application.
+TODO - adding details
+
 
 ### Concrete structures
 
