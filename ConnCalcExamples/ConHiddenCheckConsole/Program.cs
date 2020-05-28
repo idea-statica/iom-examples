@@ -1,5 +1,6 @@
 ﻿using IdeaStatiCa.Plugin;
 using System;
+using System.Globalization;
 using System.IO;
 
 namespace ConnCalculatorConsole
@@ -44,8 +45,15 @@ namespace ConnCalculatorConsole
 							Console.WriteLine(string.Format("Starting calculation of connection {0}", con.Identifier));
 
 							// calculate a get results for each connection in the project
-							var conRes = client.Calculate(con.Identifier);
+							var cbfemResults = client.Calculate(con.Identifier);
 							Console.WriteLine("Calculation is done");
+
+							var jsonSetting = new Newtonsoft.Json.JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(), Culture = CultureInfo.InvariantCulture };
+
+							var jsonFormating = Newtonsoft.Json.Formatting.Indented;
+							string jsonString = Newtonsoft.Json.JsonConvert.SerializeObject(cbfemResults, jsonFormating, jsonSetting);
+
+							Console.WriteLine(jsonString);
 
 							// get the geometry of the connection
 							var connectionModel = client.GetConnectionModel(con.Identifier);
@@ -67,7 +75,6 @@ namespace ConnCalculatorConsole
 			}
 
 			Console.WriteLine("End");
-			var x = Console.ReadLine();
 		}
 	}
 }
