@@ -29,7 +29,7 @@ namespace ConnCalculatorConsole
 			// the default idea connection project for calculation
 			string ideaConnProjectFileName = "testProj.ideaCon";
 
-			if (args.Length < 2)
+			if (args.Length > 1)
 			{
 				// custom idea connection project can be specified in the second argumet
 				ideaConnProjectFileName = args[1];
@@ -78,11 +78,9 @@ namespace ConnCalculatorConsole
 							var connectionModel = client.GetConnectionModel(con.Identifier);
 							string geometryJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(connectionModel, jsonFormating, jsonSetting);
 
-							Console.WriteLine(resultsJsonString);
-
 							Console.WriteLine("");
 							Console.WriteLine("The geometry of the calculated project");
-
+							Console.WriteLine(geometryJsonString);
 						}
 					}
 				}
