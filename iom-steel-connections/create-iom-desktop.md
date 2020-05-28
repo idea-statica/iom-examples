@@ -1,6 +1,8 @@
-#### The example of creating IDEA Connection project from IOM locally - see project [IOM.SteelFrameDesktop](https://github.com/idea-statica/iom-examples/tree/master/IOM_SteelFrame1/IOM.SteelFrameDesktop)
+#### The example of creating IDEA Connection project IOM locally is in the project [IOM.SteelFrameDesktop](https://github.com/idea-statica/iom-examples/tree/master/IOM_SteelFrame1/IOM.SteelFrameDesktop)
 
-IOM including steel frame and geometry of connections is generated in IOM.GeneratorExample
+The axample how to generate IOM for a steel frame and including geometry of connections is in IOM.GeneratorExample. Running this example requires [installation](https://github.com/idea-statica/ideastatica-plugin) of IDEA StatiCa v 20.0 on an user's PC.
+
+[IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastatica-plugin) includes classes which allows communication and controlling IDEA StatiCa applications and its provides services to other applications. [IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastatica-plugin) is also distributed as [nuget package](https://www.nuget.org/packages/IdeaStatiCa.Plugin/)
 
 ```C#
 			// create IOM and results
@@ -15,13 +17,13 @@ IOM including steel frame and geometry of connections is generated in IOM.Genera
 			result.SaveToXmlFile(iomResFileName);
 ```
 
-The instance of the class *ConnHiddenClientFactory* is responsible for communication with local installation of Idea StatiCa. The path to the installation directory is passed in the constructor
+The instance of the class *ConnHiddenClientFactory* is responsible for creating the instance of *ConnectionHiddenCheckClient* whic communicates with the local installation of Idea StatiCa. The path to the installation directory is passed in the constructor of *ConnHiddenClientFactory*
 
 ```C#
 			IdeaInstallDir = IOM.SteelFrameDesktop.Properties.Settings.Default.IdeaInstallDir;
 			Console.WriteLine("IDEA StatiCa installation directory is '{0}'", IdeaInstallDir);
 
-			var calcFactory = new ConnHiddenClientFactory(IdeaInstallDir);
+			ConnectionHiddenCheckClient calcFactory = new ConnHiddenClientFactory(IdeaInstallDir);
 ```
 
 The installation directory of Idea StatiCa v 20.0 (or higher) is set in the project setting of *IOM.SteelFrameDesktop*. Idea Connection project is created by calling method *CreateConProjFromIOM*
