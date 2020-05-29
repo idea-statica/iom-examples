@@ -9,9 +9,10 @@ shows how to create IOM for a steel frame and import connections into IDEA Stati
 
 ### Example [CBFEM for all !!!](iom-steel-connections/cbfem-for-all.md)
 
-New API allows to provide results of CBFEM analysis to any linked application. This example shows how to run hidden CBFEM analysis for idea connection project.
+New API allows to provide results of CBFEM analysis to any linked application. These examples show how to run hidden CBFEM analysis for idea connection project.
 |![ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/conn-hidden-calculation-thumb.PNG?raw=true)|
 |![ConHiddenCheckConsole](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/hidden-check-console-thumb.png?raw=true)|
+
 
 
 ### Concrete structures
