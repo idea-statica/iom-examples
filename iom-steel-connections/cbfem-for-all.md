@@ -14,7 +14,7 @@ Running CBFEM from the commad line :
 ConnCalculatorConsole.exe "C:\Program Files\IDEA StatiCa\StatiCa 20.0" "c:\test.ideaCon"
 ```
 
-### Exampl [ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/tree/master/ConnCalcExamples/ConnectionHiddenCalculation)
+### Example [ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/tree/master/ConnCalcExamples/ConnectionHiddenCalculation)
 
 It is more complex example which presents more features which are provided by IDEA StaiCa API. To be able to run this example set the path to Idea StatiCa directory in the project settings.
 
