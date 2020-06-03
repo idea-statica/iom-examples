@@ -1,6 +1,6 @@
 #### The examples of using API for running CBFEM analysis from .NET applications
 
-Both examples use [IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastatica-plugin) for running CBFEM analysis. They also require [installation](https://github.com/idea-statica/ideastatica-plugin) of IDEA StatiCa v 20.0 on an user's PC. 
+Both examples use [IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastatica-plugin) for running CBFEM analysis. Running this example it requires IDEA StatiCa v 20.0 (or higher) on an user's PC. Free trial version version can be obtained [here](https://www.ideastatica.com/free-trial).
 
 ### Example [ConHiddenCheckConsole](https://github.com/idea-statica/iom-examples/tree/master/ConnCalcExamples/ConHiddenCheckConsole)
 It is very simple console application example. *ConnCalculatorConsole.exe* requires the path to IDEA Statica installation directory and optionly the path to the idea connection project. If any project is passed the default 

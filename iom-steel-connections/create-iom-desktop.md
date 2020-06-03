@@ -1,6 +1,6 @@
 #### The example of creating IDEA Connection project IOM locally is in the project [IOM.SteelFrameDesktop](https://github.com/idea-statica/iom-examples/tree/master/IOM_SteelFrame1/IOM.SteelFrameDesktop)
 
-The axample how to generate IOM for a steel frame and including geometry of connections is in IOM.GeneratorExample. Running this example requires [installation](https://github.com/idea-statica/ideastatica-plugin) of IDEA StatiCa v 20.0 on an user's PC.
+The axample how to generate IOM for a steel frame and including geometry of connections is in IOM.GeneratorExample. Running this example requires IDEA StatiCa v 20.0 (or higher) on an user's PC. Free trial version version can be obtained [here](https://www.ideastatica.com/free-trial).
 
 [IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastatica-plugin) includes classes which allows communication and controlling IDEA StatiCa applications and its provides services to other applications. [IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastatica-plugin) is also distributed as [nuget package](https://www.nuget.org/packages/IdeaStatiCa.Plugin/)
 
