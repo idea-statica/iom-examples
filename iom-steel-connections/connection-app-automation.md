@@ -7,19 +7,19 @@ This examples use [IdeaStatiCa.Plugin](https://github.com/idea-statica/ideastati
 Starting *IdeaConnection.exe*
 
 ```C#
-			// it starts the new process of IdeaConnection.exe which is located in the directory ideaStatiCaDir
-			this.ConnectionController = IdeaConnectionController.Create(ideaStatiCaDir);
+// it starts the new process of IdeaConnection.exe which is located in the directory ideaStatiCaDir
+this.ConnectionController = IdeaConnectionController.Create(ideaStatiCaDir);
 ```
 
 When *IdeaConnection.exe* is running the project can be open
 
 ```C#
-			// open selected idea connection project in the running application IdeaConnection.exe
-			ConnectionController.ConnectionAppAutomation.OpenProject(openFileDialog.FileName);
+// open selected idea connection project in the running application IdeaConnection.exe
+onnectionController.ConnectionAppAutomation.OpenProject(openFileDialog.FileName);
 ```
 
 Closing open project
 ```C#
-			// open selected idea connection project in the running application IdeaConnection.exe
-			ConnectionController.ConnectionAppAutomation.OpenProject(openFileDialog.FileName);
+// open selected idea connection project in the running application IdeaConnection.exe
+ConnectionController.ConnectionAppAutomation.OpenProject(openFileDialog.FileName);
 ```
