@@ -13,7 +13,11 @@ New API allows to provide results of CBFEM analysis to any linked application. T
 |![ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/conn-hidden-calculation-thumb.PNG?raw=true)|
 |![ConHiddenCheckConsole](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/hidden-check-console-thumb.png?raw=true)|
 
+### Example [Connection Automation](iom-steel-connections/connection-app-automation.md)
 
+It shows how to control the application IDEA Connection from 3rd parties applications.
+
+|![ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/connection-app-automation-thumb.png?raw=true)|
 
 ### Concrete structures
 
