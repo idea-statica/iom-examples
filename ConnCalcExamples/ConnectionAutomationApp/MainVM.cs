@@ -79,7 +79,8 @@ namespace ConnectionAutomationApp
 
 		private void CloseProject(object obj)
 		{
-			throw new NotImplementedException();
+			// close the currently open project
+			ConnectionController.ConnectionAppAutomation.CloseProject();
 		}
 
 		private bool CanCloseProject(object arg)
@@ -98,6 +99,7 @@ namespace ConnectionAutomationApp
 
 			try
 			{
+				// open selected idea connection project in the running application IdeaConnection.exe
 				ConnectionController.ConnectionAppAutomation.OpenProject(openFileDialog.FileName);
 			}
 			catch (Exception e)
@@ -113,6 +115,7 @@ namespace ConnectionAutomationApp
 
 		private void RunIdeaConnection(object obj)
 		{
+			// it starts the new process of IdeaConnection.exe which is located in the directory ideaStatiCaDir
 			this.ConnectionController = IdeaConnectionController.Create(ideaStatiCaDir);
 		}
 
