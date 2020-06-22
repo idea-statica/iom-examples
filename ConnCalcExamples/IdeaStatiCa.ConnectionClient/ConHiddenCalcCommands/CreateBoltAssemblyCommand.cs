@@ -20,7 +20,37 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
-			throw new NotImplementedException();
+			string newBoltAssemblyName = "AAA";
+			int boltAssemblyId = -1;
+			IsCommandRunning = true;
+			Model.SetResults("Adding a new bolt assemblis to the project");
+			var calculationTask = Task.Run(() =>
+			{
+				try
+				{
+					var conVM = (IConnectionId)parameter;
+					var Service = Model.GetConnectionService();
+
+					int newBoltAssemblyId = Service.AddBoltAssembly(newBoltAssemblyName);
+
+					if (newBoltAssemblyId == -1)
+					{
+						Model.SetResults($"Can not create the bolt assebly {newBoltAssemblyName}");
+					}
+					else
+					{
+						Model.SetResults($"The bolt assembly '{newBoltAssemblyName}' has been created. Its ID is {newBoltAssemblyId}");
+					}
+				}
+				catch (Exception e)
+				{
+					Model.SetStatusMessage(e.Message);
+				}
+				finally
+				{
+					IsCommandRunning = false;
+				}
+			});
 		}
 	}
 }
