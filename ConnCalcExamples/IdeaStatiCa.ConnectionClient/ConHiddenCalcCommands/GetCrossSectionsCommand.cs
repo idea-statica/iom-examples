@@ -20,7 +20,36 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
-			throw new NotImplementedException();
+			var res = string.Empty;
+			IsCommandRunning = true;
+			Model.SetResults("Getting cross-sections in the project");
+			var calculationTask = Task.Run(() =>
+			{
+				try
+				{
+					var conVM = (IConnectionId)parameter;
+					var Service = Model.GetConnectionService();
+
+					var cssInProject = Service.GetCrossSectionsInProject();
+
+					if (cssInProject != null)
+					{
+						Model.SetResults(cssInProject);
+					}
+					else
+					{
+						Model.SetResults("No cross-sections");
+					}
+				}
+				catch (Exception e)
+				{
+					Model.SetStatusMessage(e.Message);
+				}
+				finally
+				{
+					IsCommandRunning = false;
+				}
+			});
 		}
 	}
 }

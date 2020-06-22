@@ -20,7 +20,36 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
-			throw new NotImplementedException();
+			var res = string.Empty;
+			IsCommandRunning = true;
+			Model.SetResults("Getting materials in the project");
+			var calculationTask = Task.Run(() =>
+			{
+				try
+				{
+					var conVM = (IConnectionId)parameter;
+					var Service = Model.GetConnectionService();
+
+					var materialsInProject = Service.GetMaterialsInProject();
+
+					if (materialsInProject != null)
+					{
+						Model.SetResults(materialsInProject);
+					}
+					else
+					{
+						Model.SetResults("No materials");
+					}
+				}
+				catch (Exception e)
+				{
+					Model.SetStatusMessage(e.Message);
+				}
+				finally
+				{
+					IsCommandRunning = false;
+				}
+			});
 		}
 	}
 }

@@ -173,6 +173,11 @@ namespace ConnectionHiddenCalculation
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
 				 }
+				 else if(res is List<ProjectItem> projectItems)
+				 {
+					 var jsonFormating = Formatting.Indented;
+					 Results = JsonConvert.SerializeObject(projectItems, jsonFormating, jsonSetting);
+				 }
 				 else
 				 {
 					 this.Results = (res == null ? string.Empty : res.ToString());

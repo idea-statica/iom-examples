@@ -20,7 +20,36 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
-			throw new NotImplementedException();
+			var res = string.Empty;
+			IsCommandRunning = true;
+			Model.SetResults("Getting bolt assemblis in the project");
+			var calculationTask = Task.Run(() =>
+			{
+				try
+				{
+					var conVM = (IConnectionId)parameter;
+					var Service = Model.GetConnectionService();
+
+					var boltsInProject = Service.GetBoltAssembliesInProject();
+
+					if (boltsInProject != null)
+					{
+						Model.SetResults(boltsInProject);
+					}
+					else
+					{
+						Model.SetResults("No bolt assemblies");
+					}
+				}
+				catch (Exception e)
+				{
+					Model.SetStatusMessage(e.Message);
+				}
+				finally
+				{
+					IsCommandRunning = false;
+				}
+			});
 		}
 	}
 }
