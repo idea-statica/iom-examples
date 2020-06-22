@@ -51,6 +51,10 @@
     <Compile Include="ConHiddenCalcCommands\ConnectionToTemplateCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\ConnHiddenCalcCommandBase.cs" />
     <Compile Include="Commands\CustomCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\CreateBoltAssemblyCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetBoltAssembliesCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetCrossSectionsCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetMaterialsCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\ImportIOMCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\OpenProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\SaveAsProjectCommand.cs" />

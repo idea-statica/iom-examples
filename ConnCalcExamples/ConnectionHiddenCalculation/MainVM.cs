@@ -63,6 +63,11 @@ namespace ConnectionHiddenCalculation
 			SaveAsProjectCmd = new SaveAsProjectCommand(this);
 			ConnectionToTemplateCmd = new ConnectionToTemplateCommand(this);
 			ApplyTemplateCmd = new ApplyTemplateCommand(this);
+
+			GetMaterialsCmd = new GetMaterialsCommand(this);
+			GetCrossSectionsCmd = new GetCrossSectionsCommand(this);
+			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
+			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
 		}
 		#endregion
 
@@ -75,6 +80,10 @@ namespace ConnectionHiddenCalculation
 		public ICommand SaveAsProjectCmd { get; set; }
 		public ICommand ConnectionToTemplateCmd { get; set; }
 		public ICommand ApplyTemplateCmd { get; set; }
+		public ICommand GetMaterialsCmd { get; set; }
+		public ICommand GetCrossSectionsCmd { get; set; }
+		public ICommand GetBoltAssembliesCmd { get; set; }
+		public ICommand CreateBoltAssemblyCmd { get; set; }
 		#endregion
 
 		#region IConHiddenCalcModel

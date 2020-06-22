@@ -12,6 +12,10 @@
             <Button Command="{Binding ImportIOMCmd, Mode=TwoWay}">Import from IOM</Button>
             <Button Command="{Binding CloseProjectCmd, Mode=TwoWay}">Close Project</Button>
             <Button Command="{Binding SaveAsProjectCmd, Mode=TwoWay}">Save Project As...</Button>
+            <Button Command="{Binding GetMaterialsCmd, Mode=TwoWay}" ToolTip="Get all materials in the open Idea Connection project">Get materials</Button>
+            <Button Command="{Binding GetCrossSectionsCmd, Mode=TwoWay}" ToolTip="Get all cross-sections in the open Idea Connection project">Get CSS</Button>
+            <Button Command="{Binding GetBoltAssembliesCmd, Mode=TwoWay}" ToolTip="Get all bolt assemblies in the open Idea Connection project">Get Bolts</Button>
+            <Button Command="{Binding CreateBoltAssemblyCmd, Mode=TwoWay}" ToolTip="Create a new bolt assembly in the open Idea Connection project">Create bolt</Button>
         </ToolBar>
         <StackPanel DockPanel.Dock="Bottom">
             <TextBlock Text="{Binding StatusMessage}"></TextBlock>
