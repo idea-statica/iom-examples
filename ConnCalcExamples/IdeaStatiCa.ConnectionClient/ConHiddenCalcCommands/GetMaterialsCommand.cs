@@ -27,9 +27,7 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 			{
 				try
 				{
-					var conVM = (IConnectionId)parameter;
 					var Service = Model.GetConnectionService();
-
 					var materialsInProject = Service.GetMaterialsInProject();
 
 					if (materialsInProject != null)

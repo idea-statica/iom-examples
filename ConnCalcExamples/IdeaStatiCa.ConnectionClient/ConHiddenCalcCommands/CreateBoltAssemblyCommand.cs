@@ -20,15 +20,13 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 		public override void Execute(object parameter)
 		{
-			string newBoltAssemblyName = "AAA";
-			int boltAssemblyId = -1;
+			string newBoltAssemblyName = parameter.ToString();
 			IsCommandRunning = true;
 			Model.SetResults("Adding a new bolt assemblis to the project");
 			var calculationTask = Task.Run(() =>
 			{
 				try
 				{
-					var conVM = (IConnectionId)parameter;
 					var Service = Model.GetConnectionService();
 
 					int newBoltAssemblyId = Service.AddBoltAssembly(newBoltAssemblyName);

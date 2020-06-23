@@ -15,7 +15,9 @@
             <Button Command="{Binding GetMaterialsCmd, Mode=TwoWay}" ToolTip="Get all materials in the open Idea Connection project">Get materials</Button>
             <Button Command="{Binding GetCrossSectionsCmd, Mode=TwoWay}" ToolTip="Get all cross-sections in the open Idea Connection project">Get CSS</Button>
             <Button Command="{Binding GetBoltAssembliesCmd, Mode=TwoWay}" ToolTip="Get all bolt assemblies in the open Idea Connection project">Get Bolts</Button>
-            <Button Command="{Binding CreateBoltAssemblyCmd, Mode=TwoWay}" ToolTip="Create a new bolt assembly in the open Idea Connection project">Create bolt</Button>
+            <Button Command="{Binding CreateBoltAssemblyCmd, Mode=TwoWay}" CommandParameter="{Binding NewBoltAssemblyName, Mode=OneWay}" ToolTip="Create a new bolt assembly in the open Idea Connection project">Create bolt</Button>
+            <TextBox Text="{Binding NewBoltAssemblyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
+
         </ToolBar>
         <StackPanel DockPanel.Dock="Bottom">
             <TextBlock Text="{Binding StatusMessage}"></TextBlock>
@@ -90,7 +92,7 @@
                 </ListView>
                 <GridSplitter Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
                 <TextBox Grid.Row="2">
-                    
+
                 </TextBox>
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" ResizeDirection="Columns" HorizontalAlignment="Stretch" />

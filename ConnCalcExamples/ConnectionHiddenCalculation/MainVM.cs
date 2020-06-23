@@ -29,6 +29,7 @@ namespace ConnectionHiddenCalculation
 		ConnHiddenClientFactory CalcFactory { get; set; }
 		ConnectionHiddenCheckClient IdeaConnectionClient { get; set; }
 		IConnHiddenCheck service;
+		string newBoltAssemblyName;
 		#endregion
 
 		#region Constructor
@@ -37,6 +38,7 @@ namespace ConnectionHiddenCalculation
 		/// </summary>
 		public MainVM()
 		{
+			NewBoltAssemblyName = "M12 4.6";
 			connections = new ObservableCollection<ConnectionVM>();
 			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
 			if (Directory.Exists(ideaStatiCaDir))
@@ -99,6 +101,17 @@ namespace ConnectionHiddenCalculation
 			{
 				isIdea = value;
 				NotifyPropertyChanged("IsIdea");
+			}
+		}
+
+		public string NewBoltAssemblyName
+		{
+			get => newBoltAssemblyName;
+
+			set
+			{
+				newBoltAssemblyName = value;
+				NotifyPropertyChanged("NewBoltAssemblyName");
 			}
 		}
 
