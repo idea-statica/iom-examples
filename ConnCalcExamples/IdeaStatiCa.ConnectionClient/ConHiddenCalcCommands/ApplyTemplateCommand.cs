@@ -26,24 +26,17 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 		{
 			string connTemplateFileName = string.Empty;
 
-			if (parameter != null)
+			OpenFileDialog openFileDialog = new OpenFileDialog();
+			openFileDialog.Filter = "Idea Connection Template| *.contemp";
+			if (openFileDialog.ShowDialog() != true)
 			{
-				connTemplateFileName = parameter.ToString();
+				return;
 			}
 			else
 			{
-				OpenFileDialog openFileDialog = new OpenFileDialog();
-				openFileDialog.Filter = "Idea Connection Template| *.contemp";
-				if (openFileDialog.ShowDialog() != true)
-				{
-					return;
-				}
-				else
-				{
-					connTemplateFileName = openFileDialog.FileName;
-				}
+				connTemplateFileName = openFileDialog.FileName;
 			}
-			
+
 
 			var service = Model.GetConnectionService();
 			var connection = (IConnectionId)parameter;
