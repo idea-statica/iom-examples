@@ -37,10 +37,9 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 				connTemplateFileName = openFileDialog.FileName;
 			}
 
-
 			var service = Model.GetConnectionService();
 			var connection = (IConnectionId)parameter;
-			var res = service.ApplyTemplate(connection.ConnectionId, connTemplateFileName, null);
+			var res = service.ApplyTemplate(connection.ConnectionId, connTemplateFileName, Model.TemplateSetting);
 
 			Model.SetStatusMessage(res);
 		}

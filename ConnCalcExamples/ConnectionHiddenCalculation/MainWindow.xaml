@@ -91,9 +91,7 @@
                     </ListView.View>
                 </ListView>
                 <GridSplitter Grid.Row="1" Height="5" ResizeDirection="Rows" HorizontalAlignment="Stretch" />
-                <TextBox Grid.Row="2">
-
-                </TextBox>
+                <TextBox Grid.Row="2" Text="{Binding TemplateSettingString, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
             </Grid>
             <GridSplitter Grid.Column="1" Width="5" ResizeDirection="Columns" HorizontalAlignment="Stretch" />
             <ScrollViewer Grid.Column="2">

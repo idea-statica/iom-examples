@@ -30,6 +30,9 @@ namespace ConnectionHiddenCalculation
 		ConnectionHiddenCheckClient IdeaConnectionClient { get; set; }
 		IConnHiddenCheck service;
 		string newBoltAssemblyName;
+		string templateSettingString;
+		ApplyConnTemplateSetting templateSetting;
+		readonly JsonSerializerSettings jsonSerializerSettings;
 		#endregion
 
 		#region Constructor
@@ -70,6 +73,14 @@ namespace ConnectionHiddenCalculation
 			GetCrossSectionsCmd = new GetCrossSectionsCommand(this);
 			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
+
+
+			TemplateSetting = new IdeaRS.OpenModel.Connection.ApplyConnTemplateSetting() { DefaultBoltAssemblyID = 1, DefaultCleatCrossSectionID = 1, DefaultConcreteMaterialID = 1, DefaultStiffMemberCrossSectionID = 1};
+
+			jsonSerializerSettings = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(), Culture = CultureInfo.InvariantCulture };
+
+			var jsonFormating = Formatting.Indented;
+			this.templateSettingString = JsonConvert.SerializeObject(TemplateSetting, jsonFormating, jsonSerializerSettings);
 		}
 		#endregion
 
@@ -130,6 +141,23 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
+		public string TemplateSettingString
+		{
+			get => templateSettingString;
+			set
+			{
+				templateSettingString = value;
+				NotifyPropertyChanged("TemplateSettingString");
+				
+				try
+				{
+					TemplateSetting = AppConSettingFromJsonString(templateSettingString);
+				}
+				catch
+				{
+				}
+			}
+		}
 
 		public IConnHiddenCheck GetConnectionService()
 		{
@@ -177,7 +205,7 @@ namespace ConnectionHiddenCalculation
 
 				 if (res is ConnectionResultsData cbfemResults)
 				 {
-					 
+
 					 var jsonFormating = Formatting.Indented;
 					 this.Results = JsonConvert.SerializeObject(cbfemResults, jsonFormating, jsonSetting);
 				 }
@@ -186,7 +214,7 @@ namespace ConnectionHiddenCalculation
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
 				 }
-				 else if(res is List<ProjectItem> projectItems)
+				 else if (res is List<ProjectItem> projectItems)
 				 {
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(projectItems, jsonFormating, jsonSetting);
@@ -250,10 +278,25 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
+		public ApplyConnTemplateSetting TemplateSetting
+		{
+			get => templateSetting;
+			set
+			{
+				templateSetting = value;
+				NotifyPropertyChanged("TemplateSetting");
+			}
+		}
+
 		private void NotifyPropertyChanged(string propertyName = "")
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		} 
+		}
+
+		private ApplyConnTemplateSetting AppConSettingFromJsonString(string json)
+		{
+			return JsonConvert.DeserializeObject<ApplyConnTemplateSetting>(json, jsonSerializerSettings);
+		}
 		#endregion
 	}
 }

@@ -14,6 +14,8 @@ namespace IdeaStatiCa.ConnectionClient.Model
 
 		bool IsIdea { get; }
 
+		ApplyConnTemplateSetting TemplateSetting { get; }
+
 		IConnHiddenCheck GetConnectionService();
 
 		void CloseConnectionService();
