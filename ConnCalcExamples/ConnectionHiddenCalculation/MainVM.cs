@@ -152,9 +152,11 @@ namespace ConnectionHiddenCalculation
 				try
 				{
 					TemplateSetting = AppConSettingFromJsonString(templateSettingString);
+					SetStatusMessage("OK");
 				}
 				catch
 				{
+					SetStatusMessage("Invalid JSON string");
 				}
 			}
 		}
