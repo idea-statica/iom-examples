@@ -29,6 +29,10 @@ namespace ConnectionHiddenCalculation
 		ConnHiddenClientFactory CalcFactory { get; set; }
 		ConnectionHiddenCheckClient IdeaConnectionClient { get; set; }
 		IConnHiddenCheck service;
+		string newBoltAssemblyName;
+		string templateSettingString;
+		ApplyConnTemplateSetting templateSetting;
+		readonly JsonSerializerSettings jsonSerializerSettings;
 		#endregion
 
 		#region Constructor
@@ -37,6 +41,7 @@ namespace ConnectionHiddenCalculation
 		/// </summary>
 		public MainVM()
 		{
+			NewBoltAssemblyName = "M12 4.6";
 			connections = new ObservableCollection<ConnectionVM>();
 			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
 			if (Directory.Exists(ideaStatiCaDir))
@@ -63,6 +68,19 @@ namespace ConnectionHiddenCalculation
 			SaveAsProjectCmd = new SaveAsProjectCommand(this);
 			ConnectionToTemplateCmd = new ConnectionToTemplateCommand(this);
 			ApplyTemplateCmd = new ApplyTemplateCommand(this);
+
+			GetMaterialsCmd = new GetMaterialsCommand(this);
+			GetCrossSectionsCmd = new GetCrossSectionsCommand(this);
+			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
+			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
+
+
+			TemplateSetting = new IdeaRS.OpenModel.Connection.ApplyConnTemplateSetting() { DefaultBoltAssemblyID = 1, DefaultCleatCrossSectionID = 1, DefaultConcreteMaterialID = 1, DefaultStiffMemberCrossSectionID = 1};
+
+			jsonSerializerSettings = new JsonSerializerSettings { ContractResolver = new Newtonsoft.Json.Serialization.CamelCasePropertyNamesContractResolver(), Culture = CultureInfo.InvariantCulture };
+
+			var jsonFormating = Formatting.Indented;
+			this.templateSettingString = JsonConvert.SerializeObject(TemplateSetting, jsonFormating, jsonSerializerSettings);
 		}
 		#endregion
 
@@ -75,6 +93,10 @@ namespace ConnectionHiddenCalculation
 		public ICommand SaveAsProjectCmd { get; set; }
 		public ICommand ConnectionToTemplateCmd { get; set; }
 		public ICommand ApplyTemplateCmd { get; set; }
+		public ICommand GetMaterialsCmd { get; set; }
+		public ICommand GetCrossSectionsCmd { get; set; }
+		public ICommand GetBoltAssembliesCmd { get; set; }
+		public ICommand CreateBoltAssemblyCmd { get; set; }
 		#endregion
 
 		#region IConHiddenCalcModel
@@ -93,6 +115,17 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
+		public string NewBoltAssemblyName
+		{
+			get => newBoltAssemblyName;
+
+			set
+			{
+				newBoltAssemblyName = value;
+				NotifyPropertyChanged("NewBoltAssemblyName");
+			}
+		}
+
 		public bool IsService
 		{
 			get => Service != null;
@@ -108,6 +141,25 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
+		public string TemplateSettingString
+		{
+			get => templateSettingString;
+			set
+			{
+				templateSettingString = value;
+				NotifyPropertyChanged("TemplateSettingString");
+				
+				try
+				{
+					TemplateSetting = AppConSettingFromJsonString(templateSettingString);
+					SetStatusMessage("OK");
+				}
+				catch
+				{
+					SetStatusMessage("Invalid JSON string");
+				}
+			}
+		}
 
 		public IConnHiddenCheck GetConnectionService()
 		{
@@ -155,7 +207,7 @@ namespace ConnectionHiddenCalculation
 
 				 if (res is ConnectionResultsData cbfemResults)
 				 {
-					 
+
 					 var jsonFormating = Formatting.Indented;
 					 this.Results = JsonConvert.SerializeObject(cbfemResults, jsonFormating, jsonSetting);
 				 }
@@ -163,6 +215,11 @@ namespace ConnectionHiddenCalculation
 				 {
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
+				 }
+				 else if (res is List<ProjectItem> projectItems)
+				 {
+					 var jsonFormating = Formatting.Indented;
+					 Results = JsonConvert.SerializeObject(projectItems, jsonFormating, jsonSetting);
 				 }
 				 else
 				 {
@@ -223,10 +280,25 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
+		public ApplyConnTemplateSetting TemplateSetting
+		{
+			get => templateSetting;
+			set
+			{
+				templateSetting = value;
+				NotifyPropertyChanged("TemplateSetting");
+			}
+		}
+
 		private void NotifyPropertyChanged(string propertyName = "")
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-		} 
+		}
+
+		private ApplyConnTemplateSetting AppConSettingFromJsonString(string json)
+		{
+			return JsonConvert.DeserializeObject<ApplyConnTemplateSetting>(json, jsonSerializerSettings);
+		}
 		#endregion
 	}
 }
