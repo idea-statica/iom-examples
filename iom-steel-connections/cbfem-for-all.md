@@ -30,6 +30,17 @@ In the project [IdeaStatiCa.ConnectionClient](https://github.com/idea-statica/io
 * [Create template from a connection](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/ConnectionToTemplateCommand.cs)
 * [Apply template](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/ApplyTemplateCommand.cs)
 
+There are new methods for getting information about materials, cross-sections and bolt assemblies in idea connection project in [IConnHiddenCheck](https://github.com/idea-statica/ideastatica-plugin/blob/master/IdeaStatiCa.Plugin/IConnHiddenCheck.cs) since version **IDEA StatiCa v20.0.81**. It is also possible to add bolt assemblies into a connection project.
+The method *ApplyTemplate* has the new parameter *connTemplateSetting*. It defines materials which are used when template is applied. 
+
+![Get materials from project](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/hidden-check-get_material.png?raw=true)
+
+The examples of using these new IConnHiddenCheck methods can be found in examples :
+
+* [GetMaterialsInProject](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/GetMaterialsCommand.cs)
+* [GetCrossSectionsInProject](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/GetCrossSectionsCommand.cs)
+* [GetBoltAssembliesInProject](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/GetBoltAssembliesCommand.cs)
+* [AddBoltAssembly](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/CreateBoltAssemblyCommand.cs)
 
 
 
