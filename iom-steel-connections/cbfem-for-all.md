@@ -20,6 +20,9 @@ It is more complex example which presents more features which are provided by ID
 
 ![ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/conn-hidden-calculation.PNG?raw=true)
 
+Communication of a 3rd party application (the example ConnectionHiddenCalculation in this case) with ConnectionCalcService which runs in a another process.
+![ConnectionHiddenCalculation](https://github.com/idea-statica/ideastatica-plugin/blob/master/Images/ConnectionHiddenCalculation.svg?raw=true)
+
 In the project [IdeaStatiCa.ConnectionClient](https://github.com/idea-statica/iom-examples/tree/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient) there are commands which control [ConnHiddenCheck Service](https://github.com/idea-statica/ideastatica-plugin/blob/master/IdeaStatiCa.Plugin/IConnHiddenCheck.cs). These commands show how to  :
 
 * [Open IDEA Connection project](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/OpenProjectCommand.cs)
@@ -52,7 +55,4 @@ The examples of using these new *IConnHiddenCheck* methods can be found in examp
 * [GetCrossSectionsInProject](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/GetCrossSectionsCommand.cs)
 * [GetBoltAssembliesInProject](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/GetBoltAssembliesCommand.cs)
 * [AddBoltAssembly](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/CreateBoltAssemblyCommand.cs)
-
-
-
 
