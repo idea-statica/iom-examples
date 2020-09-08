@@ -1,5 +1,6 @@
 ﻿using IdeaStatiCa.Plugin;
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 
@@ -74,9 +75,12 @@ namespace ConnCalculatorConsole
 
 							Console.WriteLine(resultsJsonString);
 
-							// get the geometry of the connection
-							var connectionModel = client.GetConnectionModel(con.Identifier);
-							string geometryJsonString = Newtonsoft.Json.JsonConvert.SerializeObject(connectionModel, jsonFormating, jsonSetting);
+							// get the geometry of the connection in XML format
+							var geometryJsonString = client.GetConnectionModelXML(con.Identifier);
+
+							// convert it ir the instance
+							var conData = Tools.ConnectionDataFromXml(geometryJsonString);
+							Debug.Assert(conData != null, "Worng format");
 
 							Console.WriteLine("");
 							Console.WriteLine("The geometry of the calculated project");

@@ -27,7 +27,9 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 					var conVM = (IConnectionId)parameter;
 					var Service = Model.GetConnectionService();
 
-					IdeaRS.OpenModel.Connection.ConnectionData conData = Service.GetConnectionModel(conVM.ConnectionId);
+					// cchange in version 20.1 - connection model must pe passed by XML string otherwise it crashes. Why ? Is it a bug in WCF ???
+					string conModelXml = Service.GetConnectionModelXML(conVM.ConnectionId);
+					IdeaRS.OpenModel.Connection.ConnectionData conData = IdeaStatiCa.Plugin.Tools.ConnectionDataFromXml(conModelXml);
 
 					if (conData != null)
 					{
