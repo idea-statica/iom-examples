@@ -1,5 +1,6 @@
 ﻿using IdeaRS.OpenModel.Connection;
 using IdeaStatiCa.ConnectionClient.Commands;
+using IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands;
 using IdeaStatiCa.ConnectionClient.Model;
 using IdeaStatiCa.Plugin;
 using Newtonsoft.Json;
@@ -64,6 +65,7 @@ namespace ConnectionHiddenCalculation
 			ImportIOMCmd = new ImportIOMCommand(this);
 			CloseProjectCmd = new CloseProjectCommand(this);
 			CalculateConnectionCmd = new CalculateConnectionCommand(this);
+			ApplySimpleTemplateCmd = new ApplySimpleTemplateCommand(this);
 			ConnectionGeometryCmd = new ConnectionGeometryCommand(this);
 			SaveAsProjectCmd = new SaveAsProjectCommand(this);
 			ConnectionToTemplateCmd = new ConnectionToTemplateCommand(this);
@@ -93,6 +95,7 @@ namespace ConnectionHiddenCalculation
 		public ICommand SaveAsProjectCmd { get; set; }
 		public ICommand ConnectionToTemplateCmd { get; set; }
 		public ICommand ApplyTemplateCmd { get; set; }
+		public ICommand ApplySimpleTemplateCmd { get; set; }
 		public ICommand GetMaterialsCmd { get; set; }
 		public ICommand GetCrossSectionsCmd { get; set; }
 		public ICommand GetBoltAssembliesCmd { get; set; }

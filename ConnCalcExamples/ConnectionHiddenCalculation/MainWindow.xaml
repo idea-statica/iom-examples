@@ -24,7 +24,7 @@
         </StackPanel>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="450"></ColumnDefinition>
+                <ColumnDefinition Width="580"></ColumnDefinition>
                 <ColumnDefinition Width="5" />
                 <ColumnDefinition Width="*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
@@ -83,6 +83,15 @@
                                     <DataTemplate>
                                         <StackPanel>
                                             <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ApplyTemplateCmd}"  CommandParameter="{Binding}" Margin="0">Apply Template</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ApplySimpleTemplateCmd}"  CommandParameter="{Binding}" Margin="0">Apply Simple Template</Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
