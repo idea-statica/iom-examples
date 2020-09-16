@@ -36,8 +36,8 @@ namespace ConnectionHiddenCalculation
 		string templateSettingString;
 		ApplyConnTemplateSetting templateSetting;
 		readonly JsonSerializerSettings jsonSerializerSettings;
-		int supportingBeam;
-		int connectedBeam;
+		int supportingMember;
+		int attachedMember;
 		#endregion
 
 		#region Constructor
@@ -47,8 +47,8 @@ namespace ConnectionHiddenCalculation
 		public MainVM()
 		{
 			NewBoltAssemblyName = "M12 4.6";
-			SupportingBeam = 1;
-			ConnectedBeam = 2;
+			SupportingMember = 1;
+			AttachedMember = 2;
 			connections = new ObservableCollection<ConnectionVM>();
 			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
 			if (Directory.Exists(ideaStatiCaDir))
@@ -135,24 +135,24 @@ namespace ConnectionHiddenCalculation
 			}
 		}
 
-		public int SupportingBeam
+		public int SupportingMember
 		{
-			get => supportingBeam;
+			get => supportingMember;
 
 			set
 			{
-				supportingBeam = value;
-				NotifyPropertyChanged("SupportedBeam");
+				supportingMember = value;
+				NotifyPropertyChanged("SupportingMember");
 			}
 		}
-		public int ConnectedBeam
+		public int AttachedMember
 		{
-			get => connectedBeam;
+			get => attachedMember;
 
 			set
 			{
-				connectedBeam = value;
-				NotifyPropertyChanged("ConnectedBeam");
+				attachedMember = value;
+				NotifyPropertyChanged("AttachedMember");
 			}
 		}
 

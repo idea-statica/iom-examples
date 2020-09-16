@@ -21,7 +21,7 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 		}
 
 		/// <summary>
-		/// Apply the simple connectionsimple template from file
+		/// Apply the simple connection template from a user's file
 		/// </summary>
 		/// <param name="parameter">It's a field that contains three items. on: [0] is informations about operation, [1] is supporting Beam, [2] is connected beam </param>
 		public override void Execute(object parameter)

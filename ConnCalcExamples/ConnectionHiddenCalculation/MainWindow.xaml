@@ -23,10 +23,10 @@
                 <TextBox Text="{Binding NewBoltAssemblyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
             </ToolBar>
             <ToolBar Band="2" DockPanel.Dock="Top">
-                <Label>Supporting beam</Label>
-                <TextBox x:Name="SupportingBeam" Text="{Binding SupportingBeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
-                <Label>Connectied beam</Label>
-                <TextBox x:Name="ConnectedBeam" Text="{Binding ConnectedBeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
+                <Label>Supporting member</Label>
+                <TextBox x:Name="SupportingMember" Text="{Binding SupportingMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80" ToolTip="The definition a supporting member for application a simple template e.g. a column"></TextBox>
+                <Label>Attached member</Label>
+                <TextBox x:Name="AttachedMember" Text="{Binding AttachedMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80" ToolTip="The definition a attached member for application a simple template e.g. a beam"></TextBox>
             </ToolBar>
         </ToolBarTray>
         <StackPanel DockPanel.Dock="Bottom">
@@ -105,8 +105,8 @@
                                                 <Button.CommandParameter>
                                                     <MultiBinding Converter="{StaticResource Converter}">
                                                         <Binding Path="."></Binding>
-                                                        <Binding ElementName="SupportingBeam" Path="Text"/>
-                                                        <Binding ElementName="ConnectedBeam" Path="Text"/>
+                                                        <Binding ElementName="SupportingMember" Path="Text"/>
+                                                        <Binding ElementName="AttachedMember" Path="Text"/>
                                                     </MultiBinding>
                                                 </Button.CommandParameter>
                                                 Apply Simple Template</Button>
