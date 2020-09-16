@@ -4,6 +4,7 @@ using IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands;
 using IdeaStatiCa.ConnectionClient.Model;
 using IdeaStatiCa.Plugin;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ using System.Globalization;
 using System.IO;
 using System.Threading;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 
 namespace ConnectionHiddenCalculation
@@ -34,6 +36,8 @@ namespace ConnectionHiddenCalculation
 		string templateSettingString;
 		ApplyConnTemplateSetting templateSetting;
 		readonly JsonSerializerSettings jsonSerializerSettings;
+		int supportingBeam;
+		int connectedBeam;
 		#endregion
 
 		#region Constructor
@@ -43,6 +47,8 @@ namespace ConnectionHiddenCalculation
 		public MainVM()
 		{
 			NewBoltAssemblyName = "M12 4.6";
+			SupportingBeam = 1;
+			ConnectedBeam = 2;
 			connections = new ObservableCollection<ConnectionVM>();
 			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
 			if (Directory.Exists(ideaStatiCaDir))
@@ -126,6 +132,27 @@ namespace ConnectionHiddenCalculation
 			{
 				newBoltAssemblyName = value;
 				NotifyPropertyChanged("NewBoltAssemblyName");
+			}
+		}
+
+		public int SupportingBeam
+		{
+			get => supportingBeam;
+
+			set
+			{
+				supportingBeam = value;
+				NotifyPropertyChanged("SupportedBeam");
+			}
+		}
+		public int ConnectedBeam
+		{
+			get => connectedBeam;
+
+			set
+			{
+				connectedBeam = value;
+				NotifyPropertyChanged("ConnectedBeam");
 			}
 		}
 
@@ -303,5 +330,18 @@ namespace ConnectionHiddenCalculation
 			return JsonConvert.DeserializeObject<ApplyConnTemplateSetting>(json, jsonSerializerSettings);
 		}
 		#endregion
+	}
+
+	public class Converter : IMultiValueConverter
+	{
+		public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+		{
+			return values.Clone();
+		}
+
+		public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

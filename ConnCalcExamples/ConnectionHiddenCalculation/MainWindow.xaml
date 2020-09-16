@@ -6,19 +6,29 @@
         xmlns:local="clr-namespace:ConnectionHiddenCalculation"
         mc:Ignorable="d"
         Title="IdeaConnection - hidden calculation" Height="500" Width="1000" Closed="Window_Closed">
+    <Window.Resources>
+        <local:Converter x:Key="Converter" />
+    </Window.Resources>
     <DockPanel LastChildFill="True">
-        <ToolBar DockPanel.Dock="Top">
-            <Button Command="{Binding OpenProjectCmd, Mode=TwoWay}">Open Project</Button>
-            <Button Command="{Binding ImportIOMCmd, Mode=TwoWay}">Import from IOM</Button>
-            <Button Command="{Binding CloseProjectCmd, Mode=TwoWay}">Close Project</Button>
-            <Button Command="{Binding SaveAsProjectCmd, Mode=TwoWay}">Save Project As...</Button>
-            <Button Command="{Binding GetMaterialsCmd, Mode=TwoWay}" ToolTip="Get all materials in the open Idea Connection project">Get materials</Button>
-            <Button Command="{Binding GetCrossSectionsCmd, Mode=TwoWay}" ToolTip="Get all cross-sections in the open Idea Connection project">Get CSS</Button>
-            <Button Command="{Binding GetBoltAssembliesCmd, Mode=TwoWay}" ToolTip="Get all bolt assemblies in the open Idea Connection project">Get Bolts</Button>
-            <Button Command="{Binding CreateBoltAssemblyCmd, Mode=TwoWay}" CommandParameter="{Binding NewBoltAssemblyName, Mode=OneWay}" ToolTip="Create a new bolt assembly in the open Idea Connection project">Create bolt</Button>
-            <TextBox Text="{Binding NewBoltAssemblyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
-
-        </ToolBar>
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Band="1" DockPanel.Dock="Top">
+                <Button Command="{Binding OpenProjectCmd, Mode=TwoWay}">Open Project</Button>
+                <Button Command="{Binding ImportIOMCmd, Mode=TwoWay}">Import from IOM</Button>
+                <Button Command="{Binding CloseProjectCmd, Mode=TwoWay}">Close Project</Button>
+                <Button Command="{Binding SaveAsProjectCmd, Mode=TwoWay}">Save Project As...</Button>
+                <Button Command="{Binding GetMaterialsCmd, Mode=TwoWay}" ToolTip="Get all materials in the open Idea Connection project">Get materials</Button>
+                <Button Command="{Binding GetCrossSectionsCmd, Mode=TwoWay}" ToolTip="Get all cross-sections in the open Idea Connection project">Get CSS</Button>
+                <Button Command="{Binding GetBoltAssembliesCmd, Mode=TwoWay}" ToolTip="Get all bolt assemblies in the open Idea Connection project">Get Bolts</Button>
+                <Button Command="{Binding CreateBoltAssemblyCmd, Mode=TwoWay}" CommandParameter="{Binding NewBoltAssemblyName, Mode=OneWay}" ToolTip="Create a new bolt assembly in the open Idea Connection project">Create bolt</Button>
+                <TextBox Text="{Binding NewBoltAssemblyName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
+            </ToolBar>
+            <ToolBar Band="2" DockPanel.Dock="Top">
+                <Label>Supporting beam</Label>
+                <TextBox x:Name="SupportingBeam" Text="{Binding SupportingBeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
+                <Label>Connectied beam</Label>
+                <TextBox x:Name="ConnectedBeam" Text="{Binding ConnectedBeam, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80"></TextBox>
+            </ToolBar>
+        </ToolBarTray>
         <StackPanel DockPanel.Dock="Bottom">
             <TextBlock Text="{Binding StatusMessage}"></TextBlock>
         </StackPanel>
@@ -91,7 +101,15 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ApplySimpleTemplateCmd}"  CommandParameter="{Binding}" Margin="0">Apply Simple Template</Button>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ApplySimpleTemplateCmd}" Margin="0">
+                                                <Button.CommandParameter>
+                                                    <MultiBinding Converter="{StaticResource Converter}">
+                                                        <Binding Path="."></Binding>
+                                                        <Binding ElementName="SupportingBeam" Path="Text"/>
+                                                        <Binding ElementName="ConnectedBeam" Path="Text"/>
+                                                    </MultiBinding>
+                                                </Button.CommandParameter>
+                                                Apply Simple Template</Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
