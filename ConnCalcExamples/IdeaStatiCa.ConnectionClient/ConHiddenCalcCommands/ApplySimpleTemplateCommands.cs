@@ -3,7 +3,9 @@ using IdeaStatiCa.ConnectionClient.Model;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 {
@@ -18,8 +20,19 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 			return (Model.IsIdea && Model.IsService && !IsCommandRunning);
 		}
 
+		/// <summary>
+		/// Apply the simple connectionsimple template from file
+		/// </summary>
+		/// <param name="parameter">It's a field that contains three items. on: [0] is informations about operation, [1] is supporting Beam, [2] is connected beam </param>
 		public override void Execute(object parameter)
 		{
+			var values = (object[])parameter;
+
+			List<int> attachedMembers = new List<int>();
+
+			var mainMember = int.Parse(values[1].ToString());
+			attachedMembers.Add(int.Parse(values[2].ToString()));
+
 			var res = string.Empty;
 			Model.SetResults("Apply Simple Template");
 			IsCommandRunning = true;
@@ -36,22 +49,15 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 			{
 				connTemplateFileName = openFileDialog.FileName;
 			}
-				
-			List<int> AttachedMembers = new List<int>();
-			AttachedMembers.Add(2);
-			//AttachedMembers.Add(3);
-
-			var mainMember = 1;
-
 
 			var applySimpleTemplateTask = Task.Run(() =>
 			{
 				try
 				{
-					var connection = (IConnectionId)parameter;
+					var connection = (IConnectionId)values[0];
 					var service = Model.GetConnectionService();
 
-					var resData = service.ApplySimpleTemplate(connection.ConnectionId, connTemplateFileName, Model.TemplateSetting, mainMember, AttachedMembers);
+					var resData = service.ApplySimpleTemplate(connection.ConnectionId, connTemplateFileName, Model.TemplateSetting, mainMember, attachedMembers);
 
 					Model.SetResults(resData);
 				}
