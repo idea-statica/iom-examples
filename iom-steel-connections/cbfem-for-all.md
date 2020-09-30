@@ -56,3 +56,13 @@ The examples of using these new *IConnHiddenCheck* methods can be found in examp
 * [GetBoltAssembliesInProject](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/GetBoltAssembliesCommand.cs)
 * [AddBoltAssembly](https://github.com/idea-statica/iom-examples/blob/master/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/CreateBoltAssemblyCommand.cs)
 
+### Improvements in version IDEA StatiCa v 20.1
+
+API users can apply simple template to a connection.
+
+![ConnectionHiddenCalculation](https://github.com/idea-statica/iom-examples/blob/gh-pages/iom-steel-connections/Images/apply-simple-template.PNG?raw=true)
+
+There is the example how to call the service in the command : [Apply Simple template](https://github.com/idea-statica/iom-examples/blob/release-20i/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/ApplySimpleTemplateCommands.cs)
+
+
+
