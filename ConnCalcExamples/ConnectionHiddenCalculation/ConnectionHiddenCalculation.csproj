@@ -94,6 +94,9 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SingleTemplateTstProjects\1-beam-to-column-empty.ideaCon" />
+    <None Include="SingleTemplateTstProjects\2-beams-to-column-empty.ideaCon" />
+    <None Include="SingleTemplateTstProjects\endplate.contemp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -112,5 +115,6 @@
       <Name>IdeaStatiCa.ConnectionClient</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
