@@ -94,9 +94,15 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="SingleTemplateTstProjects\1-beam-to-column-empty.ideaCon" />
-    <None Include="SingleTemplateTstProjects\2-beams-to-column-empty.ideaCon" />
-    <None Include="SingleTemplateTstProjects\endplate.contemp" />
+    <None Include="SingleTemplateTstProjects\1-beam-to-column-empty.ideaCon">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SingleTemplateTstProjects\2-beams-to-column-empty.ideaCon">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="SingleTemplateTstProjects\endplate.contemp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
