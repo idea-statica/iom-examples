@@ -64,5 +64,21 @@ API users can apply simple template to a connection.
 
 There is the example how to call the service in the command : [Apply Simple template](https://github.com/idea-statica/iom-examples/blob/release-20i/ConnCalcExamples/IdeaStatiCa.ConnectionClient/ConHiddenCalcCommands/ApplySimpleTemplateCommands.cs)
 
+```C#
+		/// <summary>
+		/// Apply the simple connectionsimple template from file <paramref name="templateFilePath"/> on connection <paramref name="connectionId"/>
+		/// </summary>
+		/// <param name="connectionId">The id of the connection on which templete will be applied</param>
+		/// <param name="templateFilePath">The path to the connection template</param>
+		/// <param name="connTemplateSetting">The additional settings - e.g. default bolts</param>
+		/// <param name="mainMember">Main (supporting member)</param>
+		/// <param name="attachedMembers">The list of members which are supported by <paramref name="mainMember"/></param>
+		/// <returns>Returns 'Ok' in case of the success otherwise 'Fail'</returns>
+		[OperationContract]
+		string ApplySimpleTemplate(string connectionId, string templateFilePath, ApplyConnTemplateSetting connTemplateSetting, int mainMember, List<int> attachedMembers);
+``` 
 
+Step by step hot to test applying single template
+* Build example project
+* Open in the empty connection project [2-beams-to-column-empty.ideaCon](https://github.com/idea-statica/iom-examples/blob/release-20i/ConnCalcExamples/ConnectionHiddenCalculation/SingleTemplateTstProjects/2-beams-to-column-empty.ideaCon) 
 
