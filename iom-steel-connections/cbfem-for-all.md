@@ -78,7 +78,15 @@ There is the example how to call the service in the command : [Apply Simple temp
 		string ApplySimpleTemplate(string connectionId, string templateFilePath, ApplyConnTemplateSetting connTemplateSetting, int mainMember, List<int> attachedMembers);
 ``` 
 
-Step by step hot to test applying single template
-* Build example project
-* Open in the empty connection project [2-beams-to-column-empty.ideaCon](https://github.com/idea-statica/iom-examples/blob/release-20i/ConnCalcExamples/ConnectionHiddenCalculation/SingleTemplateTstProjects/2-beams-to-column-empty.ideaCon) 
+***How to test applying single template step by step***
+* Build project *ConnectionHiddenCalculation*
+* Open the empty connection project [2-beams-to-column-empty.ideaCon](https://github.com/idea-statica/iom-examples/blob/release-20i/ConnCalcExamples/ConnectionHiddenCalculation/SingleTemplateTstProjects/2-beams-to-column-empty.ideaCon) in app ConnectionHiddenCalculation 
+* Specify supporting member (in this cas *1*) and supported member (in this case *2*)
+* Click on the button *Apply simple template*
+* Save project as and open it in ideaconnection.exe to check the result
+* You can apply template twice - for member 2 anb 3 to get the complete connection
+
+There is the online [API Documentation](https://idea-statica.github.io/iom/ideaconnections-api/latest/index.html) of manufacturing operations. It helps to set values of properties of operations. The best way is to create a connection model in _ideaconnection.exe_ - save is as connection template - you can find this feature in this example. Then open it in a text editor and check the content. Then you can modify values in contemp file and apply it again.
+
+
 
