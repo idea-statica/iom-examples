@@ -100,6 +100,9 @@
     <None Include="SingleTemplateTstProjects\2-beams-to-column-empty.ideaCon">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Include="SingleTemplateTstProjects\circular-baseplate.ideaCon">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="SingleTemplateTstProjects\endplate.contemp">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
