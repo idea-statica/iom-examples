@@ -38,7 +38,7 @@ namespace IOM.GeneratorExample
 			AddCrossSectionToIOM(model);
 
 			// add connection point with members
-			AddConnectionPointsToIOM(model);
+			CreateFrameGeometry(model);
 
 			// add load cases
 			AddLoadCasesToIOM(model);
@@ -751,7 +751,7 @@ namespace IOM.GeneratorExample
 		/// Add members and connection points to the IDEA open model
 		/// </summary>
 		/// <param name="model">Open model</param>
-		private static void AddConnectionPointsToIOM(OpenModel model)
+		private static void CreateFrameGeometry(OpenModel model)
 		{
 			// find appropriate cross sections
 			var css_he_240b = model.CrossSection.FirstOrDefault(item => item.Name == "HE240B");
