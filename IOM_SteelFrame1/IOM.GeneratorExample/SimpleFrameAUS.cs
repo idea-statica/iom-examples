@@ -7,8 +7,6 @@ using IdeaRS.OpenModel.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace IOM.GeneratorExample
 {
@@ -17,6 +15,9 @@ namespace IOM.GeneratorExample
 		public static OpenModel CreateIOM()
 		{
 			OpenModel model = new OpenModel();
+
+			// add setting
+			AddSettingsToIOM(model);
 
 			// add nodes
 			AddNodesToIOM(model);
@@ -27,8 +28,11 @@ namespace IOM.GeneratorExample
 			// add cross section
 			AddCrossSectionToIOM(model);
 
-			// add connection point with members
-			//AddConnectionPointsToIOM(model);
+			// add members 1D
+			CreateFrameGeometry(model);
+
+			// create connection
+			CreateConnectionGeometry(model);
 
 			return model;
 		}
@@ -120,31 +124,98 @@ namespace IOM.GeneratorExample
 			var columnCss = model.CrossSection.FirstOrDefault(item => item.Name == "125TFB");
 			var beamCss = model.CrossSection.FirstOrDefault(item => item.Name == "100TFB");
 
-			// member - column bottom part
-			ConnectedMember M1 = Helpers.CreateMember(model, 1, Member1DType.Column, columnCss, "N1", "N2");
-
-			// member - column upper part
-			ConnectedMember M2 = Helpers.CreateMember(model, 2, Member1DType.Column, columnCss, "N2", "N3");
+			// member - column 
+			ConnectedMember column = Helpers.CreateMember(model, 1, Member1DType.Column, columnCss, "N1", "N2", "N3");
 
 			// member - beam
-			ConnectedMember M3 = Helpers.CreateMember(model, 3, Member1DType.Beam, beamCss, "N2", "N4");
+			ConnectedMember beam = Helpers.CreateMember(model, 2, Member1DType.Beam, beamCss, "N2", "N4");
 
 			// add members to the model
-			model.AddObject(M1);
-			model.AddObject(M2);
-			model.AddObject(M3);
+			model.AddObject(column);
+			model.AddObject(beam);
 
-			// create the connection point in the node N2
-			ConnectionPoint CP1 = new ConnectionPoint();
+			//// create the connection point in the node N2
+			//ConnectionPoint CP1 = new ConnectionPoint();
 
-			CP1.Node = new ReferenceElement(model.Point3D.FirstOrDefault(n => n.Name == "N2"));
-			CP1.Id = model.GetMaxId(CP1) + 1;
-			CP1.Name = "CON " + CP1.Id.ToString();
+			//CP1.Node = new ReferenceElement(model.Point3D.FirstOrDefault(n => n.Name == "N2"));
+			//CP1.Id = model.GetMaxId(CP1) + 1;
+			//CP1.Name = "CON " + CP1.Id.ToString();
 
-			CP1.ConnectedMembers.Add(M1);
-			CP1.ConnectedMembers.Add(M3);
+			//CP1.ConnectedMembers.Add(column);
+			//CP1.ConnectedMembers.Add(beam);
 
-			model.AddObject(CP1);
+			//model.AddObject(CP1);
+		}
+
+
+		static private OpenModel CreateConnectionGeometry(OpenModel openModel)
+		{
+			//Get geometrical point
+			IdeaRS.OpenModel.Geometry3D.Point3D point = openModel.Point3D.Find(p => p.Name.Equals("N2", StringComparison.InvariantCultureIgnoreCase));
+
+			//Create a new connection point
+			IdeaRS.OpenModel.Connection.ConnectionPoint connectionPoint = new IdeaRS.OpenModel.Connection.ConnectionPoint();
+
+			connectionPoint.Node = new ReferenceElement(point);
+			connectionPoint.Name = point.Name;
+			connectionPoint.Id = openModel.GetMaxId(connectionPoint) + 1;
+
+			//create the new  connection data
+			var newConnectionData = new IdeaRS.OpenModel.Connection.ConnectionData();
+			//create list for beams
+			newConnectionData.Beams = new List<IdeaRS.OpenModel.Connection.BeamData>();
+
+			{
+				//member1D - column
+				var columnMember = openModel.Member1D.Find(x => x.Id == 1);
+				IdeaRS.OpenModel.Connection.ConnectedMember connectedColumn = new IdeaRS.OpenModel.Connection.ConnectedMember
+				{
+					Id = columnMember.Id,
+					MemberId = new ReferenceElement(columnMember),
+					IsContinuous = true,
+				};
+				connectionPoint.ConnectedMembers.Add(connectedColumn);
+
+				IdeaRS.OpenModel.Connection.BeamData columnData = new IdeaRS.OpenModel.Connection.BeamData
+				{
+					Name = "Column",
+					Id = 1,
+					OriginalModelId = columnMember.Id.ToString(),
+					IsAdded = false,
+					MirrorY = false,
+					RefLineInCenterOfGravity = false,
+				};
+
+				newConnectionData.Beams.Add(columnData);
+			}
+
+			{
+				//member1D - beam
+				IdeaRS.OpenModel.Connection.BeamData beamData = new IdeaRS.OpenModel.Connection.BeamData
+				{
+					Name = "Beam",
+					Id = 2,
+					OriginalModelId = "2",
+					IsAdded = false,
+					MirrorY = false,
+					RefLineInCenterOfGravity = false,
+				};
+				newConnectionData.Beams.Add(beamData);
+
+				var column = openModel.Member1D.Find(x => x.Id == 2);
+				IdeaRS.OpenModel.Connection.ConnectedMember connectedBeam = new IdeaRS.OpenModel.Connection.ConnectedMember
+				{
+					Id = column.Id,
+					MemberId = new ReferenceElement(column),
+					IsContinuous = false,
+				};
+				connectionPoint.ConnectedMembers.Add(connectedBeam);
+			}
+
+			openModel.Connections.Add(newConnectionData);
+			openModel.AddObject(connectionPoint);
+
+			return openModel;
 		}
 	}
 }

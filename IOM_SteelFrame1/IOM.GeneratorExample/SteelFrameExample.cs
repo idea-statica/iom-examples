@@ -37,7 +37,7 @@ namespace IOM.GeneratorExample
 			// add cross section
 			AddCrossSectionToIOM(model);
 
-			// add connection point with members
+			// add members 1D and connection point
 			CreateFrameGeometry(model);
 
 			// add load cases
@@ -46,12 +46,12 @@ namespace IOM.GeneratorExample
 			// add combinations
 			AddCombinationsToIOM(model);
 
-			model = Fill(model);
+			model = CreateConnectionGeometry(model);
 
 			return model;
 		}
 
-		static private OpenModel Fill(OpenModel openModel)
+		static private OpenModel CreateConnectionGeometry(OpenModel openModel)
 		{
 			//Add connection point
 			IdeaRS.OpenModel.Connection.ConnectionPoint connection = new IdeaRS.OpenModel.Connection.ConnectionPoint();

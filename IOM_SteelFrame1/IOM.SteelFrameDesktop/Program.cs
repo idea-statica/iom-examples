@@ -58,6 +58,10 @@ namespace IOM.SteelFrameDesktop
 			{
 				iomResult.SaveToXmlFile(iomResFileName);
 			}
+			else
+			{
+				iomResFileName = string.Empty;
+			}
 
 			var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 			var fileConnFileNameFromLocal = Path.Combine(desktopDir, "connectionFromIOM-local.ideaCon");
