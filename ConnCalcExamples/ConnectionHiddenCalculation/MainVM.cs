@@ -82,6 +82,8 @@ namespace ConnectionHiddenCalculation
 			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
 
+			ShowConHiddenCalcLogFileCmd = new ShowConHiddenCalcLogFileCommand();
+
 
 			TemplateSetting = new IdeaRS.OpenModel.Connection.ApplyConnTemplateSetting() { DefaultBoltAssemblyID = 1, DefaultCleatCrossSectionID = 1, DefaultConcreteMaterialID = 1, DefaultStiffMemberCrossSectionID = 1};
 
@@ -106,6 +108,7 @@ namespace ConnectionHiddenCalculation
 		public ICommand GetCrossSectionsCmd { get; set; }
 		public ICommand GetBoltAssembliesCmd { get; set; }
 		public ICommand CreateBoltAssemblyCmd { get; set; }
+		public ICommand ShowConHiddenCalcLogFileCmd { get; set; }
 		#endregion
 
 		#region IConHiddenCalcModel

@@ -59,6 +59,7 @@
     <Compile Include="ConHiddenCalcCommands\ImportIOMCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\OpenProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\SaveAsProjectCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ShowConHiddenCalcLogFileCommand.cs" />
     <Compile Include="Model\IConHiddenCalcModel.cs" />
     <Compile Include="Model\IConnectionId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
