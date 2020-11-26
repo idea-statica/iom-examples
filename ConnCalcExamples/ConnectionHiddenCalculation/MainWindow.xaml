@@ -27,6 +27,7 @@
                 <TextBox x:Name="SupportingMember" Text="{Binding SupportingMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80" ToolTip="The definition a supporting member for application a simple template e.g. a column"></TextBox>
                 <Label>Attached member</Label>
                 <TextBox x:Name="AttachedMember" Text="{Binding AttachedMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80" ToolTip="The definition a attached member for application a simple template e.g. a beam"></TextBox>
+                <Button Command="{Binding ShowConHiddenCalcLogFileCmd, Mode=TwoWay}" Margin="5,0" ToolTip="Show hidden calculator log file (from version IS v20.1.2)">Show Idea Log File</Button>
             </ToolBar>
         </ToolBarTray>
         <StackPanel DockPanel.Dock="Bottom">

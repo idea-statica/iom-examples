@@ -17,8 +17,9 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.1.4" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="IdeaStatiCa.OpenModel" Version="20.1.11" />
+    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.1.5" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System.Data.DataSetExtensions" />

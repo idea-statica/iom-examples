@@ -59,13 +59,14 @@
     <Compile Include="ConHiddenCalcCommands\ImportIOMCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\OpenProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\SaveAsProjectCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\ShowConHiddenCalcLogFileCommand.cs" />
     <Compile Include="Model\IConHiddenCalcModel.cs" />
     <Compile Include="Model\IConnectionId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IdeaStatiCa.Plugin">
-      <Version>20.1.4</Version>
+      <Version>20.1.5</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
