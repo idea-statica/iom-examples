@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{AB4430E2-EAA3-4DE0-92C8-3298BB7A81C3}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>IOM.SteelFrameDesktop</AssemblyTitle>
     <Product>IOM.SteelFrameDesktop</Product>
@@ -18,7 +18,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="IdeaStatiCa.OpenModel" Version="20.1.11" />
-    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.1.5" />
+    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.1.7" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
   <ItemGroup>
