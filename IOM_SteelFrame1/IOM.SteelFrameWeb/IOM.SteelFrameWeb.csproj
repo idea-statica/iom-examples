@@ -2,7 +2,7 @@
   <PropertyGroup>
     <ProjectGuid>{DA9CE85E-7B4D-408B-9116-53A5918CAD1A}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>IOM.SteelFrame</AssemblyTitle>
     <Product>IOM.SteelFrame</Product>
@@ -16,11 +16,9 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\IOM.GeneratorExample\IOM.GeneratorExample.csproj" />
+    <PackageReference Include="IdeaStatiCa.OpenModel" Version="20.1.11" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Net.Http" />
+    <ProjectReference Include="..\IOM.GeneratorExample\IOM.GeneratorExample.csproj" />
   </ItemGroup>
 </Project>

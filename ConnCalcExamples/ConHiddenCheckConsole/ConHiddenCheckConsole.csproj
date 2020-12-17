@@ -3,7 +3,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>ConnCalculatorConsole</RootNamespace>
     <AssemblyName>ConnCalculatorConsole</AssemblyName>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFramework>net461</TargetFramework>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <AssemblyTitle>ConnCalculatorConsole</AssemblyTitle>
     <Product>ConnCalculatorConsole</Product>
@@ -30,7 +30,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.1.4" />
+    <PackageReference Include="IdeaStatiCa.Plugin" Version="20.1.7" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 </Project>

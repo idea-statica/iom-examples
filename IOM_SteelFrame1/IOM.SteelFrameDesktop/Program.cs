@@ -22,19 +22,46 @@ namespace IOM.SteelFrameDesktop
 
 			Console.WriteLine("IDEA StatiCa installation directory is '{0}'", IdeaInstallDir);
 
-			Console.WriteLine("Start generate example of IOM...");
+			Console.WriteLine("Select the required example");
+			Console.WriteLine("1  - Steel frame ECEN");
+			Console.WriteLine("2  - Simple frame AUS");
 
-			// create IOM and results
-			OpenModel example = SteelFrameExample.CreateIOM();
-			OpenModelResult result = Helpers.GetResults();
+			var option = Console.ReadLine();
+
+			OpenModel iom = null;
+			OpenModelResult iomResult = null;
+
+			if (option.Equals("2", StringComparison.InvariantCultureIgnoreCase))
+			{
+				Console.WriteLine("Generating Australian steel frame ...");
+
+				// create IOM and results
+				iom = SimpleFrameAUS.CreateIOM();
+				iomResult = null;
+			}
+			else
+			{
+				Console.WriteLine("Generating ECEN steel frame ...");
+
+				// create IOM and results
+				iom = SteelFrameExample.CreateIOM();
+				iomResult = Helpers.GetResults();
+			}
 
 			string iomFileName = "example.xml";
 			string iomResFileName = "example.xmlR";
 
 			// save to the files
-			example.SaveToXmlFile(iomFileName);
-			result.SaveToXmlFile(iomResFileName);
+			iom.SaveToXmlFile(iomFileName);
 
+			if (iomResult != null)
+			{
+				iomResult.SaveToXmlFile(iomResFileName);
+			}
+			else
+			{
+				iomResFileName = string.Empty;
+			}
 
 			var desktopDir = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 			var fileConnFileNameFromLocal = Path.Combine(desktopDir, "connectionFromIOM-local.ideaCon");
