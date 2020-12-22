@@ -937,7 +937,7 @@ namespace IOM.GeneratorExample
 
 		public static void CreateOnServer(OpenModel model, OpenModelResult openModelResult, string path)
 		{
-			IdeaRS.OpenModel.OpenModelContainer openModelContainer = new OpenModelContainer()
+			IdeaRS.OpenModel.OpenModelTuple openModelContainer = new OpenModelTuple()
 			{
 				OpenModel = model,
 				OpenModelResult = openModelResult,
@@ -945,7 +945,7 @@ namespace IOM.GeneratorExample
 
 			// serialize IOM to XML
 			var stringwriter = new System.IO.StringWriter();
-			var serializer = new XmlSerializer(typeof(OpenModelContainer));
+			var serializer = new XmlSerializer(typeof(OpenModelTuple));
 			serializer.Serialize(stringwriter, openModelContainer);
 
 			var serviceUrl = viewerURL + "/ConnectionViewer/CreateFromIOM";
