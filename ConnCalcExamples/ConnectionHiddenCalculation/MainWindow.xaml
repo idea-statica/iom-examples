@@ -75,7 +75,16 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ConnectionGeometryCmd}"  CommandParameter="{Binding}" Margin="0">Geometry</Button>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.ConnectionGeometryCmd}"  CommandParameter="{Binding}" Margin="0" ToolTip="Get the instance of IdeaRS.OpenModel.Connection.ConnectionData for this connection.">Geometry</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="90">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetAllConnectionDataCmd}"  CommandParameter="{Binding}" Margin="0" ToolTip="Get the instance of IdeaRS.OpenModel.OpenModelTuple for this connection.\nIt includes structural data and corresponding results of FE analysis">All Conn Data</Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>

@@ -82,6 +82,8 @@ namespace ConnectionHiddenCalculation
 			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
 
+			GetAllConnectionDataCmd = new GetAllConnDataCommand(this);
+
 			ShowConHiddenCalcLogFileCmd = new ShowConHiddenCalcLogFileCommand();
 
 
@@ -100,6 +102,7 @@ namespace ConnectionHiddenCalculation
 		public ICommand CloseProjectCmd { get; set; }
 		public ICommand CalculateConnectionCmd { get; set; }
 		public ICommand ConnectionGeometryCmd { get; set; }
+		public ICommand GetAllConnectionDataCmd { get; set; }
 		public ICommand SaveAsProjectCmd { get; set; }
 		public ICommand ConnectionToTemplateCmd { get; set; }
 		public ICommand ApplyTemplateCmd { get; set; }
@@ -248,6 +251,11 @@ namespace ConnectionHiddenCalculation
 				 {
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
+				 }
+				 else if (res is IdeaRS.OpenModel.OpenModelTuple openModelTuple)
+				 {
+					 var jsonFormating = Formatting.Indented;
+					 Results = JsonConvert.SerializeObject(openModelTuple, jsonFormating, jsonSetting);
 				 }
 				 else if (res is List<ProjectItem> projectItems)
 				 {

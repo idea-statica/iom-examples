@@ -53,6 +53,7 @@
     <Compile Include="ConHiddenCalcCommands\ConnHiddenCalcCommandBase.cs" />
     <Compile Include="Commands\CustomCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\CreateBoltAssemblyCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetAllConnDataCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetBoltAssembliesCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetCrossSectionsCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetMaterialsCommand.cs" />
