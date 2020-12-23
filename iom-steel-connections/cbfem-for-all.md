@@ -88,5 +88,8 @@ There is the example how to call the service in the command : [Apply Simple temp
 
 There is the online [API Documentation](https://idea-statica.github.io/iom/ideaconnections-api/latest/index.html) of manufacturing operations. It helps to set values of properties of operations. The best way is to create a connection model in _ideaconnection.exe_ - save is as connection template - you can find this feature in this example. Then open it in a text editor and check the content. Then you can modify values in contemp file and apply it again.
 
+### Improvements in version IDEA StatiCa v 21.0
+We added the method __GetAllConnectionData__ to our API interface __IConnHiddenCheck__. This method returns the instance of __IdeaRS.OpenModel.OpenModelTuple__ for a selected connection. This instance includes structural data and corresponding results of FE analysis.
+
 
 
