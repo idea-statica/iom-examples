@@ -16,7 +16,7 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="IdeaStatiCa.OpenModel" Version="21.0.13" />
+    <PackageReference Include="IdeaStatiCa.OpenModel" Version="21.0.14" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\IOM.GeneratorExample\IOM.GeneratorExample.csproj" />
