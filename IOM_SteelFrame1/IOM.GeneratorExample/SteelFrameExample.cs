@@ -71,27 +71,6 @@ namespace IOM.GeneratorExample
 			//add Beams
 			openModel.Connections[0].Beams = new List<IdeaRS.OpenModel.Connection.BeamData>();
 
-			//member1D 3
-			var member3 = openModel.Member1D.Find(x => x.Id == 3);
-			IdeaRS.OpenModel.Connection.ConnectedMember conMb3 = new IdeaRS.OpenModel.Connection.ConnectedMember
-			{
-				Id = member3.Id,
-				MemberId = new ReferenceElement(member3),
-				IsContinuous = true,
-			};
-			connection.ConnectedMembers.Add(conMb3);
-
-			IdeaRS.OpenModel.Connection.BeamData beam2Data = new IdeaRS.OpenModel.Connection.BeamData
-			{
-				Name = "M3",
-				Id = 3,
-				OriginalModelId = member3.Id.ToString(),
-				IsAdded = false,
-				MirrorY = false,
-				RefLineInCenterOfGravity = false,
-			};
-			openModel.Connections[0].Beams.Add(beam2Data);
-
 			//member1D 1
 			IdeaRS.OpenModel.Connection.BeamData beam1Data = new IdeaRS.OpenModel.Connection.BeamData
 			{
@@ -112,6 +91,27 @@ namespace IOM.GeneratorExample
 				IsContinuous = false,
 			};
 			connection.ConnectedMembers.Add(conMb);
+
+			//member1D 3
+			var member3 = openModel.Member1D.Find(x => x.Id == 3);
+			IdeaRS.OpenModel.Connection.ConnectedMember conMb3 = new IdeaRS.OpenModel.Connection.ConnectedMember
+			{
+				Id = member3.Id,
+				MemberId = new ReferenceElement(member3),
+				IsContinuous = true,
+			};
+			connection.ConnectedMembers.Add(conMb3);
+
+			IdeaRS.OpenModel.Connection.BeamData beam2Data = new IdeaRS.OpenModel.Connection.BeamData
+			{
+				Name = "M3",
+				Id = 3,
+				OriginalModelId = member3.Id.ToString(),
+				IsAdded = false,
+				MirrorY = false,
+				RefLineInCenterOfGravity = false,
+			};
+			openModel.Connections[0].Beams.Add(beam2Data);
 
 			openModel.AddObject(connection);
 
@@ -641,6 +641,7 @@ namespace IOM.GeneratorExample
 			model.OriginSettings.ProjectName = "Project";
 			model.OriginSettings.Author = "IDEA StatiCa s.r.o.";
 			model.OriginSettings.ProjectDescription = "Training example";
+			model.OriginSettings.CheckEquilibrium = true;
 		}
 
 		/// <summary>
