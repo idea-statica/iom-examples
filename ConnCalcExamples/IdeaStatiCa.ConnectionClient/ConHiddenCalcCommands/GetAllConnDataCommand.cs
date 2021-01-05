@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace IdeaStatiCa.ConnectionClient.Commands
 {
 	/// <summary>
-	/// Get the instance of IdeaRS.OpenModel.OpenModelTuple for selected connection. It includes structural data and corresponding results of FE analysis.
+	/// Get the instance of IdeaRS.OpenModel.OpenModelContainer for selected connection. It includes structural data and corresponding results of FE analysis.
 	/// </summary>
 	public class GetAllConnDataCommand : ConnHiddenCalcCommandBase
 	{
@@ -31,7 +31,7 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 					// cchange in version 20.1 - connection model must pe passed by XML string otherwise it crashes. Why ? Is it a bug in WCF ???
 					string openModelTupleInXml = Service.GetAllConnectionData(conVM.ConnectionId);
-					IdeaRS.OpenModel.OpenModelTuple openModelTuple = IdeaStatiCa.Plugin.Tools.OpenModelTupleFromXml(openModelTupleInXml);
+					IdeaRS.OpenModel.OpenModelContainer openModelTuple = IdeaStatiCa.Plugin.Tools.OpenModelTupleFromXml(openModelTupleInXml);
 
 					if (openModelTuple != null)
 					{

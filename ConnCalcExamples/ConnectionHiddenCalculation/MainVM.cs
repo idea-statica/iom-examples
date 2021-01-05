@@ -252,7 +252,7 @@ namespace ConnectionHiddenCalculation
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(conData, jsonFormating, jsonSetting);
 				 }
-				 else if (res is IdeaRS.OpenModel.OpenModelTuple openModelTuple)
+				 else if (res is IdeaRS.OpenModel.OpenModelContainer openModelTuple)
 				 {
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(openModelTuple, jsonFormating, jsonSetting);

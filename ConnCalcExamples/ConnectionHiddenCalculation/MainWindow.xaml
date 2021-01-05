@@ -84,7 +84,7 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <StackPanel>
-                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetAllConnectionDataCmd}"  CommandParameter="{Binding}" Margin="0" ToolTip="Get the instance of IdeaRS.OpenModel.OpenModelTuple for this connection.\nIt includes structural data and corresponding results of FE analysis">All Conn Data</Button>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetAllConnectionDataCmd}"  CommandParameter="{Binding}" Margin="0" ToolTip="Get the instance of IdeaRS.OpenModel.OpenModelContainer for this connection.\nIt includes structural data and corresponding results of FE analysis">All Conn Data</Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
