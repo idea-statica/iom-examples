@@ -81,9 +81,9 @@ namespace ConnectionHiddenCalculation
 			GetCrossSectionsCmd = new GetCrossSectionsCommand(this);
 			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
+			GetParametersCmd = new GetParametersCommand(this);
 
 			ShowConHiddenCalcLogFileCmd = new ShowConHiddenCalcLogFileCommand();
-
 
 			TemplateSetting = new IdeaRS.OpenModel.Connection.ApplyConnTemplateSetting() { DefaultBoltAssemblyID = 1, DefaultCleatCrossSectionID = 1, DefaultConcreteMaterialID = 1, DefaultStiffMemberCrossSectionID = 1};
 
@@ -109,6 +109,7 @@ namespace ConnectionHiddenCalculation
 		public ICommand GetBoltAssembliesCmd { get; set; }
 		public ICommand CreateBoltAssemblyCmd { get; set; }
 		public ICommand ShowConHiddenCalcLogFileCmd { get; set; }
+		public ICommand GetParametersCmd { get; set; }
 		#endregion
 
 		#region IConHiddenCalcModel
@@ -253,6 +254,10 @@ namespace ConnectionHiddenCalculation
 				 {
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(projectItems, jsonFormating, jsonSetting);
+				 }
+				 else if ( res is ConnectionParameters connParams)
+				 {
+					 Results = connParams.ParametersJson;
 				 }
 				 else
 				 {

@@ -110,7 +110,19 @@
                                                         <Binding ElementName="AttachedMember" Path="Text"/>
                                                     </MultiBinding>
                                                 </Button.CommandParameter>
-                                                Apply Simple Template</Button>
+                                                Apply Simple Template
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetParametersCmd}"  CommandParameter="{Binding}">
+                                                Get Parameters
+                                            </Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
