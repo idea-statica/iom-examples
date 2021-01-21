@@ -257,7 +257,9 @@ namespace ConnectionHiddenCalculation
 				 }
 				 else if ( res is ConnectionParameters connParams)
 				 {
-					 Results = connParams.ParametersJson;
+					 var conParamsVM = new ConnParamsVM(this, connParams);
+					 ConnParamsWnd connParamsWnd = new ConnParamsWnd(conParamsVM);
+					 connParamsWnd.ShowDialog();
 				 }
 				 else
 				 {
