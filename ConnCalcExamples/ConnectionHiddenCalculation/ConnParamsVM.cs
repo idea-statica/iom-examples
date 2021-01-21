@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace ConnectionHiddenCalculation
 {
-	public class ConnParamsVM : INotifyPropertyChanged
+	public class ConnParamsVM : INotifyPropertyChanged, IUpdatedConnection
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		private IConHiddenCalcModel calcModel;

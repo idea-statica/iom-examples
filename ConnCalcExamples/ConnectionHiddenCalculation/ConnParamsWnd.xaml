@@ -12,7 +12,7 @@
             </ToolBar>
         </ToolBarTray>
         <StackPanel DockPanel.Dock="Bottom">
-            <Button HorizontalAlignment="Right" Command="{Binding Path=UpdateParametersCmd}"  CommandParameter="{Binding Path=ConnectionId}">Update parameters</Button>
+            <Button HorizontalAlignment="Right" Command="{Binding Path=UpdateParametersCmd}"  CommandParameter="{Binding}">Update parameters</Button>
         </StackPanel>
         <Grid>
             <ScrollViewer>

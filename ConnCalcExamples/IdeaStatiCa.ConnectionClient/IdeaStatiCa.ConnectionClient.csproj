@@ -65,6 +65,7 @@
     <Compile Include="Model\ConnectionParameters.cs" />
     <Compile Include="Model\IConHiddenCalcModel.cs" />
     <Compile Include="Model\IConnectionId.cs" />
+    <Compile Include="Model\IUpdatedConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

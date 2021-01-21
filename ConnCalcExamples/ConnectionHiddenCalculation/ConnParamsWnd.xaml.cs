@@ -35,8 +35,11 @@ namespace ConnectionHiddenCalculation
 
 		private void ViewModel_UpdateFinished(object sender, EventArgs e)
 		{
-			DialogResult = true;
-			Close();
+			Dispatcher.BeginInvoke((Action)(() =>
+			{
+				DialogResult = true;
+				Close();
+			}));
 		}
 	}
 }
