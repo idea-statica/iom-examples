@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,7 @@ namespace ConnectionHiddenCalculation
 	/// </summary>
 	public partial class ConnParamsWnd : Window
 	{
+		private readonly ConnParamsVM viewModel;
 		public ConnParamsWnd()
 		{
 			InitializeComponent();
@@ -26,7 +28,15 @@ namespace ConnectionHiddenCalculation
 
 		public ConnParamsWnd(ConnParamsVM viewModel) : this()
 		{
+			this.viewModel = viewModel;
+			this.viewModel.UpdateFinished += ViewModel_UpdateFinished;
 			DataContext = viewModel;
+		}
+
+		private void ViewModel_UpdateFinished(object sender, EventArgs e)
+		{
+			DialogResult = true;
+			Close();
 		}
 	}
 }

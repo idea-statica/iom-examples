@@ -61,6 +61,7 @@
     <Compile Include="ConHiddenCalcCommands\OpenProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\SaveAsProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\ShowConHiddenCalcLogFileCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\UpdateConnParamsCommand.cs" />
     <Compile Include="Model\ConnectionParameters.cs" />
     <Compile Include="Model\IConHiddenCalcModel.cs" />
     <Compile Include="Model\IConnectionId.cs" />

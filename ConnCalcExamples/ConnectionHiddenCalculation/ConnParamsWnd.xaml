@@ -6,7 +6,18 @@
         xmlns:local="clr-namespace:ConnectionHiddenCalculation"
         mc:Ignorable="d"
         Title="ConcParamsWnd" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel LastChildFill="True">
+        <ToolBarTray DockPanel.Dock="Top">
+            <ToolBar Band="1" DockPanel.Dock="Top">
+            </ToolBar>
+        </ToolBarTray>
+        <StackPanel DockPanel.Dock="Bottom">
+            <Button HorizontalAlignment="Right" Command="{Binding Path=UpdateParametersCmd}"  CommandParameter="{Binding Path=ConnectionId}">Update parameters</Button>
+        </StackPanel>
+        <Grid>
+            <ScrollViewer>
+                <TextBox Text="{Binding ConnParamsJson}" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Auto"></TextBox>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
 </Window>

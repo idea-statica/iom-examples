@@ -23,7 +23,7 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 		{
 			var res = string.Empty;
 			IsCommandRunning = true;
-			Model.SetResults("Getting geometry parametes of the connectetin");
+			Model.SetResults("Getting geometry parametes of the connection");
 			var calculationTask = Task.Run(() =>
 			{
 				try
@@ -32,7 +32,7 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 					var Service = Model.GetConnectionService();
 
 					string parametersJson = Service.GetParametersJSON(conVM.ConnectionId);
-					var conParameters = new ConnectionParameters(parametersJson);
+					var conParameters = new ConnectionParameters(Guid.Parse(conVM.ConnectionId) ,parametersJson);
 					Model.SetResults(conParameters);
 
 				}

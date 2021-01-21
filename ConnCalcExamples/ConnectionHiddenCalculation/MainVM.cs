@@ -259,7 +259,12 @@ namespace ConnectionHiddenCalculation
 				 {
 					 var conParamsVM = new ConnParamsVM(this, connParams);
 					 ConnParamsWnd connParamsWnd = new ConnParamsWnd(conParamsVM);
-					 connParamsWnd.ShowDialog();
+					 connParamsWnd.Owner = Application.Current.MainWindow;
+					 var updateRes = connParamsWnd.ShowDialog();
+					 if (updateRes == true)
+					 {
+						 this.Results = "Connection parameters are updated";
+					 }
 				 }
 				 else
 				 {
