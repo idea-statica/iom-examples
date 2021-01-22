@@ -38,6 +38,9 @@ namespace ConnectionHiddenCalculation
 		readonly JsonSerializerSettings jsonSerializerSettings;
 		int supportingMember;
 		int attachedMember;
+		IdeaConnectionController connectionController;
+		readonly string ideaConnExeFileName;
+		private string ideaConTempFileName;
 		#endregion
 
 		#region Constructor
@@ -53,8 +56,8 @@ namespace ConnectionHiddenCalculation
 			ideaStatiCaDir = Properties.Settings.Default.IdeaStatiCaDir;
 			if (Directory.Exists(ideaStatiCaDir))
 			{
-				string ideaConnectionFileName = Path.Combine(ideaStatiCaDir, "IdeaConnection.exe");
-				if (File.Exists(ideaConnectionFileName))
+				ideaConnExeFileName = Path.Combine(ideaStatiCaDir, "IdeaConnection.exe");
+				if (File.Exists(ideaConnExeFileName))
 				{
 					IsIdea = true;
 					StatusMessage = string.Format("IdeaStatiCa installation was found in '{0}'", ideaStatiCaDir);
@@ -83,6 +86,8 @@ namespace ConnectionHiddenCalculation
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
 			GetParametersCmd = new GetParametersCommand(this);
 
+			OpenTempProjectCmd = new CustomCommand(CanRunIdeaConnection, RunIdeaConnection);
+
 			ShowConHiddenCalcLogFileCmd = new ShowConHiddenCalcLogFileCommand();
 
 			TemplateSetting = new IdeaRS.OpenModel.Connection.ApplyConnTemplateSetting() { DefaultBoltAssemblyID = 1, DefaultCleatCrossSectionID = 1, DefaultConcreteMaterialID = 1, DefaultStiffMemberCrossSectionID = 1};
@@ -110,6 +115,8 @@ namespace ConnectionHiddenCalculation
 		public ICommand CreateBoltAssemblyCmd { get; set; }
 		public ICommand ShowConHiddenCalcLogFileCmd { get; set; }
 		public ICommand GetParametersCmd { get; set; }
+		public ICommand OpenTempProjectCmd { get; set; }
+
 		#endregion
 
 		#region IConHiddenCalcModel
@@ -221,6 +228,23 @@ namespace ConnectionHiddenCalculation
 
 			Results = string.Empty;
 			Connections.Clear();
+
+			if(connectionController != null)
+			{
+				connectionController.ConnectionAppAutomation.CloseProject();
+			}
+
+			DeleteTempProjectFile();
+		}
+
+		private void DeleteTempProjectFile()
+		{
+			if (!string.IsNullOrEmpty(IdeaConTempFileName) && File.Exists(IdeaConTempFileName))
+			{
+				File.Delete(IdeaConTempFileName);
+			}
+
+			IdeaConTempFileName = null;
 		}
 
 		public void SetStatusMessage(string msg)
@@ -276,6 +300,12 @@ namespace ConnectionHiddenCalculation
 
 		public void SetConProjectData(ConProjectInfo projectData)
 		{
+			if(connectionController != null)
+			{
+				connectionController.ConnectionAppAutomation.CloseProject();
+				DeleteTempProjectFile();
+			}
+
 			List<ConnectionVM> connectionsVm = new List<ConnectionVM>();
 			// get information obaout all aconections in the project
 			foreach (var con in projectData.Connections)
@@ -289,6 +319,40 @@ namespace ConnectionHiddenCalculation
 		#endregion
 
 		#region View model's properties and methods
+
+		public IdeaConnectionController ConnectionController
+		{
+			get => connectionController;
+			set
+			{
+				connectionController = value;
+				NotifyPropertyChanged("ConnectionController");
+			}
+		}
+
+		private void RunIdeaConnection(object obj)
+		{
+			if (this.ConnectionController == null)
+			{
+				// it starts the new process of IdeaConnection.exe which is located in the directory ideaStatiCaDir
+				this.ConnectionController = IdeaConnectionController.Create(ideaStatiCaDir);
+			}
+			else
+			{
+				this.ConnectionController.ConnectionAppAutomation.CloseProject();
+				DeleteTempProjectFile();
+			}
+
+			IdeaConTempFileName = Path.ChangeExtension(Path.GetTempFileName(), ".ideacon");
+			SaveAsProjectCmd.Execute(IdeaConTempFileName);
+
+			ConnectionController.ConnectionAppAutomation.OpenProject(IdeaConTempFileName);
+		}
+
+		private bool CanRunIdeaConnection(object arg)
+		{
+			return IsService;
+		}
 
 		private IConnHiddenCheck Service
 		{
@@ -335,6 +399,8 @@ namespace ConnectionHiddenCalculation
 				NotifyPropertyChanged("TemplateSetting");
 			}
 		}
+
+		public string IdeaConTempFileName { get => ideaConTempFileName; set => ideaConTempFileName = value; }
 
 		private void NotifyPropertyChanged(string propertyName = "")
 		{
