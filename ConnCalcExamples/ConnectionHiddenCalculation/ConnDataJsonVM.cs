@@ -7,13 +7,13 @@ using System.Windows.Input;
 
 namespace ConnectionHiddenCalculation
 {
-	public class ConnParamsVM : INotifyPropertyChanged, IUpdatedConnection
+	public class ConnDataJsonVM : INotifyPropertyChanged, IConnectionDataJson
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		private IConHiddenCalcModel calcModel;
-		private ConnectionParameters connParameters;
+		private ConnectionDataJson connParameters;
 
-		public ConnParamsVM(IConHiddenCalcModel calcModel, ConnectionParameters connParameters)
+		public ConnDataJsonVM(IConHiddenCalcModel calcModel, ConnectionDataJson connParameters)
 		{
 			Debug.Assert(calcModel != null);
 			Debug.Assert(connParameters != null);
@@ -25,14 +25,14 @@ namespace ConnectionHiddenCalculation
 
 		public event EventHandler UpdateFinished;
 
-		public string ConnParamsJson
+		public string DataJson
 		{
-			get => connParameters?.ParametersJson;
+			get => connParameters?.DataJson;
 
 			set
 			{
-				connParameters.ParametersJson = value;
-				NotifyPropertyChanged("ConnParamsJson");
+				connParameters.DataJson = value;
+				NotifyPropertyChanged("DataJson");
 			}
 		}
 

@@ -32,7 +32,7 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 					var Service = Model.GetConnectionService();
 
 					string parametersJson = Service.GetParametersJSON(conVM.ConnectionId);
-					var conParameters = new ConnectionParameters(Guid.Parse(conVM.ConnectionId) ,parametersJson);
+					var conParameters = new ConnectionDataJson(Guid.Parse(conVM.ConnectionId) ,parametersJson);
 					Model.SetResults(conParameters);
 
 				}

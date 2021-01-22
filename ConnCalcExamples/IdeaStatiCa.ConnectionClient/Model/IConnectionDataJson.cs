@@ -2,7 +2,7 @@
 
 namespace IdeaStatiCa.ConnectionClient.Model
 {
-	public interface IUpdatedConnection
+	public interface IConnectionDataJson
 	{
 		/// <summary>
 		/// Identifier of the connection in a project
@@ -10,8 +10,8 @@ namespace IdeaStatiCa.ConnectionClient.Model
 		Guid ConnectionId { get; }
 
 		/// <summary>
-		/// values of the parameters
+		/// Data in JSON format
 		/// </summary>
-		string ConnParamsJson { get; }
+		string DataJson { get; }
 	}
 }

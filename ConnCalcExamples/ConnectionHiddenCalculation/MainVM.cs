@@ -255,10 +255,10 @@ namespace ConnectionHiddenCalculation
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(projectItems, jsonFormating, jsonSetting);
 				 }
-				 else if ( res is ConnectionParameters connParams)
+				 else if ( res is ConnectionDataJson connParams)
 				 {
-					 var conParamsVM = new ConnParamsVM(this, connParams);
-					 ConnParamsWnd connParamsWnd = new ConnParamsWnd(conParamsVM);
+					 var conParamsVM = new ConnDataJsonVM(this, connParams);
+					 ConnDataJsonWnd connParamsWnd = new ConnDataJsonWnd(conParamsVM);
 					 connParamsWnd.Owner = Application.Current.MainWindow;
 					 var updateRes = connParamsWnd.ShowDialog();
 					 if (updateRes == true)

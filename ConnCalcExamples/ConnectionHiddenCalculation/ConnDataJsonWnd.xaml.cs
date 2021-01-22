@@ -6,15 +6,16 @@ namespace ConnectionHiddenCalculation
 	/// <summary>
 	/// Interaction logic for ConcParamsWnd.xaml
 	/// </summary>
-	public partial class ConnParamsWnd : Window
+	public partial class ConnDataJsonWnd : Window
 	{
-		private readonly ConnParamsVM viewModel;
-		public ConnParamsWnd()
+		private readonly ConnDataJsonVM viewModel;
+
+		public ConnDataJsonWnd()
 		{
 			InitializeComponent();
 		}
 
-		public ConnParamsWnd(ConnParamsVM viewModel) : this()
+		public ConnDataJsonWnd(ConnDataJsonVM viewModel) : this()
 		{
 			this.viewModel = viewModel;
 			this.viewModel.UpdateFinished += ViewModel_UpdateFinished;

@@ -27,10 +27,10 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 			{
 				try
 				{
-					var updatedParameters = (IUpdatedConnection)parameter;
+					var updatedParameters = (IConnectionDataJson)parameter;
 					var Service = Model.GetConnectionService();
 
-					Service.ApplyParameters(updatedParameters.ConnectionId.ToString(), updatedParameters.ConnParamsJson);
+					Service.ApplyParameters(updatedParameters.ConnectionId.ToString(), updatedParameters.DataJson);
 
 					NotifyCommandFinished();
 				}
