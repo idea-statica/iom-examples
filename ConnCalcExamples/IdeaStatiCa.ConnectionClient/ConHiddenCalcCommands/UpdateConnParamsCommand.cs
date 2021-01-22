@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 {
-	public class UpdateConnParamsCommand : ConnHiddenCalcCommandBase
+	public class UpdateConnParamsCommand : ConnHiddenCalcCommandBase, IUpdateCommand
 	{
 		public event EventHandler UpdateFinished;
 

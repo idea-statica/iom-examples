@@ -10,38 +10,36 @@ namespace ConnectionHiddenCalculation
 	public class ConnDataJsonVM : INotifyPropertyChanged, IConnectionDataJson
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
-		private IConHiddenCalcModel calcModel;
-		private ConnectionDataJson connParameters;
+		private ConnectionDataJson connData;
 
-		public ConnDataJsonVM(IConHiddenCalcModel calcModel, ConnectionDataJson connParameters)
+		public ConnDataJsonVM(IUpdateCommand updateCommand, ConnectionDataJson connParameters)
 		{
-			Debug.Assert(calcModel != null);
+			Debug.Assert(updateCommand != null);
 			Debug.Assert(connParameters != null);
-			this.connParameters = connParameters;
-			var updateCommand = new UpdateConnParamsCommand(calcModel);
-			updateCommand.UpdateFinished += UpdateCommand_UpdateFinished;
-			this.UpdateParametersCmd = updateCommand;
+			this.connData = connParameters;
+			this.UpdateConnectionCmd = updateCommand;
+			UpdateConnectionCmd.UpdateFinished += UpdateCommand_UpdateFinished;
 		}
 
 		public event EventHandler UpdateFinished;
 
 		public string DataJson
 		{
-			get => connParameters?.DataJson;
+			get => connData?.DataJson;
 
 			set
 			{
-				connParameters.DataJson = value;
+				connData.DataJson = value;
 				NotifyPropertyChanged("DataJson");
 			}
 		}
 
 		public Guid ConnectionId
 		{
-			get => connParameters.ConnectionId;
+			get => connData.ConnectionId;
 		}
 
-		public ICommand UpdateParametersCmd { get; set; }
+		public IUpdateCommand UpdateConnectionCmd { get; set; }
 
 		private void NotifyPropertyChanged(string propertyName = "")
 		{

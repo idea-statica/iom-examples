@@ -257,7 +257,8 @@ namespace ConnectionHiddenCalculation
 				 }
 				 else if ( res is ConnectionDataJson connParams)
 				 {
-					 var conParamsVM = new ConnDataJsonVM(this, connParams);
+					 var upadateParamCmd = new UpdateConnParamsCommand(this);
+					 var conParamsVM = new ConnDataJsonVM(upadateParamCmd, connParams);
 					 ConnDataJsonWnd connParamsWnd = new ConnDataJsonWnd(conParamsVM);
 					 connParamsWnd.Owner = Application.Current.MainWindow;
 					 var updateRes = connParamsWnd.ShowDialog();
