@@ -120,19 +120,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="IdeaStatiCa.Plugin">
+      <Version>20.1.15</Version>
+    </PackageReference>
     <PackageReference Include="Newtonsoft.Json">
       <Version>12.0.3</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\is-1\IdeaStatiCa\Plugin\IdeaStatiCa.Plugin\IdeaStatiCa.Plugin.csproj">
-      <Project>{e04d1e91-d5a2-4cf8-9ac9-d2cd9239c692}</Project>
-      <Name>IdeaStatiCa.Plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\is-1\StructuralModel\IdeaRS.OpenModel\IdeaRS.OpenModel.csproj">
-      <Project>{7879b316-56a2-4172-af85-653198e3a403}</Project>
-      <Name>IdeaRS.OpenModel</Name>
-    </ProjectReference>
     <ProjectReference Include="..\IdeaStatiCa.ConnectionClient\IdeaStatiCa.ConnectionClient.csproj">
       <Project>{3c0ae938-d5e2-4434-8262-802cabd1af8b}</Project>
       <Name>IdeaStatiCa.ConnectionClient</Name>

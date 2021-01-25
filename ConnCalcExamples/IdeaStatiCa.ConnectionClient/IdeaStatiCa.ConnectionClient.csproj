@@ -54,6 +54,7 @@
     <Compile Include="Commands\CustomCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\CreateBoltAssemblyCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetBoltAssembliesCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetConnCheckResults.cs" />
     <Compile Include="ConHiddenCalcCommands\GetCrossSectionsCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetLoadingCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetMaterialsCommand.cs" />
@@ -70,20 +71,6 @@
     <Compile Include="Model\IConnectionId.cs" />
     <Compile Include="Model\IConnectionDataJson.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\is-1\Common\IdeaStatiCa.Diagnostics\IdeaStatiCa.Diagnostics.csproj">
-      <Project>{119ec9bc-753b-45e1-8eb5-ad0c92c9defb}</Project>
-      <Name>IdeaStatiCa.Diagnostics</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\is-1\IdeaStatiCa\Plugin\IdeaStatiCa.Plugin\IdeaStatiCa.Plugin.csproj">
-      <Project>{e04d1e91-d5a2-4cf8-9ac9-d2cd9239c692}</Project>
-      <Name>IdeaStatiCa.Plugin</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\is-1\StructuralModel\IdeaRS.OpenModel\IdeaRS.OpenModel.csproj">
-      <Project>{7879b316-56a2-4172-af85-653198e3a403}</Project>
-      <Name>IdeaRS.OpenModel</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

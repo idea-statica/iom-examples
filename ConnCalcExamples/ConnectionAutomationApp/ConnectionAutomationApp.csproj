@@ -98,7 +98,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IdeaStatiCa.Plugin">
-      <Version>20.1.7</Version>
+      <Version>20.1.15</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
