@@ -86,6 +86,7 @@ namespace ConnectionHiddenCalculation
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
 			GetParametersCmd = new GetParametersCommand(this);
 			GetLoadingCmd = new GetLoadingCommand(this);
+			GetConnCheckResultsCmd = new GetConnCheckResults(this);
 
 			OpenTempProjectCmd = new CustomCommand(CanRunIdeaConnection, RunIdeaConnection);
 
@@ -117,6 +118,9 @@ namespace ConnectionHiddenCalculation
 		public ICommand ShowConHiddenCalcLogFileCmd { get; set; }
 		public ICommand GetParametersCmd { get; set; }
 		public ICommand GetLoadingCmd { get; set; }
+
+		public ICommand GetConnCheckResultsCmd { get; set; }
+
 		public ICommand OpenTempProjectCmd { get; set; }
 
 		#endregion
