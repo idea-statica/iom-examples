@@ -55,19 +55,27 @@
     <Compile Include="ConHiddenCalcCommands\CreateBoltAssemblyCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetAllConnDataCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetBoltAssembliesCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetConnCheckResults.cs" />
     <Compile Include="ConHiddenCalcCommands\GetCrossSectionsCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetLoadingCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\GetMaterialsCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\GetParametersCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\ImportIOMCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\IUpdateCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\OpenProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\SaveAsProjectCommand.cs" />
     <Compile Include="ConHiddenCalcCommands\ShowConHiddenCalcLogFileCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\UpdateConnParamsCommand.cs" />
+    <Compile Include="ConHiddenCalcCommands\UpdateLoadingCommand.cs" />
+    <Compile Include="Model\ConnectionDataJson.cs" />
     <Compile Include="Model\IConHiddenCalcModel.cs" />
+    <Compile Include="Model\IConnectionDataJson.cs" />
     <Compile Include="Model\IConnectionId.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="IdeaStatiCa.Plugin">
-      <Version>21.0.13</Version>
+      <Version>21.0.16</Version>
     </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

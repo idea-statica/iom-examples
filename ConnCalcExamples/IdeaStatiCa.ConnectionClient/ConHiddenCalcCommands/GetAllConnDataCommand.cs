@@ -31,7 +31,7 @@ namespace IdeaStatiCa.ConnectionClient.Commands
 
 					// cchange in version 20.1 - connection model must pe passed by XML string otherwise it crashes. Why ? Is it a bug in WCF ???
 					string openModelTupleInXml = Service.GetAllConnectionData(conVM.ConnectionId);
-					IdeaRS.OpenModel.OpenModelContainer openModelTuple = IdeaStatiCa.Plugin.Tools.OpenModelTupleFromXml(openModelTupleInXml);
+					IdeaRS.OpenModel.OpenModelContainer openModelTuple = IdeaStatiCa.Plugin.Tools.OpenModelContainerFromXml(openModelTupleInXml);
 
 					if (openModelTuple != null)
 					{

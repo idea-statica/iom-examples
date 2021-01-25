@@ -28,6 +28,7 @@
                 <Label>Attached member</Label>
                 <TextBox x:Name="AttachedMember" Text="{Binding AttachedMember, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" MinWidth="80" ToolTip="The definition a attached member for application a simple template e.g. a beam"></TextBox>
                 <Button Command="{Binding ShowConHiddenCalcLogFileCmd, Mode=TwoWay}" Margin="5,0" ToolTip="Show hidden calculator log file (from version IS v20.1.2)">Show Idea Log File</Button>
+                <Button Command="{Binding OpenTempProjectCmd, Mode=TwoWay}" Margin="5,0" ToolTip="Open idea connection project">Open project</Button>
             </ToolBar>
         </ToolBarTray>
         <StackPanel DockPanel.Dock="Bottom">
@@ -119,7 +120,35 @@
                                                         <Binding ElementName="AttachedMember" Path="Text"/>
                                                     </MultiBinding>
                                                 </Button.CommandParameter>
-                                                Apply Simple Template</Button>
+                                                Apply Simple Template
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetParametersCmd}" CommandParameter="{Binding}" ToolTip="Get parameters which are defined for the connection">Parameters</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetLoadingCmd}" CommandParameter="{Binding}" ToolTip="Get loading in the connection">Loading</Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel>
+                                            <Button Command="{Binding RelativeSource={RelativeSource AncestorType=ItemsControl}, Path=DataContext.GetConnCheckResultsCmd}" CommandParameter="{Binding}" ToolTip="Get detailed results of the chech of connection.">Results</Button>
                                         </StackPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
