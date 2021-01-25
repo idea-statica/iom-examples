@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 {
+	/// <summary>
+	/// 
+	/// </summary>
 	public class UpdateConnParamsCommand : ConnHiddenCalcCommandBase, IUpdateCommand
 	{
 		public event EventHandler UpdateFinished;
@@ -22,7 +25,7 @@ namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 		{
 			var res = string.Empty;
 			IsCommandRunning = true;
-			Model.SetResults("Getting geometry parametes of the connection");
+			Model.SetResults("Updating parameters of the connection");
 			var calculationTask = Task.Run(() =>
 			{
 				try

@@ -283,7 +283,7 @@ namespace ConnectionHiddenCalculation
 				 }
 				 else if(res is ConnectionLoadingJson connLoading)
 				 {
-					 var upadateParamCmd = new UpdateConnParamsCommand(this);
+					 var upadateParamCmd = new UpdateLoadingCommand(this);
 					 var conParamsVM = new ConnDataJsonVM(upadateParamCmd, connLoading, "Update loading");
 					 ConnDataJsonWnd connParamsWnd = new ConnDataJsonWnd(conParamsVM);
 					 connParamsWnd.Owner = Application.Current.MainWindow;

@@ -1,13 +1,13 @@
 ﻿using IdeaStatiCa.ConnectionClient.Commands;
 using IdeaStatiCa.ConnectionClient.Model;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace IdeaStatiCa.ConnectionClient.ConHiddenCalcCommands
 {
+	/// <summary>
+	/// Get json which includes parameters which are defined on the connection
+	/// </summary>
 	public class GetParametersCommand : ConnHiddenCalcCommandBase
 	{
 		public GetParametersCommand(IConHiddenCalcModel model) : base(model)
