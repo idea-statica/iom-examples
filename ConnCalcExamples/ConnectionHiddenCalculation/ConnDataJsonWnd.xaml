@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ConnectionHiddenCalculation"
         mc:Ignorable="d"
-        Title="ConcParamsWnd" Height="450" Width="800">
+        Title="{Binding Path=ActionName}" Height="450" Width="800">
     <DockPanel LastChildFill="True">
         <ToolBarTray DockPanel.Dock="Top">
             <ToolBar Band="1" DockPanel.Dock="Top">
             </ToolBar>
         </ToolBarTray>
         <StackPanel DockPanel.Dock="Bottom">
-            <Button HorizontalAlignment="Right" Command="{Binding Path=UpdateConnectionCmd}"  CommandParameter="{Binding}">Update parameters</Button>
+            <Button HorizontalAlignment="Right" Content="{Binding Path=ActionName}" Command="{Binding Path=UpdateConnectionCmd}"  CommandParameter="{Binding}"/>
         </StackPanel>
         <Grid>
             <ScrollViewer>

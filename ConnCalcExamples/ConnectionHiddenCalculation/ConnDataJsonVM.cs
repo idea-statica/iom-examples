@@ -11,13 +11,15 @@ namespace ConnectionHiddenCalculation
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		private ConnectionDataJson connData;
+		private string actionName;
 
-		public ConnDataJsonVM(IUpdateCommand updateCommand, ConnectionDataJson connParameters)
+		public ConnDataJsonVM(IUpdateCommand updateCommand, ConnectionDataJson connParameters, string title)
 		{
 			Debug.Assert(updateCommand != null);
 			Debug.Assert(connParameters != null);
 			this.connData = connParameters;
 			this.UpdateConnectionCmd = updateCommand;
+			this.actionName = title;
 			UpdateConnectionCmd.UpdateFinished += UpdateCommand_UpdateFinished;
 		}
 
@@ -40,6 +42,15 @@ namespace ConnectionHiddenCalculation
 		}
 
 		public IUpdateCommand UpdateConnectionCmd { get; set; }
+		public string ActionName
+		{
+			get => actionName;
+			set
+			{
+				actionName = value;
+				NotifyPropertyChanged("ActionName");
+			}
+		}
 
 		private void NotifyPropertyChanged(string propertyName = "")
 		{

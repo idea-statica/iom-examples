@@ -2,6 +2,13 @@
 
 namespace IdeaStatiCa.ConnectionClient.Model
 {
+	public class ConnectionLoadingJson : ConnectionDataJson
+	{
+		public ConnectionLoadingJson(Guid connectionId, string json) : base(connectionId, json)
+		{
+		}
+	}
+
 	/// <summary>
 	/// Connection data in JSON format
 	/// </summary>

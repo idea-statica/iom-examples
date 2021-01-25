@@ -85,6 +85,7 @@ namespace ConnectionHiddenCalculation
 			GetBoltAssembliesCmd = new GetBoltAssembliesCommand(this);
 			CreateBoltAssemblyCmd = new CreateBoltAssemblyCommand(this);
 			GetParametersCmd = new GetParametersCommand(this);
+			GetLoadingCmd = new GetLoadingCommand(this);
 
 			OpenTempProjectCmd = new CustomCommand(CanRunIdeaConnection, RunIdeaConnection);
 
@@ -115,6 +116,7 @@ namespace ConnectionHiddenCalculation
 		public ICommand CreateBoltAssemblyCmd { get; set; }
 		public ICommand ShowConHiddenCalcLogFileCmd { get; set; }
 		public ICommand GetParametersCmd { get; set; }
+		public ICommand GetLoadingCmd { get; set; }
 		public ICommand OpenTempProjectCmd { get; set; }
 
 		#endregion
@@ -279,10 +281,22 @@ namespace ConnectionHiddenCalculation
 					 var jsonFormating = Formatting.Indented;
 					 Results = JsonConvert.SerializeObject(projectItems, jsonFormating, jsonSetting);
 				 }
-				 else if ( res is ConnectionDataJson connParams)
+				 else if(res is ConnectionLoadingJson connLoading)
 				 {
 					 var upadateParamCmd = new UpdateConnParamsCommand(this);
-					 var conParamsVM = new ConnDataJsonVM(upadateParamCmd, connParams);
+					 var conParamsVM = new ConnDataJsonVM(upadateParamCmd, connLoading, "Update loading");
+					 ConnDataJsonWnd connParamsWnd = new ConnDataJsonWnd(conParamsVM);
+					 connParamsWnd.Owner = Application.Current.MainWindow;
+					 var updateRes = connParamsWnd.ShowDialog();
+					 if (updateRes == true)
+					 {
+						 this.Results = "Connection loading is updated";
+					 }
+				 }
+				 else if (res is ConnectionDataJson connParams)
+				 {
+					 var upadateParamCmd = new UpdateConnParamsCommand(this);
+					 var conParamsVM = new ConnDataJsonVM(upadateParamCmd, connParams, "Update parameters");
 					 ConnDataJsonWnd connParamsWnd = new ConnDataJsonWnd(conParamsVM);
 					 connParamsWnd.Owner = Application.Current.MainWindow;
 					 var updateRes = connParamsWnd.ShowDialog();
