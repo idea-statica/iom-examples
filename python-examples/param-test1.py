@@ -61,6 +61,14 @@ while j < 5:
         summary_res_weld = briefResults.ConnectionCheckRes[0].CheckResSummary[2]
         print(f'Anchor check value = {summary_res_weld.CheckValue}')
 
+        checkResults_json_string = ideaConnectionClient.GetCheckResultsJSON(firstCon.Identifier)
+        checkResults = json.loads(checkResults_json_string)
+
+        boltsAnchor = checkResults['boltsAnchor']
+        anchor1 = boltsAnchor['1']
+        forceInAnchor1 = anchor1['boltTensionForce']
+        print(f'Tension force in bolt 1 = {forceInAnchor1}')
+
         anchorLength += anchorLengthStep
         i += 1
 
