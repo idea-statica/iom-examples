@@ -65,9 +65,13 @@ while j < 5:
         checkResults = json.loads(checkResults_json_string)
 
         boltsAnchor = checkResults['boltsAnchor']
-        anchor1 = boltsAnchor['1']
-        forceInAnchor1 = anchor1['boltTensionForce']
-        print(f'Tension force in bolt 1 = {forceInAnchor1}')
+
+        anchorInx = 1
+        for key in boltsAnchor:
+            anchor = boltsAnchor[key]
+            forceInAnchor = anchor['boltTensionForce']
+            print(f'Tension force in bolt {anchorInx} = {forceInAnchor}')
+            anchorInx += 1       
 
         anchorLength += anchorLengthStep
         i += 1
