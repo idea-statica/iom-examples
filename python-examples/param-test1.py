@@ -51,19 +51,19 @@ connectionLoading = json.loads(loading_json_string)
 pltThickStep = 0.005
 pltThick = 0.005 - pltThickStep
 
-j = 0
+plateStepInx = 0
 # loop for modification of the base plate thickness
-while j < 5:
-    i = 1
+while plateStepInx < 5:
     pltThick += pltThickStep
-    j += 1   
+    plateStepInx += 1   
 
     # parameters related to the length of anchors
     anchorLength = 0.100
     anchorLengthStep = 0.050
 
+    anchorStepInx = 1
     # loop for modification of the length of anchors
-    while i < 3:
+    while anchorStepInx < 3:
         print(f'anchor length = {anchorLength} plate thickness = {pltThick} ')
 
         # modify the thickness of the base plate
@@ -99,7 +99,7 @@ while j < 5:
             anchorInx += 1       
 
         anchorLength += anchorLengthStep
-        i += 1
+        anchorStepInx += 1
 
 # close idea connection project
 ideaConnectionClient.Close()
