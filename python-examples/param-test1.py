@@ -47,59 +47,76 @@ connectionParams = json.loads(params_json_string)
 loading_json_string = ideaConnectionClient.GetConnectionLoadingJSON(firstCon.Identifier)
 connectionLoading = json.loads(loading_json_string)
 
-# variables related to the thickness of the baseplate
-pltThickStep = 0.005
-pltThick = 0.005 - pltThickStep
+# variables related to the loading
+loadingStepInx = 0
+bending_moment_my = 30000
+bending_moment_my_step = 10000
 
-plateStepInx = 0
-# loop for modification of the base plate thickness
-while plateStepInx < 5:
-    pltThick += pltThickStep
-    plateStepInx += 1   
+# loop for modification of the loading
+while loadingStepInx <= 3:
+    loadingStepInx += 1
 
-    # parameters related to the length of anchors
-    anchorLength = 0.100
-    anchorLengthStep = 0.050
+    firstLoadCase = connectionLoading[0]
+    loadedSegments = firstLoadCase['forcesOnSegments']
+    firstLoadedSegment = loadedSegments[0]
 
-    anchorStepInx = 1
-    # loop for modification of the length of anchors
-    while anchorStepInx < 3:
-        print(f'anchor length = {anchorLength} plate thickness = {pltThick} ')
+    firstLoadedSegment['my'] = bending_moment_my
+    bending_moment_my += bending_moment_my_step
 
-        # modify the thickness of the base plate
-        pltThickParam = connectionParams[0]
-        pltThickParam['value'] = pltThick
+    # variables related to the thickness of the baseplate
+    pltThickStep = 0.005
+    pltThick = 0.005 - pltThickStep
 
-        # modify the length of the anchor
-        anchorLengthParam = connectionParams[1]
-        anchorLengthParam['value'] = anchorLength
+    plateStepInx = 0
+    # loop for modification of the base plate thickness
+    while plateStepInx < 5:
+        pltThick += pltThickStep
+        plateStepInx += 1   
 
-        # update the model of the connection
-        updated_params_json_string = json.dumps(connectionParams)
-        ideaConnectionClient.ApplyParameters(firstCon.Identifier, updated_params_json_string)
+        # parameters related to the length of anchors
+        anchorLength = 0.100
+        anchorLengthStep = 0.050
 
-        # calculate the modified connection and get brief results
-        briefResults = ideaConnectionClient.Calculate(firstCon.Identifier)
-        summary_res_weld = briefResults.ConnectionCheckRes[0].CheckResSummary[2]
-        print(f'Anchor check value = {summary_res_weld.CheckValue}')
+        anchorStepInx = 1
+        # loop for modification of the length of anchors
+        while anchorStepInx < 3:
+            my = firstLoadedSegment['my']
+            print(f'bending moment my = {my} anchor length = {anchorLength} plate thickness = {pltThick} ')
 
-        # get the results of the check of the first connection
-        checkResults_json_string = ideaConnectionClient.GetCheckResultsJSON(firstCon.Identifier)
-        checkResults = json.loads(checkResults_json_string)
+            # modify the thickness of the base plate
+            pltThickParam = connectionParams[0]
+            pltThickParam['value'] = pltThick
 
-        # results of anchors
-        boltsAnchor = checkResults['boltsAnchor']
+            # modify the length of the anchor
+            anchorLengthParam = connectionParams[1]
+            anchorLengthParam['value'] = anchorLength
 
-        # print forces in all anchors
-        anchorInx = 1
-        for key in boltsAnchor:
-            anchor = boltsAnchor[key]
-            forceInAnchor = anchor['boltTensionForce']
-            print(f'Tension force in bolt {anchorInx} = {forceInAnchor}')
-            anchorInx += 1       
+            # update the model of the connection
+            updated_params_json_string = json.dumps(connectionParams)
+            ideaConnectionClient.ApplyParameters(firstCon.Identifier, updated_params_json_string)
 
-        anchorLength += anchorLengthStep
-        anchorStepInx += 1
+            # calculate the modified connection and get brief results
+            briefResults = ideaConnectionClient.Calculate(firstCon.Identifier)
+            summary_res_weld = briefResults.ConnectionCheckRes[0].CheckResSummary[2]
+            print(f'Anchor check value = {summary_res_weld.CheckValue}')
+
+            # get the results of the check of the first connection
+            checkResults_json_string = ideaConnectionClient.GetCheckResultsJSON(firstCon.Identifier)
+            checkResults = json.loads(checkResults_json_string)
+
+            # results of anchors
+            boltsAnchor = checkResults['boltsAnchor']
+
+            # print forces in all anchors
+            anchorInx = 1
+            for key in boltsAnchor:
+                anchor = boltsAnchor[key]
+                forceInAnchor = anchor['boltTensionForce']
+                print(f'Tension force in bolt {anchorInx} = {forceInAnchor}')
+                anchorInx += 1       
+
+            anchorLength += anchorLengthStep
+            anchorStepInx += 1
 
 # close idea connection project
 ideaConnectionClient.Close()
