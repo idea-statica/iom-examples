@@ -1,8 +1,8 @@
 # parameters-anchors
 
-This example shows how to modify parameters of the connection from Python. In this example the bending moment, the thick on the base plate and the length of the anchor are modified. Results are printed to the console.
+This example shows how to modify parameters of the IDEA Connection from Python. In this example, the bending moment, the thickness of the base plate and the length of the anchors are modified. Results are printed to the console.
 
-How to set parameters in idea connection project is descriped on ths [page](params-in-ideacon-project.md)
+How to set parameters in idea connection project is described on ths [page](params-in-ideacon-project.md)
 
 ![Python script in Visual Studio Code](images/python-vs-code.png)
 
